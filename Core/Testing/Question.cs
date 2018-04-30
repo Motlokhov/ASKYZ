@@ -12,6 +12,7 @@ namespace Core.Testing
     {
         private Image _image;
         public ChildrenList Answers;
+        
 
         public Question(ulong questionID)
         {
@@ -84,13 +85,11 @@ namespace Core.Testing
             return bytes;
         }
 
-        static private void WriteWriteQuestionToDatabase(int testID , int questionType , string question , byte[] picture , List<string> answers , List<short> trueAnswers)
+        static private void WriteQuestionToDatabase(int testID , int questionType , string question , byte[] picture , List<string> answers , List<short> trueAnswers)
         {
             ulong questionID = 0;
             using( var query = new Query(System.Data.CommandType.StoredProcedure) )
             {
-
-
                 query.AddParameter("@TestID" , System.Data.SqlDbType.Int , testID);
                 query.AddParameter("@description" , System.Data.SqlDbType.NVarChar , question);
                 query.AddParameter("@type" , System.Data.SqlDbType.SmallInt , questionType);
@@ -115,7 +114,11 @@ namespace Core.Testing
                             }
                             else if( questionType == 1 )
                             {
-                                if(j == 0 || j==1)
+                                if(j == 0 )
+                                {
+                                    points = 10;
+                                }
+                                else if (j == 1 )
                                 {
                                     points = 5;
                                 }
@@ -145,8 +148,8 @@ namespace Core.Testing
 
         static public void ParseQuestionDocument(string filePath)
         {
+            List<string> questions = new List<string>();
             string[] file = File.ReadAllLines(filePath , System.Text.Encoding.Default);
-            filePath = filePath + ".txt";
             string question = string.Empty;
             byte[] picture = null;
 
@@ -156,10 +159,14 @@ namespace Core.Testing
             for( var l = 0 ; l < file.Length - 1 ; l++ )
             {
                 int currentAnswer;
-                while( l != file.Length || !int.TryParse(file[l][0].ToString() , out currentAnswer) ||  file[l].Contains("Вопрос"))
+                while( l < file.Length-1 )
                 {
-                    answers.Clear();
-                    trueAnswers.Clear();
+                    if( !file[l].Contains("Вопрос") )
+                    {
+                        l++;
+                        continue;
+                    }
+
                     question = file[l];
                     question = question.Remove(0 , "вопрос".Length + 1);
                     while(question[0] != 32 )
@@ -184,13 +191,18 @@ namespace Core.Testing
                             {
                                 answers.Add("");
                             }
+                            if( currentLine.ToLower().Contains("вложение") )
+                            {
+                                break;
+                            }
                         } while( !currentLine.Contains("ОТВЕТ") );
                         if( currentLine.ToLower().Contains("вложение") )
                         {
                             string imagePath = currentLine.Remove(0 , "вложение".Length);
                             picture = ConvertImageToBase64(imagePath);
-                            currentLine = file[l];
                             l++;
+                            currentLine = file[l];
+                            
                         }
                         while( currentLine.Contains("ОТВЕТ") )
                         {
@@ -210,35 +222,21 @@ namespace Core.Testing
                             currentLine = file[l];
                         };
                     }
-                    bool isParseOK = true;
-                    int maxString = 3999;
-                    if(question.Length > maxString )
-                    {
-                        isParseOK = false;
-                    }
-                    for(var i = 0 ;i<answers.Count ;i++ )
-                    {
-                        if(answers[i].Length > maxString )
-                        {
-                            isParseOK = false;
-                            break;
-                        }
-                    }
-                    if( isParseOK )
-                    {
-                       WriteWriteQuestionToDatabase(25,(int)ExerciseType.themen,question,picture,answers,trueAnswers);
-                    }
-                    else
-                    {
 
-                        File.AppendAllText(filePath , "Вопрос: " + question + "\f" , System.Text.Encoding.Default);
-                        File.AppendAllLines(filePath , answers , System.Text.Encoding.Default);
-                        foreach( var trueAnswer in trueAnswers )
-                        {
-                            File.AppendAllText(filePath , "Ответ -" + trueAnswer + "\f" , System.Text.Encoding.Default);
-                        }
-                        File.AppendAllText(filePath , "\f" , System.Text.Encoding.Default);
+                    if( answers.Count != 4 | trueAnswers.Count != 1 )
+                    {
+                        throw new Exception();
                     }
+                    if(picture != null )
+                    {
+                        //throw new Exception();
+                    }
+                    
+                    questions.Add(question);
+                    //WriteQuestionToDatabase(25,(int)ExerciseType.common,question,picture,answers,trueAnswers);
+                    answers.Clear();
+                    trueAnswers.Clear();
+                    picture = null;
                 }
             }
         }

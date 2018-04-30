@@ -14,10 +14,11 @@ namespace Testing_a_person
         public ChoseTestForm()
         {
             InitializeComponent();
+            //Question.ParseQuestionDocument(@"C:\Users\Hiruko\Desktop\Вопросы\Тестовые вопросы\7 категория.txt");
         }
        
 
-        //Кнопка входа в программу
+        
         private void buttonSignIn_Click(object sender , EventArgs e)
         {
             if( !string.IsNullOrEmpty(textBoxLogin.Text) && !string.IsNullOrEmpty(textBoxPassword.Text))
