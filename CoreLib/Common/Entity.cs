@@ -1,6 +1,4 @@
-﻿
-
-namespace Core.Common
+﻿namespace CoreLib.Common
 {
    public class Entity:Identification
     {

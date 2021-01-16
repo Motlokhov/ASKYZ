@@ -1,12 +1,8 @@
-﻿
-using System;
-using System.Data;
+﻿using CoreLib.Common;
 
-
-namespace Core.Testing
+namespace CoreLib.Testing
 {
-    using Common;
-   public class Answer:Entity
+    public class Answer:Entity
     {       
         public Answer(ulong answerID,string name)
         {

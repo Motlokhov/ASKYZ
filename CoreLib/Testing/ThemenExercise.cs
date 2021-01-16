@@ -1,9 +1,7 @@
-﻿using System;
+﻿using CoreLib.Common;
 
-namespace Core.Testing
+namespace CoreLib.Testing
 {
-    using Common;
-    using Query;
     public class ThemenExercise : Exercise
     {
         public ThemenExercise(ulong testID) : base()

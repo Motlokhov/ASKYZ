@@ -1,12 +1,11 @@
 ﻿using System;
+using Database;
+using CoreLib.Common;
+using CoreLib.Testing;
+using System.Data.SqlClient;
 
-namespace Core
+namespace CoreLib.Main
 {
-    using Query;
-    using Common;
-    using Testing;
-    using System.Data.SqlClient;
-
     public static class Core
     {
         static public readonly Random Random;

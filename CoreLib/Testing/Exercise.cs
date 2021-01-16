@@ -1,10 +1,9 @@
-﻿using Query;
-namespace Core.Testing
-{
-    using Query;
-    using Common;
-    using System;
+﻿using Database;
+using CoreLib.Common;
+using System;
 
+namespace CoreLib.Testing
+{
     public class Exercise:Entity
     {
         public ExerciseType Type { get; private set; }
@@ -50,7 +49,7 @@ namespace Core.Testing
             int questionsCount = Questions.Count;
             for( var i = 0 ; i < questionsCount / 2 ; i++ )
             {
-                var random = Core.Random;
+                var random = CoreLib.Main.Core.Random;
                 int randomNumber = random.Next(questionsCount);
 
                 var tempQuestion = Questions[i];

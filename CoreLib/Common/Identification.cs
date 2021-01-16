@@ -1,4 +1,4 @@
-﻿namespace Core.Common
+﻿namespace CoreLib.Common
 {
    public class Identification
     {

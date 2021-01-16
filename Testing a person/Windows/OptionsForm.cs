@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
-using Core;
+using CoreLib.Common;
 
 namespace Testing_a_person
 {
-    using Core.Common;
     public partial class OptionsForm : Form
     {
         string pathToConnTxt = @"connection.txt";

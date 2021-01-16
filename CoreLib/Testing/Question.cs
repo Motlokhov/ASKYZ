@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using Database;
+using CoreLib.Common;
+using System.IO;
 
-namespace Core.Testing
+namespace CoreLib.Testing
 {
-    using Query;
-    using Common;
-    using System.IO;
-
     public class Question : Entity
     {
         private Image _image;

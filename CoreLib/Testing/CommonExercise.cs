@@ -1,8 +1,7 @@
-﻿namespace Core.Testing
+﻿using CoreLib.Common;
+
+namespace CoreLib.Testing
 {
-    using System;
-    using Common;
-    using Query;
     public class CommonExercise : Exercise
     {
         

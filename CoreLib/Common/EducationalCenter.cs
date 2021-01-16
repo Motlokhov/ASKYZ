@@ -3,7 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace Core.Common
+namespace CoreLib.Common
 {
     /// <summary>
     /// Класс

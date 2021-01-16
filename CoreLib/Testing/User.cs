@@ -1,12 +1,9 @@
 ﻿using System;
+using Database;
+using CoreLib.Common;
 
-namespace Core
+namespace CoreLib.Testing
 {
-    using Query;
-    using Common;
-    using System.Text;
-    using Testing;
-
     public class User : Entity
     {
         private byte _programGroupID;

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Common;
+using CoreLib.Common;
+using Database;
 
-namespace Core.Testing
+namespace CoreLib.Testing
 {
-    using Query;
     class TrainingTest : Test
     {
         public TrainingTest(ulong programGroupID) : base()

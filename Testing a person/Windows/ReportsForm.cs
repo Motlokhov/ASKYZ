@@ -1,15 +1,15 @@
-﻿using System;
+﻿using CoreLib.Common;
+using CoreLib.Main;
+using CoreLib.Testing;
+using Database;
+using Microsoft.Office.Interop.Word;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Word;
 
 
 namespace Testing_a_person
 {
-    using Core;
-    using Core.Testing;
-    using Core.Common;
-    using Query;
     public partial class ReportsForm : AbstractForm  
     {
         private Microsoft.Office.Interop.Word.Application WordApplication;

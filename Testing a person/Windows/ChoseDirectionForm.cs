@@ -1,13 +1,9 @@
-﻿using System;
+﻿using CoreLib.Main;
+using System;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
 namespace Testing_a_person
 {
-
-    using Core;
-    using Core.Testing;
-
     public partial class ChoseDirectionForm : AbstractForm
     {
         public ChoseDirectionForm()

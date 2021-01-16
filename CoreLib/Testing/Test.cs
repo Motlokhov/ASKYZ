@@ -1,6 +1,6 @@
-﻿using Core.Common;
+﻿using CoreLib.Common;
 
-namespace Core.Testing
+namespace CoreLib.Testing
 {
     public class Test:Entity
     {     

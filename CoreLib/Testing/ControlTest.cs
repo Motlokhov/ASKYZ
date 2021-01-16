@@ -1,10 +1,9 @@
 ﻿using System;
-using Core.Common;
+using CoreLib.Common;
+using Database;
 
-
-namespace Core.Testing
+namespace CoreLib.Testing
 {
-    using Query;
     public class ControlTest : Test
     {
 
@@ -58,8 +57,8 @@ namespace Core.Testing
 
         private void SaveResults()
         {
-            byte programGroupID = Core.ProgramGroupID;
-            ulong userID = Core.User.GetID();
+            byte programGroupID = CoreLib.Main.Core.ProgramGroupID;
+            ulong userID = CoreLib.Main.Core.User.GetID();
 
             var today = DateTime.Today.ToString("d");
             var query = new Query();

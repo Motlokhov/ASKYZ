@@ -1,10 +1,10 @@
 ﻿using System;
+using CoreLib.Common;
+using Database;
 
 
-namespace Core.Testing
+namespace CoreLib.Testing
 {
-    using Common;
-    using Query;
     public class Result
     {
         public byte TrueAnswers { get;  set; }

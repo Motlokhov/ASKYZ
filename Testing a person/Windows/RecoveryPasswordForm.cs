@@ -1,10 +1,9 @@
-﻿using System;
-using System.Data;
+﻿using Database;
+using System;
 using System.Windows.Forms;
 
 namespace Testing_a_person
 {
-    using Query;
     public partial class RecoveryPasswordForm : AbstractForm
     {
         public RecoveryPasswordForm()

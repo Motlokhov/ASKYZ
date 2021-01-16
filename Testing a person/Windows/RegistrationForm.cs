@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using CoreLib.Main;
+using CoreLib.Common;
+using CoreLib.Testing;
 
 namespace Testing_a_person
 {
-    
-    using Core;
-    using Core.Common;
     public partial class RegistrationForm 
     {
         List<byte> directions;

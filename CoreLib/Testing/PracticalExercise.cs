@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CoreLib.Common;
 
-namespace Core.Testing
+namespace CoreLib.Testing
 {
-    using Common;
-    using Query;
     public class PracticalExercise : Exercise
     {
         public PracticalExercise(ulong testID): base()

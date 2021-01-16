@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using CoreLib.Main;
+using CoreLib.Common;
 
 namespace Testing_a_person
 {
-    using Core;
-    using Core.Common;
     public partial class ChoseProgramGroup : AbstractForm
     {
 

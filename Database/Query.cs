@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace Query
+namespace Database
 {
     public class Query:IDisposable
     {
