@@ -3,6 +3,7 @@ using Database;
 using CoreLib.Common;
 using CoreLib.Testing;
 using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace CoreLib.Main
 {
@@ -41,7 +42,7 @@ namespace CoreLib.Main
             return false;
         }
 
-        public static SqlDataReader LoadDirections()
+        public static DbDataReader LoadDirections()
         {
             var query = new Query();
             return query.ReadData("SELECT Id,Name FROM Direction");
@@ -60,7 +61,7 @@ namespace CoreLib.Main
             DirectionName = name;
         }
         
-        public static SqlDataReader LoadPrograms(byte directionID,TestType testType)
+        public static DbDataReader LoadPrograms(byte directionID,TestType testType)
         {
             var query = new Query();
             return query.ReadData("SELECT ProgramGroup.ID,Name,Number FROM ProgramGroup INNER JOIN Test ON Test.ProgramGroupID = ProgramGroup.ID WHERE DirectionID = " + directionID + " AND Test.[Type] = "+(int)testType);

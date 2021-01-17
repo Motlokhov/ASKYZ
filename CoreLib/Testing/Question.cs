@@ -4,6 +4,7 @@ using System.Drawing;
 using Database;
 using CoreLib.Common;
 using System.IO;
+using System.Data;
 
 namespace CoreLib.Testing
 {
@@ -11,7 +12,7 @@ namespace CoreLib.Testing
     {
         private Image _image;
         public ChildrenList Answers;
-        
+
 
         public Question(ulong questionID)
         {
@@ -23,7 +24,7 @@ namespace CoreLib.Testing
                 byte[] buf;
                 try
                 {
-                    buf = Convert.FromBase64String(Convert.ToBase64String(( (byte[]) reader["Picture"] )));
+                    buf = Convert.FromBase64String(Convert.ToBase64String(((byte[])reader["Picture"])));
                     _image = Image.FromStream(new MemoryStream(buf));
                 }
                 catch
@@ -45,7 +46,7 @@ namespace CoreLib.Testing
                 {
                     string answerName = Convert.ToString(reader["Description"]);
                     ulong answerId = Convert.ToUInt64(reader["ID"]);
-                    Answers.Add(new Answer(answerId , answerName));
+                    Answers.Add(new Answer(answerId, answerName));
                 }
             }
         }
@@ -61,7 +62,7 @@ namespace CoreLib.Testing
         public static byte Verify(ulong[] answersID)
         {
             string stringVerification = string.Empty;
-            for( var i = 0 ; i < answersID.Length ; i++ )
+            for( var i = 0; i < answersID.Length; i++ )
             {
                 stringVerification += answersID[i];
                 if( i + 1 < answersID.Length )
@@ -79,28 +80,28 @@ namespace CoreLib.Testing
         {
             Image image = Image.FromFile(imagePath);
             MemoryStream memoryStream = new MemoryStream();
-            image.Save(memoryStream , System.Drawing.Imaging.ImageFormat.Jpeg);
+            image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
             byte[] bytes = memoryStream.ToArray();
             return bytes;
         }
 
-        static private void WriteQuestionToDatabase(int testID , int questionType , string question , byte[] picture , List<string> answers , List<short> trueAnswers)
+        static private void WriteQuestionToDatabase(int testID, int questionType, string question, byte[] picture, List<string> answers, List<short> trueAnswers)
         {
             ulong questionID = 0;
-            using( var query = new Query(System.Data.CommandType.StoredProcedure) )
+            using( var query = new Query(CommandType.StoredProcedure) )
             {
-                query.AddParameter("@TestID" , System.Data.SqlDbType.Int , testID);
-                query.AddParameter("@description" , System.Data.SqlDbType.NVarChar , question);
-                query.AddParameter("@type" , System.Data.SqlDbType.SmallInt , questionType);
-                query.AddParameter("@picture" , System.Data.SqlDbType.Image , picture);
+                query.AddParameter("@TestID", DbType.Int32, testID);
+                query.AddParameter("@description", DbType.String, question);
+                query.AddParameter("@type", DbType.Int16, questionType);
+                query.AddParameter("@picture", DbType.Binary, picture);
                 questionID = Convert.ToUInt64(query.ExecuteScalar("AddQuestion"));
             }
             using( var query = new Query() )
             {
-                for( var i = 0 ; i < answers.Count ; i++ )
+                for( var i = 0; i < answers.Count; i++ )
                 {
                     short points = 0;
-                    for( var j = 0 ; j < trueAnswers.Count ; j++ )
+                    for( var j = 0; j < trueAnswers.Count; j++ )
                     {
                         if( i + 1 == trueAnswers[j] )
                         {
@@ -113,11 +114,11 @@ namespace CoreLib.Testing
                             }
                             else if( questionType == 1 )
                             {
-                                if(j == 0 )
+                                if( j == 0 )
                                 {
                                     points = 10;
                                 }
-                                else if (j == 1 )
+                                else if( j == 1 )
                                 {
                                     points = 5;
                                 }
@@ -148,17 +149,17 @@ namespace CoreLib.Testing
         static public void ParseQuestionDocument(string filePath)
         {
             List<string> questions = new List<string>();
-            string[] file = File.ReadAllLines(filePath , System.Text.Encoding.Default);
+            string[] file = File.ReadAllLines(filePath, System.Text.Encoding.Default);
             string question = string.Empty;
             byte[] picture = null;
 
             List<string> answers = new List<string>();
             List<short> trueAnswers = new List<short>();
 
-            for( var l = 0 ; l < file.Length - 1 ; l++ )
+            for( var l = 0; l < file.Length - 1; l++ )
             {
                 int currentAnswer;
-                while( l < file.Length-1 )
+                while( l < file.Length - 1 )
                 {
                     if( !file[l].Contains("Вопрос") )
                     {
@@ -167,18 +168,18 @@ namespace CoreLib.Testing
                     }
 
                     question = file[l];
-                    question = question.Remove(0 , "вопрос".Length + 1);
-                    while(question[0] != 32 )
+                    question = question.Remove(0, "вопрос".Length + 1);
+                    while( question[0] != 32 )
                     {
-                        question = question.Remove(0 , 1);
+                        question = question.Remove(0, 1);
                     }
-                    question = question.Remove(0 , 1);
+                    question = question.Remove(0, 1);
                     int index = 0;
                     currentAnswer = 0;
                     l++;
                     var currentLine = file[l];
 
-                    if( int.TryParse(currentLine[0].ToString() , out currentAnswer) )
+                    if( int.TryParse(currentLine[0].ToString(), out currentAnswer) )
                     {
                         answers.Add("");
                         do
@@ -186,7 +187,7 @@ namespace CoreLib.Testing
                             answers[answers.Count - 1] += currentLine + " ";
                             l++;
                             currentLine = file[l];
-                            if( int.TryParse(currentLine[0].ToString() , out currentAnswer) )
+                            if( int.TryParse(currentLine[0].ToString(), out currentAnswer) )
                             {
                                 answers.Add("");
                             }
@@ -197,16 +198,16 @@ namespace CoreLib.Testing
                         } while( !currentLine.Contains("ОТВЕТ") );
                         if( currentLine.ToLower().Contains("вложение") )
                         {
-                            string imagePath = currentLine.Remove(0 , "вложение".Length);
+                            string imagePath = currentLine.Remove(0, "вложение".Length);
                             picture = ConvertImageToBase64(imagePath);
                             l++;
                             currentLine = file[l];
-                            
+
                         }
                         while( currentLine.Contains("ОТВЕТ") )
                         {
                             currentLine = currentLine.Trim();
-                            if(currentLine[currentLine.Length-1].ToString() == "0")
+                            if( currentLine[currentLine.Length - 1].ToString() == "0" )
                             {
                                 throw new Exception("Ошибка");
                             }
@@ -214,7 +215,7 @@ namespace CoreLib.Testing
 
                             l++;
                             index++;
-                            if(l >= file.Length )
+                            if( l >= file.Length )
                             {
                                 break;
                             }
@@ -226,11 +227,11 @@ namespace CoreLib.Testing
                     {
                         throw new Exception();
                     }
-                    if(picture != null )
+                    if( picture != null )
                     {
                         //throw new Exception();
                     }
-                    
+
                     questions.Add(question);
                     //WriteQuestionToDatabase(25,(int)ExerciseType.common,question,picture,answers,trueAnswers);
                     answers.Clear();
