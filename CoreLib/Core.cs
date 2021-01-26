@@ -4,6 +4,7 @@ using CoreLib.Common;
 using CoreLib.Testing;
 using System.Data.SqlClient;
 using System.Data.Common;
+using Database.Result;
 
 namespace CoreLib.Main
 {
@@ -27,12 +28,10 @@ namespace CoreLib.Main
         {
             Test = null;
             User = null;
-            var query = new Query();
-            var result = query.ExecuteScalar("SELECT ID FROM [User] WHERE ID = " + id + " AND Password = '" + password + "'");
-            if( result != null )
+            ulong? userId = QueryResult.GetUserId(id, password);
+            if( userId.HasValue )
             {
-                ulong userID = Convert.ToUInt64(result);
-                User = new User(userID);
+                User = new User(userId.Value);
                 ProgramGroupID = User.GetProgramGroupID();
                 LoadDirectionName();
                 LoadProgram();

@@ -20,5 +20,14 @@ namespace Database.Result
                 return result.ToArray();
             }
         }
+
+        public static ulong? GetUserId(string id, string password)
+        {
+            using( Query query = new Query() )
+            {
+                object result = query.ExecuteScalar("SELECT ID FROM [User] WHERE ID = " + id + " AND Password = '" + password + "'");
+                return result == null ? default(ulong?) : Convert.ToUInt64(result);
+            }
+        }
     }
 }
