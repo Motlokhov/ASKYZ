@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CoreLib.Main;
 using CoreLib.Common;
 using CoreLib.Testing;
+using Database.Result;
 
 namespace Testing_a_person
 {
@@ -35,13 +36,11 @@ namespace Testing_a_person
         {
             directions = new List<byte>();
 
-            var reader = Core.LoadDirections();
-            while( reader.Read() )
+            (byte id, string name)[] result = QueryResult.LoadAllDirections();
+            for( int i = 0; i < result.Length; i++ )
             {
-                byte id = Convert.ToByte(reader["ID"]);
-                string name = Convert.ToString(reader["Name"]);
-                directions.Add(id);
-                comboBoxDirection.Items.Add(name);
+                directions.Add(result[i].id);
+                comboBoxDirection.Items.Add(result[i].name);
             }
         }
 

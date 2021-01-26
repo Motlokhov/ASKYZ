@@ -42,12 +42,6 @@ namespace CoreLib.Main
             return false;
         }
 
-        public static DbDataReader LoadDirections()
-        {
-            var query = new Query();
-            return query.ReadData("SELECT Id,Name FROM Direction");
-        }
-        
         public static void LoadDirectionName()
         {
             var query = new Query();

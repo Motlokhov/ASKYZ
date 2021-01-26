@@ -337,12 +337,12 @@
   <ItemGroup>
     <PublishFile Include="images\Иконка.ico">
       <Visible>False</Visible>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Exclude</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
@@ -353,6 +353,10 @@
     <ProjectReference Include="..\CoreLib\CoreLib.csproj">
       <Project>{cb6933bb-e6c3-4a21-bf5f-8eb359af5eef}</Project>
       <Name>CoreLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Database.Result\Database.Result.csproj">
+      <Project>{d10ae359-4418-4402-bf98-7c44bc405e13}</Project>
+      <Name>Database.Result</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
