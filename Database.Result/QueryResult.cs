@@ -29,5 +29,11 @@ namespace Database.Result
                 return result == null ? default(ulong?) : Convert.ToUInt64(result);
             }
         }
+
+        public static string LoadDirectionName(byte programGroupId)
+        {
+            using( Query query = new Query() )
+                return query.ExecuteScalar("SELECT Direction.[Name] FROM Direction INNER JOIN ProgramGroup ON Direction.ID = ProgramGroup.DirectionID WHERE ProgramGroup.ID = " + programGroupId).ToString();
+        }
     }
 }

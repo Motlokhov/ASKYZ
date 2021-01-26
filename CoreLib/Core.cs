@@ -43,9 +43,7 @@ namespace CoreLib.Main
 
         public static void LoadDirectionName()
         {
-            var query = new Query();
-            var result = query.ExecuteScalar("SELECT Direction.[Name] FROM Direction INNER JOIN ProgramGroup ON Direction.ID = ProgramGroup.DirectionID WHERE ProgramGroup.ID = " + ProgramGroupID);
-            DirectionName = result.ToString();
+            DirectionName = QueryResult.LoadDirectionName(ProgramGroupID);
         }
 
         public static void SetDirection(byte id , string name)
