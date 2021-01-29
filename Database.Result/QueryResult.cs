@@ -61,5 +61,19 @@ namespace Database.Result
 
             return null;
         }
+
+        public static DateTime[] LoadTestingDates()
+        {
+            string commandString = "SELECT distinct [Date] FROM TestingDate ORDER BY [Date] DESC";
+            using(Query query = new Query())
+            {
+                List<DateTime> result = new List<DateTime>();
+                using(var reader = query.ReadData(commandString))
+                    while(reader.Read())
+                        result.Add(Convert.ToDateTime(reader["Date"]));
+
+                return result.ToArray();
+            }
+        }
     }
 }

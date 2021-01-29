@@ -6,6 +6,7 @@ using Database.Result;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 
@@ -25,14 +26,10 @@ namespace Testing_a_person
         }
         private void DocumentsForm_Load(object sender, EventArgs e)
         {
-            string commandString = "SELECT distinct [Date] FROM TestingDate ORDER BY [Date] DESC";
-            Query query = new Query();
-            var reader = query.ReadData(commandString);
-            while( reader.Read() )
-            {
-                comboBoxTestingDate.Items.Add(reader["Date"]);
-            }
-            query = null;
+            DateTime[] dates = QueryResult.LoadTestingDates();
+
+            for(int i = 0; i < dates.Length; i++)
+                comboBoxTestingDate.Items.Add(dates[i]);
         }
 
         //очистка listView
