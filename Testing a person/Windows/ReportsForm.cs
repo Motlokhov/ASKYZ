@@ -2,6 +2,7 @@
 using CoreLib.Main;
 using CoreLib.Testing;
 using Database;
+using Database.Result;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
@@ -148,7 +149,7 @@ namespace Testing_a_person
                             {
                                 user.GetID().ToString(),
                                 user.GetName().ToString(),
-                                user.GetProgramNumber().ToString()
+                                QueryResult.LoadProgramByProgramGroupId(user.GetProgramGroupID()).Value.number.ToString()
                             }
                         )
                     );

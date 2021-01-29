@@ -73,13 +73,6 @@ namespace CoreLib.Testing
             word = symbol + word;
         }
 
-        public byte GetProgramNumber()
-        {
-            var query = new Query();
-            var result = query.ExecuteScalar("SELECT Number FROM ProgramGroup WHERE ID = " + _programGroupID);
-            return Convert.ToByte(result);
-        }
-
         public static bool Registration(string firstname , string surname , string lastname ,
            ushort passportSerie , uint passportNumber , DateTime startDate , DateTime endDate ,
            string password , ulong programGroupID)
