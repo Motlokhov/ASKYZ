@@ -51,12 +51,6 @@ namespace CoreLib.Main
             DirectionID = id;
             DirectionName = name;
         }
-        
-        public static DbDataReader LoadPrograms(byte directionID,TestType testType)
-        {
-            var query = new Query();
-            return query.ReadData("SELECT ProgramGroup.ID,Name,Number FROM ProgramGroup INNER JOIN Test ON Test.ProgramGroupID = ProgramGroup.ID WHERE DirectionID = " + directionID + " AND Test.[Type] = "+(int)testType);
-        }
 
         public static void SetProgramGroupID(byte id)
         {

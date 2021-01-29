@@ -5,13 +5,15 @@ using CoreLib.Main;
 using CoreLib.Common;
 using CoreLib.Testing;
 using Database.Result;
+using System.Linq;
 
 namespace Testing_a_person
 {
     public partial class RegistrationForm 
     {
         List<byte> directions;
-        List<byte> programs;
+        private (byte id, string name, byte number)[] programs;
+
         byte programId;
         public RegistrationForm()
         {
@@ -46,40 +48,31 @@ namespace Testing_a_person
 
         private void comboBoxDirection_SelectedValueChanged(object sender , EventArgs e)
         {
-            comboBoxGroup.Text = string.Empty;
-            comboBoxGroup.Items.Clear();
-            
             int selected = comboBoxDirection.SelectedIndex;
             byte id = directions[selected];
+            programs = QueryResult.LoadProgramsByDirecionAndType(id, (int)TestType.control);
 
-            var reader = Core.LoadPrograms(id,TestType.control);
-            
-            if(!reader.HasRows)
+            bool AreProgramsAccesable = programs.Any();
+
+            comboBoxGroup.Text = string.Empty;
+            comboBoxGroup.Items.Clear();
+            comboBoxGroup.Visible = AreProgramsAccesable;
+            label12.Visible = AreProgramsAccesable;
+
+            if(!AreProgramsAccesable)
             {
-                comboBoxGroup.Visible = false;
-                label12.Visible = false;
                 MessageBox.Show("Программы контрольного тестирования не доступны");
                 return;
-                
             }
-            
-            programs = new List<byte>();
-            while( reader.Read() )
-            {
-                byte programID = Convert.ToByte(reader["ID"]);
-                byte programNumber = Convert.ToByte(reader["Number"]);
-                string programName = Convert.ToString(reader["Name"]);
-                programs.Add(programID);
-                comboBoxGroup.Items.Add("Группа № " + programNumber.ToString() + ": " + programName);
-            }
-            comboBoxGroup.Visible = true;
-            label12.Visible = true;
+
+            for(int i = 0; i < programs.Length; i++)             
+                comboBoxGroup.Items.Add(string.Concat("Группа № ", programs[i].number, ": ", programs[i].name));
         }
 
         private void comboBoxGroup_SelectedValueChanged(object sender , EventArgs e)
         {
             int index = comboBoxGroup.SelectedIndex;
-            programId = programs[index];
+            programId = programs[index].id;
         }
 
         private void buttonSave_Click(object sender , EventArgs e)
