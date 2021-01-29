@@ -59,12 +59,12 @@ namespace CoreLib.Main
 
         public static void LoadProgram()
         {
-            var query = new Query();
-            var reader =  query.ReadData("SELECT Name,Number FROM ProgramGroup WHERE ID = " + ProgramGroupID);
-            if( reader.Read() )
+            (string name, byte number)? program = QueryResult.LoadProgramByProgramGroupId(ProgramGroupID);
+
+            if(program.HasValue)
             {
-                ProgramNumber = Convert.ToByte(reader["Number"]);
-                ProgramName = Convert.ToString(reader["Name"]);
+                ProgramNumber = program.Value.number;
+                ProgramName = program.Value.name;
             }
         }
 

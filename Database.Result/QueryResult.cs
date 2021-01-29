@@ -51,5 +51,15 @@ namespace Database.Result
                 }
             }
         }
+
+        public static (string name, byte number)? LoadProgramByProgramGroupId(byte programGroupId)
+        {
+            using(Query query = new Query())
+                using(DbDataReader reader = query.ReadData("SELECT Name,Number FROM ProgramGroup WHERE ID = " + programGroupId))
+                    if(reader.Read())
+                        return (Convert.ToString(reader["Name"]), Convert.ToByte(reader["Number"]));
+
+            return null;
+        }
     }
 }
