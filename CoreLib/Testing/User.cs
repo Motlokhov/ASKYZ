@@ -1,6 +1,7 @@
 ﻿using System;
 using Database;
 using CoreLib.Common;
+using Database.Result;
 
 namespace CoreLib.Testing
 {
@@ -40,16 +41,23 @@ namespace CoreLib.Testing
         public User(ulong id)
         {
             _id = id;
-            var query = new Query();
-            var reader = query.ReadData("SELECT * FROM [User] WHERE ID = " + id);
-            if( reader.Read() )
+            (string surname, 
+                string firstname, 
+                string lastname, 
+                byte programGroupId, 
+                DateTime dateStartTest, 
+                DateTime dateEndTest, 
+                uint passportNumber, 
+                ushort passportSerie)? result = QueryResult.LoadUserById(id);
+
+            if(result.HasValue)
             {
-                _name = reader["Surname"] + " " + reader["Firstname"] + " " + reader["Lastname"];
-                _programGroupID = Convert.ToByte(reader["ProgramGroupID"]);
-                _dateStart = Convert.ToDateTime(reader["DateStartTest"]);
-                _dateEnd = Convert.ToDateTime(reader["DateEndTest"]);
-                _passportNumber = Convert.ToUInt32(reader["PassportNumber"]);
-                _passportSerie = Convert.ToUInt16(reader["PassportSerie"]);
+                _name = string.Concat(result.Value.surname, " ", result.Value.firstname, " ", result.Value.lastname);
+                _programGroupID = result.Value.programGroupId;
+                _dateStart = result.Value.dateStartTest;
+                _dateEnd = result.Value.dateEndTest;
+                _passportNumber = result.Value.passportNumber;
+                _passportSerie = result.Value.passportSerie;
                 return;
             }
             throw new Exception("Не удалось загрузить пользователя");

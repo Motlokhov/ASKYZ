@@ -75,5 +75,36 @@ namespace Database.Result
                 return result.ToArray();
             }
         }
+
+        public static 
+            (string surname
+            , string firstname
+            , string lastname
+            , byte programGroupId
+            , DateTime dateStartTest
+            , DateTime dateEndTest
+            , uint passportNumber
+            , ushort passportSerie)?
+            LoadUserById(ulong id)
+        {
+            using(Query query = new Query())
+            {
+                using(DbDataReader reader = query.ReadData("SELECT * FROM [User] WHERE ID = " + id))
+                {
+                    if(reader.Read())
+                        return 
+                            (reader["Surname"]?.ToString(), 
+                            reader["Firstname"]?.ToString(), 
+                            reader["Lastname"]?.ToString(),
+                            Convert.ToByte(reader["ProgramGroupID"]), 
+                            Convert.ToDateTime(reader["DateStartTest"]), 
+                            Convert.ToDateTime(reader["DateEndTest"]),
+                            Convert.ToUInt32(reader["PassportNumber"]),
+                            Convert.ToUInt16(reader["PassportSerie"]));
+
+                    return null;
+                }
+            }
+        }
     }
 }
