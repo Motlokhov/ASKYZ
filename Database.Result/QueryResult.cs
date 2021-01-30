@@ -138,5 +138,21 @@ namespace Database.Result
             using(var query = new Query())
                 return query.ExecuteNonQuery(commandText) > 0;
         }
+
+        public static (ulong id, string password)? FindPassword(uint serialOfPassport, uint numberOfPassport)
+        {
+            string commandString = "SELECT Id,Password FROM [User] ";
+            commandString += "WHERE PassportSerie = " + serialOfPassport + " and PassportNumber = " + numberOfPassport;
+            using(Query query = new Query())
+            {
+                using(DbDataReader reader = query.ReadData(commandString))
+                {
+                    reader.Read();
+                    if(reader.HasRows)
+                        return (Convert.ToUInt64(reader["Id"]), reader["Password"]?.ToString());
+                    return null;
+                }
+            }
+        }
     }
 }
