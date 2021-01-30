@@ -188,5 +188,20 @@ namespace Database.Result
                 }
             }
         }
+
+        public static (byte trueAnswersCount, byte falseAnswerCount, byte points)? LoadTestResult(ulong testingDateId, int exerciseType)
+        {
+            string command = $"SELECT TrueAnswers,FalseAnswers,Points FROM TestingResult WHERE TestingDateID = {testingDateId} AND ExerciseType = {exerciseType}";
+            using(Query query = new Query())
+            using(DbDataReader reader = query.ReadData(command))
+            {
+                if(reader.Read())
+                    return (Convert.ToByte(reader["TrueAnswers"]),
+                    Convert.ToByte(reader["FalseAnswers"]),
+                    Convert.ToByte(reader["Points"]));
+
+                return null;
+            }
+        }
     }
 }

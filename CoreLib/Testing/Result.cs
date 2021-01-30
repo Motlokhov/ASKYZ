@@ -1,7 +1,6 @@
 ﻿using System;
 using CoreLib.Common;
-using Database;
-
+using Database.Result;
 
 namespace CoreLib.Testing
 {
@@ -28,13 +27,14 @@ namespace CoreLib.Testing
         private void Load(ulong testingDateID,ExerciseType exerciseType)
         {
             ExerciseType = exerciseType;
-            var query = new Query();
-            var reader = query.ReadData("SELECT TrueAnswers,FalseAnswers,Points FROM TestingResult WHERE TestingDateID = " + testingDateID + " AND ExerciseType = " + (int) ExerciseType);
-            if( reader.Read() )
+
+            (byte trueAnswersCount, byte falseAnswerCount, byte points)? testResult = QueryResult.LoadTestResult(testingDateID, (int)exerciseType);
+            
+            if(testResult.HasValue)
             {
-                TrueAnswers = Convert.ToByte(reader["TrueAnswers"]);
-                FalseAnswers = Convert.ToByte(reader["FalseAnswers"]);
-                Points = Convert.ToByte(reader["Points"]);
+                TrueAnswers = testResult.Value.trueAnswersCount;
+                FalseAnswers = testResult.Value.falseAnswerCount;
+                Points = testResult.Value.points;
                 return;
             }
             throw new Exception("Нет данных по результатам тестирования.");
