@@ -166,5 +166,15 @@ namespace Database.Result
                 return result.ToArray();
             }
         }
+
+        public static (ulong userID,ulong testingDateId)[] LoadUsersResultByTestingDate(string testingDate)
+        {
+            List<(ulong, ulong)> result = new List<(ulong, ulong)>();
+            using(Query query = new Query())
+            using(DbDataReader reader = query.ReadData("SELECT UserID,ID FROM TestingDate WHERE Date = '" + testingDate + "'"))
+                while(reader.Read())
+                    result.Add((Convert.ToUInt64(reader["UserID"]), Convert.ToUInt64(reader["ID"])));
+            return result.ToArray();
+        }
     }
 }

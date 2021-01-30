@@ -17,7 +17,7 @@ namespace Testing_a_person
         private Microsoft.Office.Interop.Word.Application WordApplication;
         private Document WordDoc;
         private Range range;
-        private List<User> users;
+        private List<User> users = new List<User>();
 
         public ReportsForm()
         {
@@ -124,17 +124,13 @@ namespace Testing_a_person
 
         private void comboBoxTestingDate_SelectedIndexChanged(object sender , EventArgs e)
         {
-            string testingDate = comboBoxTestingDate.Text.ToString();
-            users = new List<User>();
+            users.Clear();
 
-            var query = new Query();
-            var reader = query.ReadData("SELECT UserID,ID FROM TestingDate WHERE Date = '"+testingDate+"'");
-            while( reader.Read() )
+            (ulong userID, ulong testingDateId)[] userResult = QueryResult.LoadUsersResultByTestingDate(comboBoxTestingDate.Text);
+            for(var i = 0; i < userResult.Length; i++)
             {
-                ulong userID = Convert.ToUInt64(reader["UserID"]);
-                ulong testingDateID = Convert.ToUInt64(reader["ID"]);
-                var user = new User(userID);
-                user.SetTestingDateID(testingDateID);
+                User user = new User(userResult[i].userID);
+                user.SetTestingDateID(userResult[i].testingDateId);
                 user.LoadResults();
                 users.Add(user);
 
