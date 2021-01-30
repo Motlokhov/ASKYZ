@@ -83,7 +83,7 @@ namespace Testing_a_person
                 return;
             }
 
-            bool isRegOK = User.Registration
+            bool isRegOK = QueryResult.AddNewUser
                 (
                 textBoxFirstname.Text ,
                 textBoxSurname.Text ,
@@ -95,11 +95,11 @@ namespace Testing_a_person
                 textBoxPassword.Text ,
                 programId
                 );
+
             if( isRegOK )
-            {
                 MessageBox.Show("Регистрация прошла успешно.");
-                return;
-            }
+            else
+                MessageBox.Show("Регистрация не удалась.");
         }
 
         private void buttonClearForm_Click(object sender , EventArgs e)

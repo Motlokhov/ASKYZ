@@ -106,5 +106,37 @@ namespace Database.Result
                 }
             }
         }
+
+        private static void NormingWord(ref string word)
+        {
+            // Function provides tranlation of the word to the normal form where first char is upper-case and each other are lower-case.
+            word = word.ToLower();
+            string symbol = word[0].ToString().ToUpper();
+            word = word.Remove(0, 1);
+            word = symbol + word;
+        }
+
+        public static bool AddNewUser(string firstname, 
+            string surname, 
+            string lastname,
+           ushort passportSerie, 
+           uint passportNumber, 
+           DateTime startDate, 
+           DateTime endDate,
+           string password, 
+           ulong programGroupID)
+        {
+            NormingWord(ref firstname);
+            NormingWord(ref surname);
+            NormingWord(ref lastname);
+
+            ulong id = Convert.ToUInt64(passportSerie.ToString() + passportNumber.ToString());
+
+            string commandText = $@"INSERT INTO [User] (Firstname,Surname,Lastname,PassportSerie,PassportNumber,DateStartTest,DateEndTest,Password,ProgramGroupId,ID) 
+                                   VALUES('{firstname}','{surname}','{lastname}',{passportSerie},{passportNumber},'{startDate}','{endDate}','{password}',{programGroupID},{id})";
+
+            using(var query = new Query())
+                return query.ExecuteNonQuery(commandText) > 0;
+        }
     }
 }
