@@ -154,5 +154,17 @@ namespace Database.Result
                 }
             }
         }
+
+        public static ulong[] LoadQuestionIds(ulong testId, int exerciseType)
+        {
+            using(Query query = new Query())
+            {
+                List<ulong> result = new List<ulong>();
+                using(DbDataReader reader = query.ReadData("SELECT ID FROM Question WHERE TestID = " + testId + " AND Type = " + exerciseType))
+                    while(reader.Read())
+                        result.Add(Convert.ToUInt64(reader["ID"]));
+                return result.ToArray();
+            }
+        }
     }
 }

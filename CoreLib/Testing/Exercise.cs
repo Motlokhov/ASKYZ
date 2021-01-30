@@ -1,6 +1,7 @@
 ﻿using Database;
 using CoreLib.Common;
 using System;
+using Database.Result;
 
 namespace CoreLib.Testing
 {
@@ -76,17 +77,11 @@ namespace CoreLib.Testing
 
         protected void Load(ulong testID)
         {
-            using( var query = new Query() )
-            {
-                var reader = query.ReadData("SELECT ID FROM Question WHERE TestID = " + testID + " AND Type = " + (int) Type);
-
-                while( reader.Read() )
-                {
-                    ulong questionID = Convert.ToUInt64(reader["ID"]);
-                    Questions.Add(new Question(questionID));
-                }
-                SwapQuestions();
-            }
+            ulong[] questionIds = QueryResult.LoadQuestionIds(testID, (int)Type);
+                foreach(ulong questionId in questionIds)
+                    Questions.Add(new Question(questionId));
+                
+            SwapQuestions();
         }
     }
 }
