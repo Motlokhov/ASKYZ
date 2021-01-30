@@ -1,6 +1,5 @@
-﻿using System;
-using CoreLib.Common;
-using Database;
+﻿using CoreLib.Common;
+using Database.Result;
 
 namespace CoreLib.Testing
 {
@@ -10,13 +9,7 @@ namespace CoreLib.Testing
         {
             _type = TestType.training;
             _name = "Обучающее тестирование";
-
-            using( var query = new Query() )
-            {
-                var reader = query.ReadData("SELECT ID FROM Test WHERE ProgramGroupID =" + programGroupID + "AND Type = " + (int)_type);
-                reader.Read();
-                _id = Convert.ToUInt64(reader["ID"]);
-            }
+            _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)_type);
 
             Exercises.Add(new CommonExercise(_id));
             Exercises.Add(new ThemenExercise(_id));

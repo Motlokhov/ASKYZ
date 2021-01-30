@@ -176,5 +176,17 @@ namespace Database.Result
                     result.Add((Convert.ToUInt64(reader["UserID"]), Convert.ToUInt64(reader["ID"])));
             return result.ToArray();
         }
+
+        public static ulong LoadTestIdByProgramGroupIdAndType(ulong programGroupID, int type)
+        {
+            using(var query = new Query())
+            {
+                using(DbDataReader reader = query.ReadData("SELECT ID FROM Test WHERE ProgramGroupID =" + programGroupID + "AND Type = " + type))
+                {
+                    reader.Read();
+                    return Convert.ToUInt64(reader["ID"]);
+                }
+            }
+        }
     }
 }
