@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CoreLib.Common
 {
-    public class ChildrenList:List<object>
+    public class ChildrenList<T>:List<T>
     {
         protected int _index;
 
@@ -17,7 +17,7 @@ namespace CoreLib.Common
             _index--;
         }
 
-        public object Current()
+        public T Current()
         {
             return this[_index];
         }

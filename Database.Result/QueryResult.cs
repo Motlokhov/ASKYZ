@@ -228,5 +228,20 @@ namespace Database.Result
                 }
             }
         }
+
+        public static (ulong,string)[] LoadAnswers(ulong questionId)
+        {
+            using(var query = new Query())
+            {
+                using(DbDataReader reader = query.ReadData("SELECT Id,Description FROM Answer WHERE QuestionID = " + questionId))
+                {
+                    List<(ulong, string)> result = new List<(ulong, string)>();
+                    while(reader.Read())
+                        result.Add((Convert.ToUInt64(reader["ID"]), Convert.ToString(reader["Description"])));
+
+                    return result.ToArray();
+                }
+            }
+        }
     }
 }

@@ -6,13 +6,14 @@ using CoreLib.Common;
 using System.IO;
 using System.Data;
 using Database.Result;
+using System.Linq;
 
 namespace CoreLib.Testing
 {
     public class Question : Entity
     {
         private Image _image;
-        public ChildrenList Answers;
+        public ChildrenList<Answer> Answers = new ChildrenList<Answer>();
 
 
         public Question(ulong questionID)
@@ -26,24 +27,13 @@ namespace CoreLib.Testing
 
         private void LoadAnswers()
         {
-            Answers = new ChildrenList();
-            using( var query = new Query() )
-            {
-                var reader = query.ReadData("SELECT Id,Description FROM Answer WHERE QuestionID = " + _id);
-                while( reader.Read() )
-                {
-                    string answerName = Convert.ToString(reader["Description"]);
-                    ulong answerId = Convert.ToUInt64(reader["ID"]);
-                    Answers.Add(new Answer(answerId, answerName));
-                }
-            }
+            (ulong, string)[] loadedAnswers = QueryResult.LoadAnswers(_id);
+            Answers.AddRange(loadedAnswers.Select(a => new Answer(a.Item1, a.Item2)));
         }
 
         public Image GetImage()
         {
-            if( _image != null )
-                return _image;
-            return null;
+            return _image;
         }
 
 
