@@ -1,13 +1,10 @@
-﻿using System;
+﻿using CoreLib.Main;
+using Database.Result;
+using System;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
 namespace Testing_a_person
 {
-
-    using Core;
-    using Core.Testing;
-
     public partial class ChoseDirectionForm : AbstractForm
     {
         public ChoseDirectionForm()
@@ -19,17 +16,17 @@ namespace Testing_a_person
 
         public void CreateDirectionsButtons()
         {
-            var reader = Core.LoadDirections();
+            (byte id, string name)[] result = QueryResult.LoadAllDirections();
             int top = 250;
             int width = 500;
             int height = 60;
             int margin = height + 10;
-            while( reader.Read() )
-            {
+            for( int i = 0; i < result.Length; i++ )
+                        {
                 Button button = new Button
                 {
-                    Text = reader["Name"].ToString() ,
-                    Tag = reader["ID"] ,
+                    Text = result[i].name,
+                    Tag = result[i].id,
                     Width = width ,
                     Height = height ,
                     Left = Width / 2 - width / 2 ,

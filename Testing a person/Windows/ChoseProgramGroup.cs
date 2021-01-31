@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using CoreLib.Main;
+using CoreLib.Common;
+using Database.Result;
+using System.Linq;
 
 namespace Testing_a_person
 {
-    using Core;
-    using Core.Common;
     public partial class ChoseProgramGroup : AbstractForm
     {
 
@@ -17,17 +19,25 @@ namespace Testing_a_person
 
         private void CreateProgramGroupButtons()
         {
-            var reader = Core.LoadPrograms(Core.DirectionID,TestType.training);
+            (byte id, string name, byte number)[] programs = QueryResult.LoadProgramsByDirecionAndType(Core.DirectionID, (int)TestType.training);
+
+            if(!programs.Any())
+            {
+                MessageBox.Show("Программы тестирования не доступны.");
+                return;
+            }
+
             int top = 10;
             int width = 1000;
             int height = 100;
             int margin = height + 10;
-            while( reader.Read() )
+
+            for(int i = 0; i < programs.Length; i++)
             {
                 var button = new Button
                 {
-                    Text = "Программа №" + reader["Number"] + ": " + reader["Name"] ,
-                    Tag = reader["ID"] ,
+                    Text = string.Concat("Программа №", programs[i].number + ": " + programs[i].name) ,
+                    Tag = programs[i].id ,
                     Width = width ,
                     Height = height ,
                     Left = Width / 2 - width / 2 ,
@@ -35,13 +45,13 @@ namespace Testing_a_person
                     Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left ,
                     Font = new Font("Arial" , 18)
                 };
-                button.Click += Button_Click;
+                button.Click += StartProgram_Click;
                 Controls.Add(button);
                 top += margin;
             }
         }
 
-        private void Button_Click(object sender , EventArgs e)
+        private void StartProgram_Click(object sender , EventArgs e)
         {
             var but = sender as Button;
             Core.SetProgramGroupID(Convert.ToByte(but.Tag));

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using CoreLib.Testing;
+using CoreLib.Main;
+using CoreLib.Common;
 
 namespace Testing_a_person
 {
-
-    using Core;
-    using Core.Common;
-    using Core.Testing;
-
     public partial class TestingForm : AbstractForm
     {
         private Form pictureForm;

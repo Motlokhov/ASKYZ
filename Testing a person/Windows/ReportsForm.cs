@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using CoreLib.Common;
+using CoreLib.Main;
+using CoreLib.Testing;
+using Database;
+using Database.Result;
 using Microsoft.Office.Interop.Word;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 
 namespace Testing_a_person
 {
-    using Core;
-    using Core.Testing;
-    using Core.Common;
-    using Query;
     public partial class ReportsForm : AbstractForm  
     {
         private Microsoft.Office.Interop.Word.Application WordApplication;
         private Document WordDoc;
         private Range range;
-        private List<User> users;
+        private List<User> users = new List<User>();
 
         public ReportsForm()
         {
@@ -24,14 +26,10 @@ namespace Testing_a_person
         }
         private void DocumentsForm_Load(object sender, EventArgs e)
         {
-            string commandString = "SELECT distinct [Date] FROM TestingDate ORDER BY [Date] DESC";
-            Query query = new Query();
-            var reader = query.ReadData(commandString);
-            while( reader.Read() )
-            {
-                comboBoxTestingDate.Items.Add(reader["Date"]);
-            }
-            query = null;
+            DateTime[] dates = QueryResult.LoadTestingDates();
+
+            for(int i = 0; i < dates.Length; i++)
+                comboBoxTestingDate.Items.Add(dates[i]);
         }
 
         //очистка listView
@@ -126,17 +124,13 @@ namespace Testing_a_person
 
         private void comboBoxTestingDate_SelectedIndexChanged(object sender , EventArgs e)
         {
-            string testingDate = comboBoxTestingDate.Text.ToString();
-            users = new List<User>();
+            users.Clear();
 
-            var query = new Query();
-            var reader = query.ReadData("SELECT UserID,ID FROM TestingDate WHERE Date = '"+testingDate+"'");
-            while( reader.Read() )
+            (ulong userID, ulong testingDateId)[] userResult = QueryResult.LoadUsersResultByTestingDate(comboBoxTestingDate.Text);
+            for(var i = 0; i < userResult.Length; i++)
             {
-                ulong userID = Convert.ToUInt64(reader["UserID"]);
-                ulong testingDateID = Convert.ToUInt64(reader["ID"]);
-                var user = new User(userID);
-                user.SetTestingDateID(testingDateID);
+                User user = new User(userResult[i].userID);
+                user.SetTestingDateID(userResult[i].testingDateId);
                 user.LoadResults();
                 users.Add(user);
 
@@ -148,7 +142,7 @@ namespace Testing_a_person
                             {
                                 user.GetID().ToString(),
                                 user.GetName().ToString(),
-                                user.GetProgramNumber().ToString()
+                                QueryResult.LoadProgramByProgramGroupId(user.GetProgramGroupID()).Value.number.ToString()
                             }
                         )
                     );

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using Core;
+﻿using System.Windows.Forms;
 
 namespace Testing_a_person
 {
-    using Core.Common;
     public partial class TestingForm
     {
 

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using CoreLib.Main;
+using CoreLib.Testing;
+using System;
 
 namespace Testing_a_person
 {
-    using Core;
-    using Core.Testing;
-    using Query;
     public partial class ResultForm : AbstractForm
     {
         public ResultForm()
