@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Drawing;
+using System.IO;
 
 namespace Database.Result
 {
@@ -201,6 +203,29 @@ namespace Database.Result
                     Convert.ToByte(reader["Points"]));
 
                 return null;
+            }
+        }
+
+        public static (string description, Image image) LoadQuestion(ulong questionId)
+        {
+            using(var query = new Query())
+            {
+                using(DbDataReader reader = query.ReadData("SELECT Description,Picture FROM Question WHERE ID = " + questionId))
+                {
+                    reader.Read();
+                    string name = Convert.ToString(reader["Description"]);
+                    Image image = null;
+                    byte[] buf;
+                    try
+                    {
+                        buf = Convert.FromBase64String(Convert.ToBase64String(((byte[])reader["Picture"])));
+                        image = Image.FromStream(new MemoryStream(buf));
+                    }
+                    catch
+                    { }
+
+                    return (name, image);
+                }
             }
         }
     }

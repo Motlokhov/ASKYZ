@@ -5,6 +5,7 @@ using Database;
 using CoreLib.Common;
 using System.IO;
 using System.Data;
+using Database.Result;
 
 namespace CoreLib.Testing
 {
@@ -16,22 +17,9 @@ namespace CoreLib.Testing
 
         public Question(ulong questionID)
         {
-            using( var query = new Query() )
-            {
-                var reader = query.ReadData("SELECT Description,Picture FROM Question WHERE ID = " + questionID);
-                reader.Read();
-                _name = Convert.ToString(reader["Description"]);
-                byte[] buf;
-                try
-                {
-                    buf = Convert.FromBase64String(Convert.ToBase64String(((byte[])reader["Picture"])));
-                    _image = Image.FromStream(new MemoryStream(buf));
-                }
-                catch
-                {
-                    _image = null;
-                }
-            }
+            (string description, Image image) question = QueryResult.LoadQuestion(questionID);
+            _name = question.description;
+            _image = question.image;
             _id = questionID;
             LoadAnswers();
         }
