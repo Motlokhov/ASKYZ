@@ -45,67 +45,6 @@ namespace CoreLib.Testing
             return bytes;
         }
 
-        static private void WriteQuestionToDatabase(int testID, int questionType, string question, byte[] picture, List<string> answers, List<short> trueAnswers)
-        {
-            ulong questionID = 0;
-            using( var query = new Query(CommandType.StoredProcedure) )
-            {
-                query.AddParameter("@TestID", DbType.Int32, testID);
-                query.AddParameter("@description", DbType.String, question);
-                query.AddParameter("@type", DbType.Int16, questionType);
-                query.AddParameter("@picture", DbType.Binary, picture);
-                questionID = Convert.ToUInt64(query.ExecuteScalar("AddQuestion"));
-            }
-            using( var query = new Query() )
-            {
-                for( var i = 0; i < answers.Count; i++ )
-                {
-                    short points = 0;
-                    for( var j = 0; j < trueAnswers.Count; j++ )
-                    {
-                        if( i + 1 == trueAnswers[j] )
-                        {
-                            if( questionType == 0 )
-                            {
-                                if( j == 0 )
-                                {
-                                    points = 1;
-                                }
-                            }
-                            else if( questionType == 1 )
-                            {
-                                if( j == 0 )
-                                {
-                                    points = 10;
-                                }
-                                else if( j == 1 )
-                                {
-                                    points = 5;
-                                }
-                            }
-                            else if( questionType == 2 )
-                            {
-                                if( j == 0 )
-                                {
-                                    points = 20;
-                                }
-                                else if( j == 1 )
-                                {
-                                    points = 10;
-                                }
-                            }
-                            else
-                            {
-                                throw new Exception("Выход за предел количества типов вопроса");
-                            }
-                        }
-
-                    }
-                    query.ExecuteNonQuery("INSERT INTO Answer (QuestionID,Description,Points) VALUES (" + questionID + ",N'" + answers[i] + "'," + points + ")");
-                }
-            }
-        }
-
         static public void ParseQuestionDocument(string filePath)
         {
             List<string> questions = new List<string>();
