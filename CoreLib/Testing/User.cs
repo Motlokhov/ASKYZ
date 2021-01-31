@@ -12,12 +12,12 @@ namespace CoreLib.Testing
         private DateTime _dateEnd;
         private uint _passportNumber;
         private ushort _passportSerie;
-        private ChildrenList _results;
+        private ChildrenList<Result> _results;
         private ulong _testingDateID;
 
         public Result GetResult(int index)
         {
-            return (Result)_results[index];
+            return _results[index];
         }
         public byte GetProgramGroupID()
         {
@@ -65,10 +65,12 @@ namespace CoreLib.Testing
 
         public void LoadResults()
         {
-            _results = new ChildrenList();
-            _results.Add(new Result(_testingDateID , ExerciseType.common));
-            _results.Add(new Result(_testingDateID , ExerciseType.common));
-            _results.Add(new Result(_testingDateID , ExerciseType.practical));
+            _results = new ChildrenList<Result>
+            {
+                new Result(_testingDateID, ExerciseType.common),
+                new Result(_testingDateID, ExerciseType.common),
+                new Result(_testingDateID, ExerciseType.practical)
+            };
         }
     }
 }

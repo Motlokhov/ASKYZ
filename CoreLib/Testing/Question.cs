@@ -36,24 +36,6 @@ namespace CoreLib.Testing
             return _image;
         }
 
-
-        public static byte Verify(ulong[] answersID)
-        {
-            string stringVerification = string.Empty;
-            for( var i = 0; i < answersID.Length; i++ )
-            {
-                stringVerification += answersID[i];
-                if( i + 1 < answersID.Length )
-                {
-                    stringVerification += ",";
-                }
-            }
-
-            var query = new Query();
-            var result = query.ExecuteScalar("SELECT SUM(Points) FROM Answer WHERE ID IN (" + stringVerification + ")");
-            return Convert.ToByte(result);
-        }
-
         static private byte[] ConvertImageToBase64(string imagePath)
         {
             Image image = Image.FromFile(imagePath);

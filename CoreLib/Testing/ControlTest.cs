@@ -26,16 +26,13 @@ namespace CoreLib.Testing
 
         }
 
-        public override bool VerifyQuestion(ulong[] answersID)
+        public override bool VerifyQuestion(ulong[] answersIds)
         {
-            byte points = Question.Verify(answersID);
-            var result = Exercise.Result;
-            result.Points += points;
+            byte points = QueryResult.LoadSumPoints(answersIds);
+            Exercise.Result.Points += points;
             if( Exercise.MaxPoints == points )
-            {
-                result.TrueAnswers += 1;
-            }
-            Exercise.Result = result;
+                Exercise.Result.TrueAnswers += 1;
+            
             return true;
         }
 

@@ -13,18 +13,17 @@ namespace CoreLib.Testing
 
         public Result Result { get; set; }
 
-        public ChildrenList Questions { get; private set; }
+        public ChildrenList<Question> Questions { get; private set; } = new ChildrenList<Question>();
         public Question Question
         {
             get
             {
-                return Questions.Current() as Question;
+                return Questions.Current();
             }
         }
 
         public Exercise()
         {
-            Questions = new ChildrenList();       
 
         }
 
@@ -50,7 +49,7 @@ namespace CoreLib.Testing
             int questionsCount = Questions.Count;
             for( var i = 0 ; i < questionsCount / 2 ; i++ )
             {
-                var random = CoreLib.Main.Core.Random;
+                var random = Main.Core.Random;
                 int randomNumber = random.Next(questionsCount);
 
                 var tempQuestion = Questions[i];

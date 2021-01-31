@@ -243,5 +243,24 @@ namespace Database.Result
                 }
             }
         }
+
+        public static byte LoadSumPoints(ulong[] answerIds)
+        {
+            string stringVerification = string.Empty;
+            for(var i = 0; i < answerIds.Length; i++)
+            {
+                stringVerification += answerIds[i];
+                if(i + 1 < answerIds.Length)
+                {
+                    stringVerification += ",";
+                }
+            }
+
+            using(Query query = new Query())
+            {
+                object result = query.ExecuteScalar("SELECT SUM(Points) FROM Answer WHERE ID IN (" + stringVerification + ")");
+                return Convert.ToByte(result);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CoreLib.Common;
+using Database.Result;
 
 namespace CoreLib.Testing
 {
@@ -6,7 +7,7 @@ namespace CoreLib.Testing
     {     
         protected TestType _type;
 
-        public ChildrenList Exercises { get; private set; }
+        public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
 
         public delegate void TestEnding();
         public event TestEnding testEnding;
@@ -26,12 +27,12 @@ namespace CoreLib.Testing
 
         public Test()
         {
-            Exercises = new ChildrenList();
+
         }
 
-        public virtual bool VerifyQuestion(ulong[] answersID)
+        public virtual bool VerifyQuestion(ulong[] answersIds)
         {
-            Question.Verify(answersID);
+            QueryResult.LoadSumPoints(answersIds);
             return true;
         }
 

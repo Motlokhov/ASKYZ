@@ -16,16 +16,10 @@ namespace CoreLib.Testing
             Exercises.Add(new PracticalExercise(_id));
         }
 
-        public override bool VerifyQuestion(ulong[] answersID)
+        public override bool VerifyQuestion(ulong[] answersIds)
         {
-            byte points = Question.Verify(answersID);
-            if( Exercise.MaxPoints == points )
-            {
-                return true;
-            }
-            return false;
+            byte points = QueryResult.LoadSumPoints(answersIds);
+            return Exercise.MaxPoints == points;
         }
-
-
     }
 }
