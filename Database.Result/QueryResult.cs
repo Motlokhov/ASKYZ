@@ -264,6 +264,22 @@ namespace Database.Result
             }
         }
 
+        public static void WriteTestResults(ulong userId, ulong programGroupId, (int type, byte points, byte trueAnswers, byte falseAnswers)[] exercises)
+        {
+            using(Query query = new Query())
+            {
+                using(DbTransaction transaction = query.Connection.BeginTransaction())
+                {
+                    object testingDateID = query.ExecuteScalar("INSERT INTO TestingDate (UserID,ProgramGroupID,Date) VALUES(" + userId + "," + programGroupId + ",'" + DateTime.Today.ToString("d") + "') SELECT @@IDENTITY");
+
+                    foreach(var exercise in exercises)
+                        query.ExecuteNonQuery("INSERT INTO TestingResult(TestingDateID,ExerciseType,Points,TrueAnswers,FalseAnswers) VALUES(" + testingDateID + "," + exercise.type + "," + exercise.points + "," + exercise.trueAnswers + "," + exercise.falseAnswers + ")");
+
+                    transaction.Commit();
+                }
+            }
+        }
+
         public static void WriteQuestions(int testID, int questionType, string question, byte[] picture, List<string> answers, List<short> trueAnswers)
         {
             ulong questionID = 0;

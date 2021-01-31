@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Linq;
 using CoreLib.Common;
-using Database;
 using Database.Result;
 
 namespace CoreLib.Testing
@@ -50,21 +49,10 @@ namespace CoreLib.Testing
 
         private void SaveResults()
         {
-            byte programGroupID = CoreLib.Main.Core.ProgramGroupID;
-            ulong userID = CoreLib.Main.Core.User.GetID();
-
-            var today = DateTime.Today.ToString("d");
-            var query = new Query();
-            var testingDateID = query.ExecuteScalar("INSERT INTO TestingDate (UserID,ProgramGroupID,Date) VALUES(" + userID + "," + programGroupID + ",'" + today + "') SELECT @@IDENTITY");
-
-            foreach( Exercise exercise in Exercises )
-            {
-                var exerciseType = (int) exercise.Type;
-                var points = exercise.Result.Points;
-                var trueAnswers = exercise.Result.TrueAnswers;
-                var falseAnswers = exercise.Result.FalseAnswers;
-                query.ExecuteNonQuery("INSERT INTO TestingResult(TestingDateID,ExerciseType,Points,TrueAnswers,FalseAnswers) VALUES(" + testingDateID + "," + exerciseType + "," + points + "," + trueAnswers + "," + falseAnswers + ")");
-            }
+            QueryResult.WriteTestResults
+            (Main.Core.User.GetID(), 
+            Main.Core.ProgramGroupID, 
+            Exercises.Select(e => ((int)e.Type,e.Result.Points,e.Result.TrueAnswers,e.Result.FalseAnswers)).ToArray());
         }
     }
 }

@@ -8,14 +8,14 @@ namespace Database
 {
     public class Query:IDisposable
     {
-        private DbConnection _connection;
+        public DbConnection Connection { get; private set; }
         private DbCommand _command;
 
         public Query(CommandType commandType = CommandType.Text)
         {
-            _connection = DbConnectionDefiner.Define();
-            _connection.Open();
-            _command = _connection.CreateCommand();
+            Connection = DbConnectionDefiner.Define();
+            Connection.Open();
+            _command = Connection.CreateCommand();
             _command.CommandType = commandType;
         }
 
@@ -39,10 +39,8 @@ namespace Database
 
         private void ConnectionClose()
         {
-            if (_connection.State != ConnectionState.Closed)
-            {
-                _connection.Close();
-            }
+            if (Connection.State != ConnectionState.Closed)
+                Connection.Close();
         }
 
         public void AddParameter(string nameparameter ,DbType  typeparameter , object value)
