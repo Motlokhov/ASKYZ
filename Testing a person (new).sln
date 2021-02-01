@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Databa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib", "CoreLib\CoreLib.csproj", "{CB6933BB-E6C3-4A21-BF5F-8EB359AF5EEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.Result", "Database.Result\Database.Result.csproj", "{D10AE359-4418-4402-BF98-7C44BC405E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Result", "Database.Result\Database.Result.csproj", "{D10AE359-4418-4402-BF98-7C44BC405E13}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
