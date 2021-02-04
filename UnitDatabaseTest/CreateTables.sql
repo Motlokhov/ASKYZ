@@ -66,53 +66,13 @@ Create table Answer
 	constraint fk_question_answer foreign key(QuestionId) references[Question](Id)
 );
 
-
-
-
-
-
-
-
-
-
-
---Create table TestingResult
---(	
---	TestingDateID bigint not null,
---	ExerciseType tinyint not null,
---	Points tinyint not null,
---	TrueAnswers tinyint not null,
---	FalseAnswers tinyint not null
---);
-
-
-
---alter table Answer 
---add constraint fk_question_answer
---foreign key (QuestionId)
---references Question(Id);
---go
-
---alter table Question 
---add constraint fk_test_question
---foreign key (TestId) references Test(Id);
---go 
-
---alter table Test
---add constraint fk_programGroup_test
---foreign key (ProgramGroupId) references ProgramGroup(Id);
---go
-
-
-
---alter table TestingResult
---add constraint fk_testingdate_testingresult
---foreign key (TestingDateId) references TestingDate(Id);
---go
-
-
---alter table TestingDate
---add constraint fk_programgroup_testingdate
---foreign key (ProgramGroupId) references ProgramGroup(Id)
---go
+Create table TestingResult
+(	
+	TestingDateID bigint not null,
+	ExerciseType tinyint not null,
+	Points tinyint not null,
+	TrueAnswers tinyint not null,
+	FalseAnswers tinyint not null,
+	constraint fk_testingdate_testingresult foreign key(TestingDateId) references TestingDate(id)
+);
 
