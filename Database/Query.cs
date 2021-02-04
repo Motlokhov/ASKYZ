@@ -13,7 +13,7 @@ namespace Database
 
         public Query(CommandType commandType = CommandType.Text)
         {
-            Connection = DbConnectionDefiner.Define();
+            Connection = new SqlConnection(File.ReadAllText("connection.txt"));
             Connection.Open();
             _command = Connection.CreateCommand();
             _command.CommandType = commandType;

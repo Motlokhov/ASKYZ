@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib", "CoreLib\CoreLib.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Result", "Database.Result\Database.Result.csproj", "{D10AE359-4418-4402-BF98-7C44BC405E13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBaseTest", "DataBaseTest\DataBaseTest.csproj", "{263C5E47-BA6F-40DA-A378-6761A7ACCB04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitDatabaseTest", "UnitDatabaseTest\UnitDatabaseTest.csproj", "{263C5E47-BA6F-40DA-A378-6761A7ACCB04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
