@@ -61,10 +61,24 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Returns direction name of program group
+        /// </summary>
+        /// <param name="programGroupId"></param>
+        /// <returns>If exists returns direction name overwise <see langword="null"/></returns>
         public string LoadDirectionName(byte programGroupId)
         {
+            string command = 
+            @"SELECT Direction.[Name] 
+            FROM Direction 
+            JOIN ProgramGroup ON Direction.ID = ProgramGroup.DirectionID 
+            WHERE ProgramGroup.ID = @programGroupId;";
+
             using(Query query = new Query(_connectionFunction.Invoke()))
-                return query.ExecuteScalar("SELECT Direction.[Name] FROM Direction INNER JOIN ProgramGroup ON Direction.ID = ProgramGroup.DirectionID WHERE ProgramGroup.ID = " + programGroupId).ToString();
+            {
+                query.AddParameter("programGroupId", DbType.Byte, programGroupId);
+                return query.ExecuteScalar(command)?.ToString();
+            }
         }
 
         public (byte id, string name, byte number)[] LoadProgramsByDirecionAndType(byte directionID, int testType)
