@@ -8,10 +8,12 @@ namespace DataBaseTest
     public class QuerySuccess
     {
         private readonly SystemVerifyKnowledgeFixture _fixture;
+        private readonly QueryResult _queryResult;
 
         public QuerySuccess(SystemVerifyKnowledgeFixture fixture)
         {
             _fixture = fixture;
+            _queryResult = new QueryResult(_fixture.FunctionConnection);
         }
 
         [Theory]
@@ -21,29 +23,25 @@ namespace DataBaseTest
         [InlineData("0", "", typeof(ArgumentException))]
         public void TestGetUserIdWrongParameters(string id, string password,Type exceptedException)
         {
-            QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
-            Assert.Throws(exceptedException, () => { queryResult.GetUserId(id, password); });
+            Assert.Throws(exceptedException, () => { _queryResult.GetUserId(id, password); });
         }
 
         [Fact]
         public void TestGetUserIdNullValue()
         {
-            QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
-            Assert.Null(queryResult.GetUserId("0", "0"));
+            Assert.Null(_queryResult.GetUserId("0", "0"));
         }
 
         [Fact]
         public void TestFindPasswordNullValue()
         {
-            QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
-            Assert.Null(queryResult.FindPassword(0, 0));
+            Assert.Null(_queryResult.FindPassword(0, 0));
         }
 
         [Fact]
         public void TestLoadAllDirectionEmptyCollection()
         {
-            QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
-            Assert.Empty(queryResult.LoadAllDirections());
+            Assert.Empty(_queryResult.LoadAllDirections());
         }
     }
 }
