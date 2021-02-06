@@ -97,12 +97,22 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Returns name and number an education program 
+        /// </summary>
+        /// <param name="programGroupId">Education's program group id</param>
+        /// <returns>A tuple(name,number) an education program if exists otherwise <see langword="null"/></returns>
         public (string name, byte number)? LoadProgramByProgramGroupId(byte programGroupId)
         {
+            string command = "SELECT Name,Number FROM ProgramGroup WHERE ID = @programGroupId";
+
             using(Query query = new Query(_connectionFunction.Invoke()))
-                using(DbDataReader reader = query.ReadData("SELECT Name,Number FROM ProgramGroup WHERE ID = " + programGroupId))
+            {
+                query.AddParameter("programGroupId", DbType.String, programGroupId);
+                using(DbDataReader reader = query.ReadData(command))
                     if(reader.Read())
                         return (Convert.ToString(reader["Name"]), Convert.ToByte(reader["Number"]));
+            }
 
             return null;
         }
