@@ -163,12 +163,19 @@ namespace Database.Result
                 return query.ExecuteNonQuery(commandText) > 0;
         }
 
-        public (ulong id, string password)? FindPassword(uint serialOfPassport, uint numberOfPassport)
+        /// <summary>
+        /// Returns user's id and and user's password if <paramref name="passportSerie"/> and <paramref name="passportNumber"/> are exists.
+        /// </summary>
+        /// <param name="passportSerie">User's passport serie</param>
+        /// <param name="passportNumber">User's passport number</param>
+        /// <returns>User's tuple(id,password) if exists overwise null.</returns>
+        public (ulong id, string password)? FindPassword(uint passportSerie, uint passportNumber)
         {
-            string commandString = "SELECT Id,Password FROM [User] ";
-            commandString += "WHERE PassportSerie = " + serialOfPassport + " and PassportNumber = " + numberOfPassport;
+            string commandString = "SELECT Id,Password FROM [User] WHERE PassportSerie = @passportSerie and PassportNumber = @passportNumber";
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
+                query.AddParameter("passportSerie", DbType.Int32, passportSerie);
+                query.AddParameter("passportNumber", DbType.Int32, passportNumber);
                 using(DbDataReader reader = query.ReadData(commandString))
                 {
                     reader.Read();
