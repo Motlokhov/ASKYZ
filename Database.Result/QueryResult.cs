@@ -37,6 +37,7 @@ namespace Database.Result
         /// <param name="id">User's id</param>
         /// <param name="password">User's password</param>
         /// <returns>If exists returns id else null.</returns>
+        /// <exception cref="ArgumentException">Throws if <paramref name="id"/> or <paramref name="password"/> is null or empty</exception>
         public ulong? GetUserId(string id, string password)
         {
             if(string.IsNullOrEmpty(id))
