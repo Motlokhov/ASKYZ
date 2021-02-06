@@ -51,6 +51,7 @@ namespace Database
             param.ParameterName = nameparameter;
             param.DbType = typeparameter;
             param.Value = value;
+            _command.Parameters.Add(param);
         }
 
         public void Dispose() => ConnectionClose();
