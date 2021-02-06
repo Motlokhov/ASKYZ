@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using CoreLib.Main;
 using CoreLib.Common;
-using CoreLib.Testing;
 using Database.Result;
 using System.Linq;
 
@@ -11,16 +9,16 @@ namespace StudentUI
 {
     public partial class RegistrationForm 
     {
-        List<byte> directions;
+        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+        private List<byte> directions;
         private (byte id, string name, byte number)[] programs;
+        private byte programId;
 
-        byte programId;
         public RegistrationForm()
         {
             InitializeComponent();
             
         }
-        
 
         private void buttonShowPassword_MouseEnter(object sender , EventArgs e)
         {
@@ -38,7 +36,7 @@ namespace StudentUI
         {
             directions = new List<byte>();
 
-            (byte id, string name)[] result = QueryResult.LoadAllDirections();
+            (byte id, string name)[] result = _queryResult.LoadAllDirections();
             for( int i = 0; i < result.Length; i++ )
             {
                 directions.Add(result[i].id);
@@ -50,7 +48,7 @@ namespace StudentUI
         {
             int selected = comboBoxDirection.SelectedIndex;
             byte id = directions[selected];
-            programs = QueryResult.LoadProgramsByDirecionAndType(id, (int)TestType.control);
+            programs = _queryResult.LoadProgramsByDirecionAndType(id, (int)TestType.control);
 
             bool AreProgramsAccesable = programs.Any();
 
@@ -83,7 +81,7 @@ namespace StudentUI
                 return;
             }
 
-            bool isRegOK = QueryResult.AddNewUser
+            bool isRegOK = _queryResult.AddNewUser
                 (
                 textBoxFirstname.Text ,
                 textBoxSurname.Text ,

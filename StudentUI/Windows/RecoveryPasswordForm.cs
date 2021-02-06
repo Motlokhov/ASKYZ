@@ -1,5 +1,4 @@
-﻿using Database;
-using Database.Result;
+﻿using Database.Result;
 using System;
 using System.Windows.Forms;
 
@@ -7,6 +6,8 @@ namespace StudentUI
 {
     public partial class RecoveryPasswordForm : AbstractForm
     {
+        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+
         public RecoveryPasswordForm()
         {
             InitializeComponent();
@@ -15,7 +16,7 @@ namespace StudentUI
 
         private void buttonFind_Click(object sender, EventArgs e)
         {
-            (ulong id, string password)? result = QueryResult.FindPassword((uint)numericUpDownSerialOfPassport.Value, (uint)numericUpDownNumberOfPassport.Value);
+            (ulong id, string password)? result = _queryResult.FindPassword((uint)numericUpDownSerialOfPassport.Value, (uint)numericUpDownNumberOfPassport.Value);
 
             textBoxRecoveredPassword.Text = result.HasValue ? result.Value.password : string.Empty;
             labelRecoveredPassword.Visible = result.HasValue;

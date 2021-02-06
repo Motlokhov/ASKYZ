@@ -1,19 +1,20 @@
-﻿using CoreLib.Common;
+﻿using System;
+using System.Data.Common;
+using CoreLib.Common;
 using Database.Result;
 
 namespace CoreLib.Testing
 {
     class TrainingTest : Test
     {
-        public TrainingTest(ulong programGroupID) : base()
+        public TrainingTest(QueryResult queryResult, ulong programGroupID) : base(queryResult,TestType.training)
         {
-            _type = TestType.training;
             _name = "Обучающее тестирование";
-            _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)_type);
+            _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
 
-            Exercises.Add(new CommonExercise(_id));
-            Exercises.Add(new ThemenExercise(_id));
-            Exercises.Add(new PracticalExercise(_id));
+            Exercises.Add(new CommonExercise(queryResult, _id));
+            Exercises.Add(new ThemenExercise(queryResult, _id));
+            Exercises.Add(new PracticalExercise(queryResult, _id));
         }
 
         public override bool VerifyQuestion(ulong[] answersIds)

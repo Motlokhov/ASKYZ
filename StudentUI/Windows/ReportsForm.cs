@@ -1,32 +1,31 @@
 ﻿using CoreLib.Common;
 using CoreLib.Main;
 using CoreLib.Testing;
-using Database;
 using Database.Result;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-
 
 namespace StudentUI
 {
-    public partial class ReportsForm : AbstractForm  
+    public partial class ReportsForm : AbstractForm
     {
         private Microsoft.Office.Interop.Word.Application WordApplication;
         private Document WordDoc;
         private Range range;
         private List<User> users = new List<User>();
+        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
 
         public ReportsForm()
         {
             InitializeComponent();
             Show();
         }
+
         private void DocumentsForm_Load(object sender, EventArgs e)
         {
-            DateTime[] dates = QueryResult.LoadTestingDates();
+            DateTime[] dates = _queryResult.LoadTestingDates();
 
             for(int i = 0; i < dates.Length; i++)
                 comboBoxTestingDate.Items.Add(dates[i]);
@@ -68,8 +67,8 @@ namespace StudentUI
                     {
                         var user = users[i];
                         Core.SetProgramGroupID(user.GetProgramGroupID());
-                        Core.LoadDirectionName();
-                        Core.LoadProgram();
+                        Core.LoadDirectionName(_queryResult);
+                        Core.LoadProgram(_queryResult);
                         WordDoc.Paragraphs.SpaceAfter = 1;
                         WordDoc.Paragraphs.SpaceBefore = 1;
                         AddRangeInWord("Автономная некоммерческая организация" , 1 , WdParagraphAlignment.wdAlignParagraphCenter);
@@ -126,10 +125,10 @@ namespace StudentUI
         {
             users.Clear();
 
-            (ulong userID, ulong testingDateId)[] userResult = QueryResult.LoadUsersResultByTestingDate(comboBoxTestingDate.Text);
+            (ulong userID, ulong testingDateId)[] userResult = _queryResult.LoadUsersResultByTestingDate(comboBoxTestingDate.Text);
             for(var i = 0; i < userResult.Length; i++)
             {
-                User user = new User(userResult[i].userID);
+                User user = new User(_queryResult, userResult[i].userID);
                 user.SetTestingDateID(userResult[i].testingDateId);
                 user.LoadResults();
                 users.Add(user);
@@ -142,7 +141,7 @@ namespace StudentUI
                             {
                                 user.GetID().ToString(),
                                 user.GetName().ToString(),
-                                QueryResult.LoadProgramByProgramGroupId(user.GetProgramGroupID()).Value.number.ToString()
+                                _queryResult.LoadProgramByProgramGroupId(user.GetProgramGroupID()).Value.number.ToString()
                             }
                         )
                     );

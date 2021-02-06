@@ -1,6 +1,8 @@
 ﻿using CoreLib.Main;
+using Database.Result;
 using System;
 using System.Windows.Forms;
+using StudentUI;
 
 namespace StudentUI
 {
@@ -12,8 +14,6 @@ namespace StudentUI
             //Question.ParseQuestionDocument(@"C:\Users\Hiruko\Desktop\Вопросы\Тестовые вопросы\7 категория.txt");
         }
        
-
-        
         private void buttonSignIn_Click(object sender , EventArgs e)
         {
             if( !string.IsNullOrEmpty(textBoxLogin.Text) && !string.IsNullOrEmpty(textBoxPassword.Text))
@@ -21,8 +21,8 @@ namespace StudentUI
                 string id = textBoxLogin.Text;
                 string password = textBoxPassword.Text;
                
-                if( Core.CheckPassword(id , password) )
-                {                
+                if( Core.CheckPassword(new QueryResult(CustomDependencyInjection.DbConnection), id, password) )
+                {
                     var testingForm = new TestingForm();
                     WindowState = FormWindowState.Minimized;  
                 }

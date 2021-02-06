@@ -2,11 +2,14 @@
 using Database.Result;
 using System;
 using System.Windows.Forms;
+using StudentUI;
 
 namespace StudentUI
 {
     public partial class ChoseDirectionForm : AbstractForm
     {
+        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+
         public ChoseDirectionForm()
         {
             InitializeComponent();
@@ -16,7 +19,7 @@ namespace StudentUI
 
         public void CreateDirectionsButtons()
         {
-            (byte id, string name)[] result = QueryResult.LoadAllDirections();
+            (byte id, string name)[] result = _queryResult.LoadAllDirections();
             int top = 250;
             int width = 500;
             int height = 60;

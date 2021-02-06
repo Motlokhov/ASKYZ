@@ -10,6 +10,7 @@ namespace StudentUI
 {
     public partial class ChoseProgramGroup : AbstractForm
     {
+        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
 
         public ChoseProgramGroup()
         {
@@ -19,7 +20,7 @@ namespace StudentUI
 
         private void CreateProgramGroupButtons()
         {
-            (byte id, string name, byte number)[] programs = QueryResult.LoadProgramsByDirecionAndType(Core.DirectionID, (int)TestType.training);
+            (byte id, string name, byte number)[] programs = _queryResult.LoadProgramsByDirecionAndType(Core.DirectionID, (int)TestType.training);
 
             if(!programs.Any())
             {
@@ -55,7 +56,7 @@ namespace StudentUI
         {
             var but = sender as Button;
             Core.SetProgramGroupID(Convert.ToByte(but.Tag));
-            Core.CreateTrainingTest(Core.ProgramGroupID);
+            Core.CreateTrainingTest(_queryResult, Core.ProgramGroupID);
             var form = new TestingForm();
             Close();
         }

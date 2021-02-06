@@ -7,11 +7,18 @@ using System.IO;
 
 namespace Database.Result
 {
-    public static class QueryResult
+    public class QueryResult
     {
-        public static (byte id, string name)[] LoadAllDirections()
+        private readonly Func<DbConnection> _connectionFunction;
+        
+        public QueryResult(Func<DbConnection> connectionFunction)
         {
-            using(Query query = new Query())
+            _connectionFunction = connectionFunction;
+        }
+        
+        public (byte id, string name)[] LoadAllDirections()
+        {
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 DbDataReader dbDataReader = query.ReadData("SELECT Id,Name FROM Direction");
 
@@ -24,25 +31,25 @@ namespace Database.Result
             }
         }
 
-        public static ulong? GetUserId(string id, string password)
+        public ulong? GetUserId(string id, string password)
         {
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 object result = query.ExecuteScalar("SELECT ID FROM [User] WHERE ID = " + id + " AND Password = '" + password + "'");
                 return result == null ? default(ulong?) : Convert.ToUInt64(result);
             }
         }
 
-        public static string LoadDirectionName(byte programGroupId)
+        public string LoadDirectionName(byte programGroupId)
         {
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
                 return query.ExecuteScalar("SELECT Direction.[Name] FROM Direction INNER JOIN ProgramGroup ON Direction.ID = ProgramGroup.DirectionID WHERE ProgramGroup.ID = " + programGroupId).ToString();
         }
 
-        public static (byte id, string name, byte number)[] LoadProgramsByDirecionAndType(byte directionID, int testType)
+        public (byte id, string name, byte number)[] LoadProgramsByDirecionAndType(byte directionID, int testType)
         {
             List<(byte, string, byte)> result = new List<(byte, string, byte)>();
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 using(DbDataReader reader =
                     query.ReadData("SELECT ProgramGroup.ID,Name,Number FROM ProgramGroup INNER JOIN Test ON Test.ProgramGroupID = ProgramGroup.ID WHERE DirectionID = " + directionID + " AND Test.[Type] = " + (int)testType))
@@ -55,9 +62,9 @@ namespace Database.Result
             }
         }
 
-        public static (string name, byte number)? LoadProgramByProgramGroupId(byte programGroupId)
+        public (string name, byte number)? LoadProgramByProgramGroupId(byte programGroupId)
         {
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
                 using(DbDataReader reader = query.ReadData("SELECT Name,Number FROM ProgramGroup WHERE ID = " + programGroupId))
                     if(reader.Read())
                         return (Convert.ToString(reader["Name"]), Convert.ToByte(reader["Number"]));
@@ -65,10 +72,10 @@ namespace Database.Result
             return null;
         }
 
-        public static DateTime[] LoadTestingDates()
+        public DateTime[] LoadTestingDates()
         {
             string commandString = "SELECT distinct [Date] FROM TestingDate ORDER BY [Date] DESC";
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 List<DateTime> result = new List<DateTime>();
                 using(var reader = query.ReadData(commandString))
@@ -79,7 +86,7 @@ namespace Database.Result
             }
         }
 
-        public static 
+        public 
             (string surname
             , string firstname
             , string lastname
@@ -90,7 +97,7 @@ namespace Database.Result
             , ushort passportSerie)?
             LoadUserById(ulong id)
         {
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 using(DbDataReader reader = query.ReadData("SELECT * FROM [User] WHERE ID = " + id))
                 {
@@ -110,7 +117,7 @@ namespace Database.Result
             }
         }
 
-        private static void NormingWord(ref string word)
+        private void NormingWord(ref string word)
         {
             // Function provides tranlation of the word to the normal form where first char is upper-case and each other are lower-case.
             word = word.ToLower();
@@ -119,7 +126,7 @@ namespace Database.Result
             word = symbol + word;
         }
 
-        public static bool AddNewUser(string firstname, 
+        public bool AddNewUser(string firstname, 
             string surname, 
             string lastname,
            ushort passportSerie, 
@@ -138,15 +145,15 @@ namespace Database.Result
             string commandText = $@"INSERT INTO [User] (Firstname,Surname,Lastname,PassportSerie,PassportNumber,DateStartTest,DateEndTest,Password,ProgramGroupId,ID) 
                                    VALUES('{firstname}','{surname}','{lastname}',{passportSerie},{passportNumber},'{startDate}','{endDate}','{password}',{programGroupID},{id})";
 
-            using(var query = new Query())
+            using(var query = new Query(_connectionFunction.Invoke()))
                 return query.ExecuteNonQuery(commandText) > 0;
         }
 
-        public static (ulong id, string password)? FindPassword(uint serialOfPassport, uint numberOfPassport)
+        public (ulong id, string password)? FindPassword(uint serialOfPassport, uint numberOfPassport)
         {
             string commandString = "SELECT Id,Password FROM [User] ";
             commandString += "WHERE PassportSerie = " + serialOfPassport + " and PassportNumber = " + numberOfPassport;
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 using(DbDataReader reader = query.ReadData(commandString))
                 {
@@ -158,9 +165,9 @@ namespace Database.Result
             }
         }
 
-        public static ulong[] LoadQuestionIds(ulong testId, int exerciseType)
+        public ulong[] LoadQuestionIds(ulong testId, int exerciseType)
         {
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 List<ulong> result = new List<ulong>();
                 using(DbDataReader reader = query.ReadData("SELECT ID FROM Question WHERE TestID = " + testId + " AND Type = " + exerciseType))
@@ -170,19 +177,19 @@ namespace Database.Result
             }
         }
 
-        public static (ulong userID,ulong testingDateId)[] LoadUsersResultByTestingDate(string testingDate)
+        public (ulong userID,ulong testingDateId)[] LoadUsersResultByTestingDate(string testingDate)
         {
             List<(ulong, ulong)> result = new List<(ulong, ulong)>();
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             using(DbDataReader reader = query.ReadData("SELECT UserID,ID FROM TestingDate WHERE Date = '" + testingDate + "'"))
                 while(reader.Read())
                     result.Add((Convert.ToUInt64(reader["UserID"]), Convert.ToUInt64(reader["ID"])));
             return result.ToArray();
         }
 
-        public static ulong LoadTestIdByProgramGroupIdAndType(ulong programGroupID, int type)
+        public ulong LoadTestIdByProgramGroupIdAndType(ulong programGroupID, int type)
         {
-            using(var query = new Query())
+            using(var query = new Query(_connectionFunction.Invoke()))
             {
                 using(DbDataReader reader = query.ReadData("SELECT ID FROM Test WHERE ProgramGroupID =" + programGroupID + "AND Type = " + type))
                 {
@@ -192,10 +199,10 @@ namespace Database.Result
             }
         }
 
-        public static (byte trueAnswersCount, byte falseAnswerCount, byte points)? LoadTestResult(ulong testingDateId, int exerciseType)
+        public (byte trueAnswersCount, byte falseAnswerCount, byte points)? LoadTestResult(ulong testingDateId, int exerciseType)
         {
             string command = $"SELECT TrueAnswers,FalseAnswers,Points FROM TestingResult WHERE TestingDateID = {testingDateId} AND ExerciseType = {exerciseType}";
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             using(DbDataReader reader = query.ReadData(command))
             {
                 if(reader.Read())
@@ -207,9 +214,9 @@ namespace Database.Result
             }
         }
 
-        public static (string description, Image image) LoadQuestion(ulong questionId)
+        public (string description, Image image) LoadQuestion(ulong questionId)
         {
-            using(var query = new Query())
+            using(var query = new Query(_connectionFunction.Invoke()))
             {
                 using(DbDataReader reader = query.ReadData("SELECT Description,Picture FROM Question WHERE ID = " + questionId))
                 {
@@ -230,9 +237,9 @@ namespace Database.Result
             }
         }
 
-        public static (ulong,string)[] LoadAnswers(ulong questionId)
+        public (ulong,string)[] LoadAnswers(ulong questionId)
         {
-            using(var query = new Query())
+            using(var query = new Query(_connectionFunction.Invoke()))
             {
                 using(DbDataReader reader = query.ReadData("SELECT Id,Description FROM Answer WHERE QuestionID = " + questionId))
                 {
@@ -245,7 +252,7 @@ namespace Database.Result
             }
         }
 
-        public static byte LoadSumPoints(ulong[] answerIds)
+        public byte LoadSumPoints(ulong[] answerIds)
         {
             string stringVerification = string.Empty;
             for(var i = 0; i < answerIds.Length; i++)
@@ -257,18 +264,18 @@ namespace Database.Result
                 }
             }
 
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
                 object result = query.ExecuteScalar("SELECT SUM(Points) FROM Answer WHERE ID IN (" + stringVerification + ")");
                 return Convert.ToByte(result);
             }
         }
 
-        public static void WriteTestResults(ulong userId, ulong programGroupId, (int type, byte points, byte trueAnswers, byte falseAnswers)[] exercises)
+        public void WriteTestResults(ulong userId, ulong programGroupId, (int type, byte points, byte trueAnswers, byte falseAnswers)[] exercises)
         {
-            using(Query query = new Query())
+            using(Query query = new Query(_connectionFunction.Invoke()))
             {
-                using(DbTransaction transaction = query.Connection.BeginTransaction())
+                using(DbTransaction transaction = query.BeginTransaction())
                 {
                     object testingDateID = query.ExecuteScalar("INSERT INTO TestingDate (UserID,ProgramGroupID,Date) VALUES(" + userId + "," + programGroupId + ",'" + DateTime.Today.ToString("d") + "') SELECT @@IDENTITY");
 
@@ -280,10 +287,10 @@ namespace Database.Result
             }
         }
 
-        public static void WriteQuestions(int testID, int questionType, string question, byte[] picture, List<string> answers, List<short> trueAnswers)
+        public void WriteQuestions(int testID, int questionType, string question, byte[] picture, List<string> answers, List<short> trueAnswers)
         {
             ulong questionID = 0;
-            using(var query = new Query(CommandType.StoredProcedure))
+            using(var query = new Query(_connectionFunction.Invoke(), CommandType.StoredProcedure))
             {
                 query.AddParameter("@TestID", DbType.Int32, testID);
                 query.AddParameter("@description", DbType.String, question);
@@ -291,7 +298,7 @@ namespace Database.Result
                 query.AddParameter("@picture", DbType.Binary, picture);
                 questionID = Convert.ToUInt64(query.ExecuteScalar("AddQuestion"));
             }
-            using(var query = new Query())
+            using(var query = new Query(_connectionFunction.Invoke()))
             {
                 for(var i = 0; i < answers.Count; i++)
                 {

@@ -1,10 +1,13 @@
-﻿using CoreLib.Common;
+﻿using System;
+using System.Data.Common;
+using CoreLib.Common;
+using Database.Result;
 
 namespace CoreLib.Testing
 {
     public class PracticalExercise : Exercise
     {
-        public PracticalExercise(ulong testID): base()
+        public PracticalExercise(QueryResult queryResult, ulong testID): base(queryResult)
         {
             SetType(ExerciseType.practical);
             SetRequiredNumberQuestions(2);
