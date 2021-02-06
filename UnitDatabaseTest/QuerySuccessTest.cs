@@ -1,3 +1,5 @@
+using System;
+using Database.Result;
 using Xunit;
 
 namespace DataBaseTest
@@ -12,10 +14,22 @@ namespace DataBaseTest
             _fixture = fixture;
         }
 
-        [Fact]
-        public void Test1()
+        [Theory]
+        [InlineData(null, "0", typeof(ArgumentException))]
+        [InlineData("0", null, typeof(ArgumentException))]
+        [InlineData("", "0", typeof(ArgumentException))]
+        [InlineData("0", "", typeof(ArgumentException))]
+        public void TestGetUserIdWrongParameters(string id, string password,Type exceptedException)
         {
+            QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
+            Assert.Throws(exceptedException, () => { queryResult.GetUserId(id, password); });
+        }
 
+        [Fact]
+        public void TestGetUserIdNullValue()
+        {
+            QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
+            Assert.Null(queryResult.GetUserId("0", "0"));
         }
     }
 }

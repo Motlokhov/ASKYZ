@@ -31,11 +31,25 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Returns user's id from database if <paramref name="id"/> and <paramref name="password"/> are exists;
+        /// </summary>
+        /// <param name="id">User's id</param>
+        /// <param name="password">User's password</param>
+        /// <returns>If exists returns id else null.</returns>
         public ulong? GetUserId(string id, string password)
         {
+            if(string.IsNullOrEmpty(id))
+                throw new ArgumentException($"Parameter {nameof(id)} can't be null or empty in {nameof(GetUserId)}");
+
+            if(string.IsNullOrEmpty(password))
+                throw new ArgumentException($"Parameter {nameof(password)} can't be null or empty in {nameof(GetUserId)}");
+
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
-                object result = query.ExecuteScalar("SELECT ID FROM [User] WHERE ID = " + id + " AND Password = '" + password + "'");
+                query.AddParameter("@id", DbType.Int64, id);
+                query.AddParameter("@password", DbType.String, password);
+                object result = query.ExecuteScalar("SELECT ID FROM [User] WHERE ID = @id AND Password = @password");
                 return result == null ? default(ulong?) : Convert.ToUInt64(result);
             }
         }
