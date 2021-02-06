@@ -61,5 +61,11 @@ namespace DataBaseTest
         {
             Assert.Null(_queryResult.LoadProgramByProgramGroupId(0));
         }
+
+        [Fact]
+        public void TestLoadProgramsByDirecionAndTypeEmptyCollection()
+        {
+            Assert.Empty(_queryResult.LoadProgramsByDirecionAndType(0, 0));
+        }
     }
 }

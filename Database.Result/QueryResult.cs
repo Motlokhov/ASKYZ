@@ -81,16 +81,35 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Returns a collection of education programs
+        /// </summary>
+        /// <param name="directionID">Education direction id</param>
+        /// <param name="testType">Education test type</param>
+        /// <returns>A collection of education programs</returns>
         public (byte id, string name, byte number)[] LoadProgramsByDirecionAndType(byte directionID, int testType)
         {
-            List<(byte, string, byte)> result = new List<(byte, string, byte)>();
+            string command =
+            @"SELECT 
+                ProgramGroup.ID
+                ,Name
+                ,Number 
+            FROM ProgramGroup 
+            JOIN Test ON Test.ProgramGroupID = ProgramGroup.ID 
+            WHERE DirectionID = @directionID AND Test.[Type] = @testType";
+
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
-                using(DbDataReader reader =
-                    query.ReadData("SELECT ProgramGroup.ID,Name,Number FROM ProgramGroup INNER JOIN Test ON Test.ProgramGroupID = ProgramGroup.ID WHERE DirectionID = " + directionID + " AND Test.[Type] = " + (int)testType))
+                query.AddParameter("directionId", DbType.Byte, directionID);
+                query.AddParameter("testType", DbType.Byte, testType);
+                using(DbDataReader reader = query.ReadData(command))
                 {
+                    List<(byte, string, byte)> result = new List<(byte, string, byte)>();
                     while(reader.Read())
-                        result.Add((Convert.ToByte(reader["ID"]), Convert.ToString(reader["Name"]), Convert.ToByte(reader["Number"])));
+                        result.Add(
+                            (Convert.ToByte(reader["ID"]), 
+                            Convert.ToString(reader["Name"]), 
+                            Convert.ToByte(reader["Number"])));
 
                     return result.ToArray();
                 }
