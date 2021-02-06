@@ -38,5 +38,12 @@ namespace DataBaseTest
             QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
             Assert.Null(queryResult.FindPassword(0, 0));
         }
+
+        [Fact]
+        public void TestLoadAllDirectionEmptyCollection()
+        {
+            QueryResult queryResult = new QueryResult(_fixture.FunctionConnection);
+            Assert.Empty(queryResult.LoadAllDirections());
+        }
     }
 }

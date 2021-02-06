@@ -15,19 +15,25 @@ namespace Database.Result
         {
             _connectionFunction = connectionFunction;
         }
-        
+
+        /// <summary>
+        /// Returns all testing directions
+        /// </summary>
+        /// <returns>A tuple collection (id,name) of directions</returns>
         public (byte id, string name)[] LoadAllDirections()
         {
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
-                DbDataReader dbDataReader = query.ReadData("SELECT Id,Name FROM Direction");
+                string command = "SELECT Id,Name FROM Direction";
+                using(DbDataReader dbDataReader = query.ReadData(command))
+                {
+                    List<(byte, string)> result = new List<(byte, string)>();
 
-                List<(byte, string)> result = new List<(byte, string)>();
+                    while(dbDataReader.Read())
+                        result.Add((Convert.ToByte(dbDataReader["ID"]), dbDataReader["Name"].ToString()));
 
-                while(dbDataReader.Read())
-                    result.Add((Convert.ToByte(dbDataReader["ID"]), dbDataReader["Name"].ToString()));
-
-                return result.ToArray();
+                    return result.ToArray();
+                }
             }
         }
 
