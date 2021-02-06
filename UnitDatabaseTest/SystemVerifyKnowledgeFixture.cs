@@ -1,4 +1,5 @@
-﻿using System.Data.Common;
+﻿using System;
+using System.Data.Common;
 using System.Data.SQLite;
 using System.IO;
 using System.Text;
@@ -10,6 +11,7 @@ namespace DataBaseTest
         private readonly string _connectionString;
 
         public SQLiteConnection Connection => new SQLiteConnection(_connectionString);
+        public Func<DbConnection> FunctionConnection => new Func<DbConnection>(() => Connection);
 
         public SystemVerifyKnowledgeFixture()
         {
