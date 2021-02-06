@@ -265,7 +265,12 @@ namespace Database.Result
             }
         }
 
-        public (ulong,string)[] LoadAnswers(ulong questionId)
+        /// <summary>
+        /// Returns a collection of question answers
+        /// </summary>
+        /// <param name="questionId">Asnwer's questionId</param>
+        /// <returns>An question's answers tuple collection(id,description)</returns>
+        public (ulong id,string description)[] LoadAnswers(ulong questionId)
         {
             using(var query = new Query(_connectionFunction.Invoke()))
             {

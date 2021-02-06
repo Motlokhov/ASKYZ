@@ -43,5 +43,11 @@ namespace DataBaseTest
         {
             Assert.Empty(_queryResult.LoadAllDirections());
         }
+
+        [Fact]
+        public void TestLoadAnswersEmptyCollection()
+        {
+            Assert.Empty(_queryResult.LoadAnswers(0));
+        }
     }
 }

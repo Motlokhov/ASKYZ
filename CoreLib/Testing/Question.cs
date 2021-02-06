@@ -28,8 +28,8 @@ namespace CoreLib.Testing
 
         private void LoadAnswers()
         {
-            (ulong, string)[] loadedAnswers = _queryResult.LoadAnswers(_id);
-            Answers.AddRange(loadedAnswers.Select(a => new Answer(a.Item1, a.Item2)));
+            (ulong id, string description)[] loadedAnswers = _queryResult.LoadAnswers(_id);
+            Answers.AddRange(loadedAnswers.Select(a => new Answer(a.id, a.description)));
         }
 
         public Image GetImage()
