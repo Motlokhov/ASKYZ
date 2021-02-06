@@ -65,7 +65,7 @@ namespace Database.Result
         /// Returns direction name of program group
         /// </summary>
         /// <param name="programGroupId"></param>
-        /// <returns>If exists returns direction name overwise <see langword="null"/></returns>
+        /// <returns>If exists returns direction name otherwise <see langword="null"/></returns>
         public string LoadDirectionName(byte programGroupId)
         {
             string command = 
@@ -199,7 +199,7 @@ namespace Database.Result
         /// </summary>
         /// <param name="passportSerie">User's passport serie</param>
         /// <param name="passportNumber">User's passport number</param>
-        /// <returns>User's tuple(id,password) if exists overwise null.</returns>
+        /// <returns>User's tuple(id,password) if exists otherwise null.</returns>
         public (ulong id, string password)? FindPassword(uint passportSerie, uint passportNumber)
         {
             string commandString = "SELECT Id,Password FROM [User] WHERE PassportSerie = @passportSerie and PassportNumber = @passportNumber";
