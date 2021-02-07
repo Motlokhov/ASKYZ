@@ -19,9 +19,13 @@ namespace CoreLib.Testing
         public Question(QueryResult queryResult, ulong questionID)
         {
             _queryResult = queryResult;
-            (string description, Image image) question = _queryResult.LoadQuestion(questionID);
-            _name = question.description;
-            _image = question.image;
+            (string description, Image image)? question = _queryResult.LoadQuestion(questionID);
+
+            if(!question.HasValue)
+                throw new InvalidDataException($"Question {questionID} is not exists. Class {nameof(Question)}");
+
+            _name = question.Value.description;
+            _image = question.Value.image;
             _id = questionID;
             LoadAnswers();
         }
