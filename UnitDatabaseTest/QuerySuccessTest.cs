@@ -67,5 +67,12 @@ namespace DataBaseTest
         {
             Assert.Empty(_queryResult.LoadProgramsByDirecionAndType(0, 0));
         }
+
+        [Fact]
+        public void TestLoadQuestionNullValue()
+        {
+            Assert.Null(_queryResult.LoadQuestion(0));
+        }
+
     }
 }

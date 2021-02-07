@@ -285,25 +285,33 @@ namespace Database.Result
             }
         }
 
-        public (string description, Image image) LoadQuestion(ulong questionId)
+        /// <summary>
+        /// Return test's question
+        /// </summary>
+        /// <param name="questionId">Question id</param>
+        /// <returns>A tuple(description,image) if exists otherwise null</returns>
+        public (string description, Image image)? LoadQuestion(ulong questionId)
         {
+            string command = "SELECT Description,Picture FROM Question WHERE ID =  @questionId";
             using(var query = new Query(_connectionFunction.Invoke()))
             {
-                using(DbDataReader reader = query.ReadData("SELECT Description,Picture FROM Question WHERE ID = " + questionId))
+                query.AddParameter("questionId", DbType.Int64, questionId);
+                using(DbDataReader reader = query.ReadData(command))
                 {
-                    reader.Read();
-                    string name = Convert.ToString(reader["Description"]);
-                    Image image = null;
-                    byte[] buf;
-                    try
+                    if(reader.Read())
                     {
-                        buf = Convert.FromBase64String(Convert.ToBase64String(((byte[])reader["Picture"])));
-                        image = Image.FromStream(new MemoryStream(buf));
-                    }
-                    catch
-                    { }
+                        Image image = null;
+                        try
+                        {
+                            byte[] buf = Convert.FromBase64String(Convert.ToBase64String((byte[])reader["Picture"]));
+                            image = Image.FromStream(new MemoryStream(buf));
+                        }
+                        catch
+                        { }
 
-                    return (name, image);
+                        return (Convert.ToString(reader["Description"]), image);
+                    }
+                    return null;
                 }
             }
         }
