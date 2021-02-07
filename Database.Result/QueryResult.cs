@@ -270,14 +270,26 @@ namespace Database.Result
             return result.ToArray();
         }
 
-        public ulong LoadTestIdByProgramGroupIdAndType(ulong programGroupID, int type)
+        /// <summary>
+        /// Returns test id with program group id and test type.
+        /// </summary>
+        /// <param name="programGroupID">Program group id</param>
+        /// <param name="testType">Test type</param>
+        /// <returns>Test id</returns>
+        /// <exception cref="InvalidDataException">If with <paramref name="programGroupID"/> and <paramref name="testType"/> has't value.</exception>
+        public ulong LoadTestIdByProgramGroupIdAndType(ulong programGroupID, int testType)
         {
+            string command = "SELECT ID FROM Test WHERE ProgramGroupID = @programGroupID AND Type = @testType";
+
             using(var query = new Query(_connectionFunction.Invoke()))
             {
-                using(DbDataReader reader = query.ReadData("SELECT ID FROM Test WHERE ProgramGroupID =" + programGroupID + "AND Type = " + type))
+                query.AddParameter("programGroupId", DbType.Int64, programGroupID);
+                query.AddParameter("testType", DbType.Int32, testType);
+                using(DbDataReader reader = query.ReadData(command))
                 {
-                    reader.Read();
-                    return Convert.ToUInt64(reader["ID"]);
+                    if(reader.Read())
+                        return Convert.ToUInt64(reader["ID"]);
+                    throw new InvalidDataException($"Query returns no value. In {nameof(LoadTestIdByProgramGroupIdAndType)} with programGroupId: '{programGroupID}' and type: {testType}");
                 }
             }
         }

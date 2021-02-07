@@ -90,5 +90,11 @@ namespace DataBaseTest
         {
             Assert.Throws(expectedException, () => { _queryResult.LoadSumPoints(answerIds); });
         }
+
+        [Fact]
+        public void TestLoadTestIdByProgramGroupIdAndTypeWithWrondValues()
+        {
+            Assert.Throws<InvalidDataException>(() => { _queryResult.LoadTestIdByProgramGroupIdAndType(0, 0); });
+        }
     }
 }
