@@ -238,10 +238,15 @@ namespace Database.Result
 
         public ulong[] LoadQuestionIds(ulong testId, int exerciseType)
         {
+            string command = "SELECT ID FROM Question WHERE TestID = @testId AND Type = @exerciseType";
+
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
+                query.AddParameter("testId", DbType.Int64, testId);
+                query.AddParameter("exerciseType", DbType.Int32, exerciseType);
+
                 List<ulong> result = new List<ulong>();
-                using(DbDataReader reader = query.ReadData("SELECT ID FROM Question WHERE TestID = " + testId + " AND Type = " + exerciseType))
+                using(DbDataReader reader = query.ReadData(command))
                     while(reader.Read())
                         result.Add(Convert.ToUInt64(reader["ID"]));
                 return result.ToArray();

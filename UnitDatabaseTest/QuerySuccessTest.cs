@@ -74,5 +74,10 @@ namespace DataBaseTest
             Assert.Null(_queryResult.LoadQuestion(0));
         }
 
+        [Fact]
+        public void TestLoadQuestionIdsEmptyCollection()
+        {
+            Assert.Empty(_queryResult.LoadQuestionIds(0, 0));
+        }
     }
 }

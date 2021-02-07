@@ -52,7 +52,7 @@ Create table Question
 	Id bigint primary key,
 	Description nvarchar(2000) not null,
 	Picture image null,
-	QuestionType int not null,
+	Type int not null,
 	TestId tinyint not null,
 	constraint fk_test_question foreign key(TestId) references [ProgramGroup](Id)
 );
