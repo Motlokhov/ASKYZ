@@ -237,6 +237,12 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Returns a test's collection question id.
+        /// </summary>
+        /// <param name="testId">Test id</param>
+        /// <param name="exerciseType">Excercise type</param>
+        /// <returns>A collection question id</returns>
         public ulong[] LoadQuestionIds(ulong testId, int exerciseType)
         {
             string command = "SELECT ID FROM Question WHERE TestID = @testId AND Type = @exerciseType";
