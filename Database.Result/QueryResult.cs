@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Common;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace Database.Result
 {
@@ -341,21 +342,37 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Return sum points for answers within a collection <paramref name="answerIds"/>.
+        /// </summary>
+        /// <param name="answerIds">A collection answer ids</param>
+        /// <returns>Sum points</returns>
+        /// <exception cref="ArgumentException">If <paramref name="answerIds"/> is null or empty</exception>
+        /// <exception cref="InvalidDataException">If <paramref name="answerIds"/> no one id is exists or all have null values in database.</exception>
         public byte LoadSumPoints(ulong[] answerIds)
         {
-            string stringVerification = string.Empty;
+            if(answerIds is null || !answerIds.Any())
+                throw new ArgumentException($"Parameter '{nameof(answerIds)}' can't be null or empty in '{nameof(LoadSumPoints)}'");
+
+            string answerIdsArray = string.Empty;
             for(var i = 0; i < answerIds.Length; i++)
             {
-                stringVerification += answerIds[i];
+                answerIdsArray += answerIds[i];
                 if(i + 1 < answerIds.Length)
                 {
-                    stringVerification += ",";
+                    answerIdsArray += ",";
                 }
             }
 
+            string command = "SELECT SUM(Points) FROM Answer WHERE ID IN (@answerIdsArray)";
+
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
-                object result = query.ExecuteScalar("SELECT SUM(Points) FROM Answer WHERE ID IN (" + stringVerification + ")");
+                query.AddParameter("answerIdsArray", DbType.String, answerIdsArray);
+                object result = query.ExecuteScalar(command);
+                if(result.Equals(DBNull.Value))
+                    throw new InvalidDataException($"Query returns no value. In '{nameof(LoadSumPoints)}' for array '{answerIdsArray}'");
+
                 return Convert.ToByte(result);
             }
         }

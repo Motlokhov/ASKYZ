@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Database.Result;
 using Xunit;
 
@@ -78,6 +79,16 @@ namespace DataBaseTest
         public void TestLoadQuestionIdsEmptyCollection()
         {
             Assert.Empty(_queryResult.LoadQuestionIds(0, 0));
+        }
+
+        [Theory]
+        [InlineData(null, typeof(ArgumentException))]
+        [InlineData(new ulong[0], typeof(ArgumentException))]
+        [InlineData(new ulong[] { 0 }, typeof(InvalidDataException))]
+        [InlineData(new ulong[] { 0, 0 }, typeof(InvalidDataException))]
+        public void TestLoadSumPointsWithWrongParameters(ulong[] answerIds, Type expectedException)
+        {
+            Assert.Throws(expectedException, () => { _queryResult.LoadSumPoints(answerIds); });
         }
     }
 }
