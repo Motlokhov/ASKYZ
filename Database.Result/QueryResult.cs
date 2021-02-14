@@ -298,18 +298,38 @@ namespace Database.Result
             }
         }
 
-        public (byte trueAnswersCount, byte falseAnswerCount, byte points)? LoadTestResult(ulong testingDateId, int exerciseType)
+        /// <summary>
+        /// Returns the number of correct and incorrect answers,
+        /// as well as the amount of points for correct answers received during the control test for defined exercise
+        /// </summary>
+        /// <param name="testingDateId">Id testing date</param>
+        /// <param name="exerciseType">Type of exercise</param>
+        /// <returns>A tuple(numberCorrectAnswer,numberIncorrectanswers,points)</returns>
+        public (byte numberCorrectAnswer, byte numberIncorrectanswers, byte points)? LoadTestResult(ulong testingDateId, int exerciseType)
         {
-            string command = $"SELECT TrueAnswers,FalseAnswers,Points FROM TestingResult WHERE TestingDateID = {testingDateId} AND ExerciseType = {exerciseType}";
-            using(Query query = new Query(_connectionFunction.Invoke()))
-            using(DbDataReader reader = query.ReadData(command))
-            {
-                if(reader.Read())
-                    return (Convert.ToByte(reader["TrueAnswers"]),
-                    Convert.ToByte(reader["FalseAnswers"]),
-                    Convert.ToByte(reader["Points"]));
+            string command = $@"
+            SELECT 
+                TrueAnswers
+                ,FalseAnswers
+                ,Points 
+            FROM TestingResult 
+            WHERE TestingDateID = testingDateId 
+                AND ExerciseType = @exerciseType";
 
-                return null;
+            using(Query query = new Query(_connectionFunction.Invoke()))
+            {
+                query.AddParameter("testingDateId", DbType.Int64, testingDateId);
+                query.AddParameter("exerciseType", DbType.Int64, exerciseType);
+                using(DbDataReader reader = query.ReadData(command))
+                {
+                    if(reader.Read())
+                        return (
+                        Convert.ToByte(reader["TrueAnswers"]),
+                        Convert.ToByte(reader["FalseAnswers"]),
+                        Convert.ToByte(reader["Points"]));
+
+                    return null;
+                }
             }
         }
 

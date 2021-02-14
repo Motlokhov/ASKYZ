@@ -102,5 +102,11 @@ namespace DataBaseTest
         {
             Assert.Empty(_queryResult.LoadTestingDates());
         }
+
+        [Fact]
+        public void TestLoadTestResult()
+        {
+            Assert.Null(_queryResult.LoadTestResult(0, 0));
+        }
     }
 }
