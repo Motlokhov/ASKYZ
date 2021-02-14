@@ -108,5 +108,11 @@ namespace DataBaseTest
         {
             Assert.Null(_queryResult.LoadTestResult(0, 0));
         }
+
+        [Fact]
+        public void TestLoadUserById()
+        {
+            Assert.Null(_queryResult.LoadUserById(0));
+        }
     }
 }

@@ -155,6 +155,11 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Return a user data.
+        /// </summary>
+        /// <param name="userId">User's id</param>
+        /// <returns>A tuple(surname,firstname,lastname,programGroupId,dateStartTest,dateEndTest,passportNumber,passportSerie) if exists otherwise null.</returns>
         public 
             (string surname
             , string firstname
@@ -164,11 +169,14 @@ namespace Database.Result
             , DateTime dateEndTest
             , uint passportNumber
             , ushort passportSerie)?
-            LoadUserById(ulong id)
+            LoadUserById(ulong userId)
         {
+            string command = "SELECT * FROM[User] WHERE ID = @id";
+
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
-                using(DbDataReader reader = query.ReadData("SELECT * FROM [User] WHERE ID = " + id))
+                query.AddParameter("id", DbType.Int64, userId);
+                using(DbDataReader reader = query.ReadData(command))
                 {
                     if(reader.Read())
                         return 
