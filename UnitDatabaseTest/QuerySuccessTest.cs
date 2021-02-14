@@ -98,25 +98,25 @@ namespace DataBaseTest
         }
 
         [Fact]
-        public void TestLoadTestingDates()
+        public void TestLoadTestingDatesEmptyCollection()
         {
             Assert.Empty(_queryResult.LoadTestingDates());
         }
 
         [Fact]
-        public void TestLoadTestResult()
+        public void TestLoadTestResultNullValue()
         {
             Assert.Null(_queryResult.LoadTestResult(0, 0));
         }
 
         [Fact]
-        public void TestLoadUserById()
+        public void TestLoadUserByIdNullValue()
         {
             Assert.Null(_queryResult.LoadUserById(0));
         }
 
         [Fact]
-        public void TestLoadUsersResultByTestingDate()
+        public void TestLoadUsersResultByTestingDateEmptyCollection()
         {
             Assert.Empty(_queryResult.LoadUsersResultByTestingDate(DateTime.Now.ToString()));
         }
@@ -124,7 +124,7 @@ namespace DataBaseTest
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void TestLoadUsersResultByTestingDateWithWrongParameters(string testingDate)
+        public void TestLoadUsersResultByTestingDateArgumentException(string testingDate)
         {
             Assert.Throws<ArgumentException>(() => { _queryResult.LoadUsersResultByTestingDate(testingDate); });
         }
