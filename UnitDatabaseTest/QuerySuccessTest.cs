@@ -22,7 +22,7 @@ namespace DataBaseTest
         [InlineData("0", null, typeof(ArgumentException))]
         [InlineData("", "0", typeof(ArgumentException))]
         [InlineData("0", "", typeof(ArgumentException))]
-        public void TestGetUserIdWrongParameters(string id, string password,Type exceptedException)
+        public void TestGetUserIdWrongParameters(string id, string password, Type exceptedException)
         {
             Assert.Throws(exceptedException, () => { _queryResult.GetUserId(id, password); });
         }
@@ -113,6 +113,20 @@ namespace DataBaseTest
         public void TestLoadUserById()
         {
             Assert.Null(_queryResult.LoadUserById(0));
+        }
+
+        [Fact]
+        public void TestLoadUsersResultByTestingDate()
+        {
+            Assert.Empty(_queryResult.LoadUsersResultByTestingDate(DateTime.Now.ToString()));
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void TestLoadUsersResultByTestingDateWithWrongParameters(string testingDate)
+        {
+            Assert.Throws<ArgumentException>(() => { _queryResult.LoadUsersResultByTestingDate(testingDate); });
         }
     }
 }

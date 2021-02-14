@@ -272,14 +272,30 @@ namespace Database.Result
             }
         }
 
+        /// <summary>
+        /// Return an array (userId, testingDateId) for the defined date.
+        /// </summary>
+        /// <param name="testingDate">Date of testing</param>
+        /// <returns>An array (userId,testingDateId)</returns>
         public (ulong userID,ulong testingDateId)[] LoadUsersResultByTestingDate(string testingDate)
         {
-            List<(ulong, ulong)> result = new List<(ulong, ulong)>();
+            if(string.IsNullOrEmpty(testingDate))
+                throw new ArgumentException($"Parameter {nameof(testingDate)} can't be null or empty in {nameof(LoadUsersResultByTestingDate)}");
+
+            string command = "SELECT UserID,ID FROM TestingDate WHERE Date = @testingDate";
+
             using(Query query = new Query(_connectionFunction.Invoke()))
-            using(DbDataReader reader = query.ReadData("SELECT UserID,ID FROM TestingDate WHERE Date = '" + testingDate + "'"))
-                while(reader.Read())
-                    result.Add((Convert.ToUInt64(reader["UserID"]), Convert.ToUInt64(reader["ID"])));
-            return result.ToArray();
+            {
+                List<(ulong, ulong)> result = new List<(ulong, ulong)>();
+
+                query.AddParameter("testingDate", DbType.String, testingDate);
+                using(DbDataReader reader = query.ReadData(command))
+                    while(reader.Read())
+                        result.Add((Convert.ToUInt64(reader["UserID"]), Convert.ToUInt64(reader["ID"])));
+
+                return result.ToArray();
+            }
+            
         }
 
         /// <summary>
