@@ -137,6 +137,10 @@ namespace Database.Result
             return null;
         }
 
+        /// <summary>
+        /// Return array of all test's dates ordered by nearest to oldest
+        /// </summary>
+        /// <returns>Datetime array</returns>
         public DateTime[] LoadTestingDates()
         {
             string commandString = "SELECT distinct [Date] FROM TestingDate ORDER BY [Date] DESC";

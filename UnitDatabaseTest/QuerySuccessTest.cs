@@ -96,5 +96,11 @@ namespace DataBaseTest
         {
             Assert.Throws<InvalidDataException>(() => { _queryResult.LoadTestIdByProgramGroupIdAndType(0, 0); });
         }
+
+        [Fact]
+        public void TestLoadTestingDates()
+        {
+            Assert.Empty(_queryResult.LoadTestingDates());
+        }
     }
 }
