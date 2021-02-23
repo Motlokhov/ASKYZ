@@ -81,7 +81,7 @@ namespace StudentUI
                 return;
             }
 
-            bool isRegOK = _queryResult.AddNewUser
+            bool isRegOK = _queryResult.InsertNewUser
                 (
                 textBoxFirstname.Text ,
                 textBoxSurname.Text ,

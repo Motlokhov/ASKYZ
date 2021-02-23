@@ -128,5 +128,50 @@ namespace DataBaseTest
         {
             Assert.Throws<ArgumentException>(() => { _queryResult.LoadUsersResultByTestingDate(testingDate); });
         }
+
+        [Fact]
+        public void TestInsertNewUserAllFields()
+        {
+            string firstname = "first";
+            string lastname = "last";
+            string surname = "sur";
+            ushort passportSerie = 1234;
+            ushort passportNumber = 5678;
+            DateTime startDateTest = new DateTime(2021, 2, 23, 15, 05, 06, 0);
+            DateTime endDateTest = new DateTime(2021, 2, 23, 19, 07, 09, 0);
+            string password = "pass";
+            ulong programGroupId = 1;
+
+            Assert.True(_queryResult.InsertNewUser(
+                                    firstname, 
+                                    surname, 
+                                    lastname, 
+                                    passportSerie, 
+                                    passportNumber, 
+                                    startDateTest,
+                                    endDateTest, 
+                                    password, 
+                                    programGroupId));
+
+            (string surname, 
+            string firstname, 
+            string lastname, 
+            byte programGroupId, 
+            DateTime dateStartTest, 
+            DateTime dateEndTest, 
+            uint passportNumber, 
+            ushort passportSerie)? user = _queryResult.LoadUserById(12345678);
+
+            Assert.NotNull(user);
+
+            Assert.Equal("First", user.Value.firstname);
+            Assert.Equal("Last", user.Value.lastname);
+            Assert.Equal("Sur", user.Value.surname);
+            Assert.Equal(passportSerie, user.Value.passportSerie);
+            Assert.Equal(passportNumber, user.Value.passportNumber);
+            Assert.Equal(startDateTest, user.Value.dateStartTest);
+            Assert.Equal(endDateTest, user.Value.dateEndTest);
+            Assert.Equal(programGroupId, user.Value.programGroupId);
+        }
     }
 }

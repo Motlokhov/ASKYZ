@@ -179,12 +179,12 @@ namespace Database.Result
                 using(DbDataReader reader = query.ReadData(command))
                 {
                     if(reader.Read())
-                        return 
-                            (reader["Surname"]?.ToString(), 
-                            reader["Firstname"]?.ToString(), 
+                        return
+                            (reader["Surname"]?.ToString(),
+                            reader["Firstname"]?.ToString(),
                             reader["Lastname"]?.ToString(),
-                            Convert.ToByte(reader["ProgramGroupID"]), 
-                            Convert.ToDateTime(reader["DateStartTest"]), 
+                            Convert.ToByte(reader["ProgramGroupID"]),
+                            Convert.ToDateTime(reader["DateStartTest"]),
                             Convert.ToDateTime(reader["DateEndTest"]),
                             Convert.ToUInt32(reader["PassportNumber"]),
                             Convert.ToUInt16(reader["PassportSerie"]));
@@ -203,7 +203,23 @@ namespace Database.Result
             word = symbol + word;
         }
 
-        public bool AddNewUser(string firstname, 
+        /// <summary>
+        /// Insert new user into database.
+        /// Several things are done before insertion:
+        /// <para>Values 'firstname', 'surname', 'lastname' transform to 'Firstname', 'Surname', 'Lastname'.</para>
+        /// <para>Id is concat of <paramref name="passportSerie"/> and <paramref name="passportNumber"/>."/></para>
+        /// </summary>
+        /// <param name="firstname">First name. (Petr)</param>
+        /// <param name="surname">Surname. (Petrov)</param>
+        /// <param name="lastname">Lastname (Petrovich)</param>
+        /// <param name="passportSerie">Passport serie (xxxx)</param>
+        /// <param name="passportNumber">Passport number (yyyyyy)</param>
+        /// <param name="startDate">Start date test</param>
+        /// <param name="endDate">End date test</param>
+        /// <param name="password">User password</param>
+        /// <param name="programGroupID">Program group.</param>
+        /// <returns></returns>
+        public bool InsertNewUser(string firstname, 
             string surname, 
             string lastname,
            ushort passportSerie, 
@@ -219,11 +235,44 @@ namespace Database.Result
 
             ulong id = Convert.ToUInt64(passportSerie.ToString() + passportNumber.ToString());
 
-            string commandText = $@"INSERT INTO [User] (Firstname,Surname,Lastname,PassportSerie,PassportNumber,DateStartTest,DateEndTest,Password,ProgramGroupId,ID) 
-                                   VALUES('{firstname}','{surname}','{lastname}',{passportSerie},{passportNumber},'{startDate}','{endDate}','{password}',{programGroupID},{id})";
+            string commandText = $@"INSERT INTO [User] (
+            Firstname
+            ,Surname
+            ,Lastname
+            ,PassportSerie
+            ,PassportNumber
+            ,DateStartTest
+            ,DateEndTest
+            ,Password
+            ,ProgramGroupId
+            ,ID)
+            VALUES(
+            @firstname
+            ,@surname
+            ,@lastName
+            ,@serie
+            ,@number
+            ,@datestart
+            ,@dateend
+            ,@password
+            ,@programgroupId
+            ,@id)";
 
             using(var query = new Query(_connectionFunction.Invoke()))
+            {
+                query.AddParameter("firstname", DbType.String, firstname);
+                query.AddParameter("surname", DbType.String, surname);
+                query.AddParameter("lastname", DbType.String, lastname);
+                query.AddParameter("serie", DbType.UInt16, passportSerie);
+                query.AddParameter("number", DbType.UInt32, passportNumber);
+                query.AddParameter("datestart", DbType.DateTime, startDate);
+                query.AddParameter("dateend", DbType.DateTime, endDate);
+                query.AddParameter("password", DbType.String, password);
+                query.AddParameter("programgroupid", DbType.Byte, programGroupID);
+                query.AddParameter("id", DbType.Int64, id);
+
                 return query.ExecuteNonQuery(commandText) > 0;
+            }
         }
 
         /// <summary>
