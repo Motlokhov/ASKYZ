@@ -263,8 +263,8 @@ namespace Database.Result
                 query.AddParameter("firstname", DbType.String, firstname);
                 query.AddParameter("surname", DbType.String, surname);
                 query.AddParameter("lastname", DbType.String, lastname);
-                query.AddParameter("serie", DbType.UInt16, passportSerie);
-                query.AddParameter("number", DbType.UInt32, passportNumber);
+                query.AddParameter("serie", DbType.Int16, passportSerie);
+                query.AddParameter("number", DbType.Int32, passportNumber);
                 query.AddParameter("datestart", DbType.DateTime, startDate);
                 query.AddParameter("dateend", DbType.DateTime, endDate);
                 query.AddParameter("password", DbType.String, password);
@@ -337,7 +337,7 @@ namespace Database.Result
             {
                 List<(ulong, ulong)> result = new List<(ulong, ulong)>();
 
-                query.AddParameter("testingDate", DbType.String, testingDate);
+                query.AddParameter("testingDate", DbType.DateTime, testingDate);
                 using(DbDataReader reader = query.ReadData(command))
                     while(reader.Read())
                         result.Add((Convert.ToUInt64(reader["UserID"]), Convert.ToUInt64(reader["ID"])));
@@ -479,11 +479,11 @@ namespace Database.Result
                 }
             }
 
-            string command = "SELECT SUM(Points) FROM Answer WHERE ID IN (@answerIdsArray)";
+            string template = "SELECT SUM(Points) FROM Answer WHERE ID IN ({0})";
+            string command = string.Format(template, answerIdsArray);
 
             using(Query query = new Query(_connectionFunction.Invoke()))
             {
-                query.AddParameter("answerIdsArray", DbType.String, answerIdsArray);
                 object result = query.ExecuteScalar(command);
                 if(result.Equals(DBNull.Value))
                     throw new InvalidDataException($"Query returns no value. In '{nameof(LoadSumPoints)}' for array '{answerIdsArray}'");
