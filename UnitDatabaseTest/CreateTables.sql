@@ -34,8 +34,8 @@ Create table TestingDate
  UserId bigint not null,
  ProgramGroupID tinyint not null,
  Date datetime not null,
- constraint fk_programgroup_testingdate foreign key(UserId) references [ProgramGroup](Id),
- constraint fk_user_testingdate foreign key(programGroupId) references [User](Id)
+ constraint fk_programgroup_testingdate foreign key(programGroupId) references [ProgramGroup](Id),
+ constraint fk_user_testingdate foreign key(UserId) references [User](Id)
 );
 
 -- Это реальная таблица, а не плод воображения для тестирования концепции.
@@ -54,7 +54,7 @@ Create table Question
 	Picture image null,
 	Type int not null,
 	TestId tinyint not null,
-	constraint fk_test_question foreign key(TestId) references [ProgramGroup](Id)
+	constraint fk_test_question foreign key(TestId) references [Test](Id)
 );
 
 Create table Answer
