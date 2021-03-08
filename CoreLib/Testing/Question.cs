@@ -12,7 +12,7 @@ namespace CoreLib.Testing
     public class Question : Entity
     {
         private readonly QueryResult _queryResult;
-        private Image _image;
+        private readonly Image _image;
 
         public ChildrenList<Answer> Answers = new ChildrenList<Answer>();
 
@@ -50,6 +50,7 @@ namespace CoreLib.Testing
             return bytes;
         }
 
+        //ToDo unusable
         static public void ParseQuestionDocument(string filePath)
         {
             List<string> questions = new List<string>();
@@ -61,7 +62,6 @@ namespace CoreLib.Testing
 
             for( var l = 0; l < file.Length - 1; l++ )
             {
-                int currentAnswer;
                 while( l < file.Length - 1 )
                 {
                     if( !file[l].Contains("Вопрос") )
@@ -81,7 +81,7 @@ namespace CoreLib.Testing
                     l++;
                     var currentLine = file[l];
 
-                    if( int.TryParse(currentLine[0].ToString(), out currentAnswer) )
+                    if( int.TryParse(currentLine[0].ToString(), out _) )
                     {
                         answers.Add("");
                         do
@@ -89,7 +89,7 @@ namespace CoreLib.Testing
                             answers[answers.Count - 1] += currentLine + " ";
                             l++;
                             currentLine = file[l];
-                            if( int.TryParse(currentLine[0].ToString(), out currentAnswer) )
+                            if( int.TryParse(currentLine[0].ToString(), out _) )
                             {
                                 answers.Add("");
                             }

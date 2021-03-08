@@ -20,13 +20,13 @@ namespace StudentUI
             
         }
 
-        private void buttonShowPassword_MouseEnter(object sender , EventArgs e)
+        private void ButtonShowPassword_MouseEnter(object sender , EventArgs e)
         {
             textBoxPassword.PasswordChar = char.MinValue;
             textBoxRepeatPassword.PasswordChar = char.MinValue;
         }
 
-        private void buttonShowPassword_MouseLeave(object sender , EventArgs e)
+        private void ButtonShowPassword_MouseLeave(object sender , EventArgs e)
         {
             textBoxPassword.PasswordChar = Convert.ToChar("*");
             textBoxRepeatPassword.PasswordChar = Convert.ToChar("*");
@@ -44,7 +44,7 @@ namespace StudentUI
             }
         }
 
-        private void comboBoxDirection_SelectedValueChanged(object sender , EventArgs e)
+        private void ComboBoxDirection_SelectedValueChanged(object sender , EventArgs e)
         {
             int selected = comboBoxDirection.SelectedIndex;
             byte id = directions[selected];
@@ -67,13 +67,13 @@ namespace StudentUI
                 comboBoxGroup.Items.Add(string.Concat("Группа № ", programs[i].number, ": ", programs[i].name));
         }
 
-        private void comboBoxGroup_SelectedValueChanged(object sender , EventArgs e)
+        private void ComboBoxGroup_SelectedValueChanged(object sender , EventArgs e)
         {
             int index = comboBoxGroup.SelectedIndex;
             programId = programs[index].id;
         }
 
-        private void buttonSave_Click(object sender , EventArgs e)
+        private void ButtonSave_Click(object sender , EventArgs e)
         {
             if(textBoxPassword.Text != textBoxRepeatPassword.Text )
             {
@@ -100,19 +100,15 @@ namespace StudentUI
                 MessageBox.Show("Регистрация не удалась.");
         }
 
-        private void buttonClearForm_Click(object sender , EventArgs e)
+        private void ButtonClearForm_Click(object sender , EventArgs e)
         {
             foreach( Control control in Controls )
             {
-                TextBox textbox = control as TextBox;
-                DateTimePicker dataTimePicker = control as DateTimePicker;
-                NumericUpDown numericUpDown = control as NumericUpDown;
-
-                if( textbox != null )
+                if(control is TextBox textbox)
                     textbox.Text = "";
-                if( dataTimePicker != null )
+                if( control is DateTimePicker dataTimePicker )
                     dataTimePicker.Value = DateTime.Today;
-                if( numericUpDown != null )
+                if( control is NumericUpDown numericUpDown )
                     numericUpDown.Value = 0;
             }
         }

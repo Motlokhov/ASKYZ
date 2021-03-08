@@ -47,7 +47,7 @@
             this.buttonOk.TabIndex = 1;
             this.buttonOk.Text = "Начать тестирование";
             this.buttonOk.UseVisualStyleBackColor = false;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonOk.Click += new System.EventHandler(this.ButtonOk_Click);
             // 
             // textBox1
             // 

@@ -60,7 +60,7 @@
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "m.motlokhov@yandex.ru";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Click += new System.EventHandler(this.linkLabelMail_Click);
+            this.linkLabel1.Click += new System.EventHandler(this.LinkLabelMail_Click);
             // 
             // linkLabel2
             // 
@@ -76,7 +76,7 @@
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "pav280808@yandex.ru";
             this.linkLabel2.VisitedLinkColor = System.Drawing.Color.White;
-            this.linkLabel2.Click += new System.EventHandler(this.linkLabelMail_Click);
+            this.linkLabel2.Click += new System.EventHandler(this.LinkLabelMail_Click);
             // 
             // AboutForm
             // 

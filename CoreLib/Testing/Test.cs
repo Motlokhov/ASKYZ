@@ -10,8 +10,8 @@ namespace CoreLib.Testing
 
         public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
 
-        public delegate void TestEnding();
-        public event TestEnding testEnding;
+        public delegate void TestEndingDelegate();
+        public event TestEndingDelegate TestEnding;
 
         public Test(QueryResult queryResult,TestType testType)
         {
@@ -81,7 +81,7 @@ namespace CoreLib.Testing
 
         public virtual void TestEnd()
         {
-            testEnding();
+            TestEnding();
         }
 
         public string GetNextExerciseName()

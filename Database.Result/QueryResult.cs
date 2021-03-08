@@ -500,8 +500,8 @@ namespace Database.Result
                 {
                     object testingDateID = query.ExecuteScalar("INSERT INTO TestingDate (UserID,ProgramGroupID,Date) VALUES(" + userId + "," + programGroupId + ",'" + DateTime.Today.ToString("d") + "') SELECT @@IDENTITY");
 
-                    foreach(var exercise in exercises)
-                        query.ExecuteNonQuery("INSERT INTO TestingResult(TestingDateID,ExerciseType,Points,TrueAnswers,FalseAnswers) VALUES(" + testingDateID + "," + exercise.type + "," + exercise.points + "," + exercise.trueAnswers + "," + exercise.falseAnswers + ")");
+                    foreach(var (type, points, trueAnswers, falseAnswers) in exercises)
+                        query.ExecuteNonQuery("INSERT INTO TestingResult(TestingDateID,ExerciseType,Points,TrueAnswers,FalseAnswers) VALUES(" + testingDateID + "," + type + "," + points + "," + trueAnswers + "," + falseAnswers + ")");
 
                     transaction.Commit();
                 }

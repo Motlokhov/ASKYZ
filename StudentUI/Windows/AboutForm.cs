@@ -11,7 +11,7 @@ namespace StudentUI
             Show();
         }
 
-        private void linkLabelMail_Click(object sender, EventArgs e)
+        private void LinkLabelMail_Click(object sender, EventArgs e)
         {
             LinkLabel label = sender as LinkLabel;
             Clipboard.SetText(label.Text);

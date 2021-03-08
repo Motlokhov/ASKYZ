@@ -46,7 +46,7 @@
             this.buttonOk.TabIndex = 9;
             this.buttonOk.Text = "Ок";
             this.buttonOk.UseVisualStyleBackColor = false;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonOk.Click += new System.EventHandler(this.ButtonOk_Click);
             // 
             // textBoxPassword
             // 

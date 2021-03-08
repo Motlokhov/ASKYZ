@@ -13,10 +13,7 @@ namespace StudentUI
             //textBox1.Focus();
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
+        private void ButtonOk_Click(object sender, EventArgs e) => Dispose();
 
         private void HowToWorkForm_FormClosed(object sender, FormClosedEventArgs e)
         {

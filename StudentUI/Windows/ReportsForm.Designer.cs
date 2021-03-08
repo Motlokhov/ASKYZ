@@ -51,7 +51,7 @@
             this.buttonReport.TabIndex = 48;
             this.buttonReport.Text = "Сформировать отчет";
             this.buttonReport.UseVisualStyleBackColor = true;
-            this.buttonReport.Click += new System.EventHandler(this.buttonReport_Click);
+            this.buttonReport.Click += new System.EventHandler(this.ButtonReport_Click);
             // 
             // groupBox1
             // 
@@ -73,7 +73,7 @@
             this.comboBoxTestingDate.Name = "comboBoxTestingDate";
             this.comboBoxTestingDate.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTestingDate.TabIndex = 48;
-            this.comboBoxTestingDate.SelectedIndexChanged += new System.EventHandler(this.comboBoxTestingDate_SelectedIndexChanged);
+            this.comboBoxTestingDate.SelectedIndexChanged += new System.EventHandler(this.ComboBoxTestingDate_SelectedIndexChanged);
             // 
             // label2
             // 

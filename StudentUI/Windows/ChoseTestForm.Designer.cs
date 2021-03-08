@@ -91,7 +91,7 @@ namespace StudentUI
             this.buttonChoseTrainingTest.TabIndex = 8;
             this.buttonChoseTrainingTest.Text = "Выбрать программу";
             this.buttonChoseTrainingTest.UseVisualStyleBackColor = false;
-            this.buttonChoseTrainingTest.Click += new System.EventHandler(this.buttonChoseTrainingTest_Click);
+            this.buttonChoseTrainingTest.Click += new System.EventHandler(this.ButtonChoseTrainingTest_Click);
             // 
             // buttonSignIn
             // 
@@ -109,7 +109,7 @@ namespace StudentUI
             this.buttonSignIn.TabIndex = 8;
             this.buttonSignIn.Text = "Войти";
             this.buttonSignIn.UseVisualStyleBackColor = false;
-            this.buttonSignIn.Click += new System.EventHandler(this.buttonSignIn_Click);
+            this.buttonSignIn.Click += new System.EventHandler(this.ButtonSignIn_Click);
             // 
             // pictureBox1
             // 
@@ -137,7 +137,7 @@ namespace StudentUI
             this.buttonRecoveryPassword.TabIndex = 5;
             this.buttonRecoveryPassword.Text = "Восстановить пароль";
             this.buttonRecoveryPassword.UseVisualStyleBackColor = false;
-            this.buttonRecoveryPassword.Click += new System.EventHandler(this.buttonRecoveryPassword_Click);
+            this.buttonRecoveryPassword.Click += new System.EventHandler(this.ButtonRecoveryPassword_Click);
             // 
             // buttonRegistration
             // 
@@ -155,7 +155,7 @@ namespace StudentUI
             this.buttonRegistration.TabIndex = 5;
             this.buttonRegistration.Text = "Регистрация";
             this.buttonRegistration.UseVisualStyleBackColor = false;
-            this.buttonRegistration.Click += new System.EventHandler(this.buttonRegistration_Click);
+            this.buttonRegistration.Click += new System.EventHandler(this.ButtonRegistration_Click);
             // 
             // labelPassword
             // 
@@ -259,7 +259,7 @@ namespace StudentUI
             this.отчетыToolStripMenuItem.Name = "отчетыToolStripMenuItem";
             this.отчетыToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.отчетыToolStripMenuItem.Text = "Отчеты";
-            this.отчетыToolStripMenuItem.Click += new System.EventHandler(this.отчетыToolStripMenuItem_Click);
+            this.отчетыToolStripMenuItem.Click += new System.EventHandler(this.ОтчетыToolStripMenuItem_Click);
             // 
             // настройкиToolStripMenuItem
             // 
@@ -267,7 +267,7 @@ namespace StudentUI
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.настройкиToolStripMenuItem.Text = "Настройки";
-            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.настройкиToolStripMenuItem_Click);
+            this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.НастройкиToolStripMenuItem_Click);
             // 
             // оНасToolStripMenuItem
             // 
@@ -275,7 +275,7 @@ namespace StudentUI
             this.оНасToolStripMenuItem.Name = "оНасToolStripMenuItem";
             this.оНасToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.оНасToolStripMenuItem.Text = "О нас";
-            this.оНасToolStripMenuItem.Click += new System.EventHandler(this.оНасToolStripMenuItem_Click);
+            this.оНасToolStripMenuItem.Click += new System.EventHandler(this.ОНасToolStripMenuItem_Click);
             // 
             // ChoseTestForm
             // 

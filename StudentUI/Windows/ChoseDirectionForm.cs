@@ -2,7 +2,6 @@
 using Database.Result;
 using System;
 using System.Windows.Forms;
-using StudentUI;
 
 namespace StudentUI
 {
@@ -50,9 +49,7 @@ namespace StudentUI
             }
         }
 
-
-
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ОПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.Show();
