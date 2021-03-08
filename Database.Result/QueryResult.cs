@@ -508,6 +508,7 @@ namespace Database.Result
             }
         }
 
+        ///[todo] разделить для каждой комбинации вопрос\ответ
         public void WriteQuestions(int testID, int questionType, string question, byte[] picture, List<string> answers, List<short> trueAnswers)
         {
             ulong questionID = 0;
