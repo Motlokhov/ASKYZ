@@ -40,9 +40,20 @@ namespace DataBaseTest
         }
 
         [Fact]
-        public void TestLoadAllDirectionEmptyCollection()
+        public void TestLoadAllDirectionNotEmptyCollection()
         {
-            Assert.Empty(_queryResult.LoadAllDirections());
+            //Arrange
+            const int countDirections = 2;
+
+            //Act
+            (byte id, string name)[] directions = _queryResult.LoadAllDirections();
+
+            //Assert
+            Assert.Equal(countDirections, directions.Length);
+            Assert.Equal(1, directions[0].id);
+            Assert.Equal("Росавтодор", directions[0].name);
+            Assert.Equal(2, directions[1].id);
+            Assert.Equal("Росжелдор", directions[1].name);
         }
 
         [Fact]
@@ -132,15 +143,15 @@ namespace DataBaseTest
         [Fact]
         public void TestInsertNewUserAllFields()
         {
-            string firstname = "first";
-            string lastname = "last";
-            string surname = "sur";
-            ushort passportSerie = 1234;
-            ushort passportNumber = 5678;
+            const string firstname = "имя";
+            const string lastname = "фамилия";
+            const string surname = "отчество";
+            const ushort passportSerie = 1234;
+            const ushort passportNumber = 5678;
             DateTime startDateTest = new DateTime(2021, 2, 23, 15, 05, 06, 0);
             DateTime endDateTest = new DateTime(2021, 2, 23, 19, 07, 09, 0);
-            string password = "pass";
-            ulong programGroupId = 1;
+            const string password = "pass";
+            const ulong programGroupId = 1;
 
             Assert.True(_queryResult.InsertNewUser(
                                     firstname, 
@@ -164,9 +175,9 @@ namespace DataBaseTest
 
             Assert.NotNull(user);
 
-            Assert.Equal("First", user.Value.firstname);
-            Assert.Equal("Last", user.Value.lastname);
-            Assert.Equal("Sur", user.Value.surname);
+            Assert.Equal("Имя", user.Value.firstname);
+            Assert.Equal("Фамилия", user.Value.lastname);
+            Assert.Equal("Отчество", user.Value.surname);
             Assert.Equal(passportSerie, user.Value.passportSerie);
             Assert.Equal(passportNumber, user.Value.passportNumber);
             Assert.Equal(startDateTest, user.Value.dateStartTest);
