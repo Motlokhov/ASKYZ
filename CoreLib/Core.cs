@@ -10,40 +10,40 @@ namespace CoreLib.Main
 {
     public static class Core
     {
-        static public readonly Random Random;
-        static public byte DirectionID { get; private set; }
-        static public string DirectionName { get; private set; }
-        static public byte ProgramGroupID { get; private set; }
-        static public byte ProgramNumber { get; private set; }
-        static public string ProgramName { get; private set; }
-        static public User User { get; private set; }
-        static public Test Test { get; private set; }
+        public static readonly Random Random;
+        public static byte DirectionID { get; private set; }
+        public static string DirectionName { get; private set; }
+        public static byte ProgramGroupID { get; private set; }
+        public static byte ProgramNumber { get; private set; }
+        public static string ProgramName { get; private set; }
+        public static User User { get; private set; }
+        public static Test Test { get; private set; }
 
         static Core()
         {
             Random = new Random();
         }
 
-        static public bool CheckPassword(string id , string password)
+        public static bool CheckPassword(QueryResult queryResult, string id , string password)
         {
             Test = null;
             User = null;
-            ulong? userId = QueryResult.GetUserId(id, password);
+            ulong? userId = queryResult.GetUserId(id, password);
             if( userId.HasValue )
             {
-                User = new User(userId.Value);
+                User = new User(queryResult, userId.Value);
                 ProgramGroupID = User.GetProgramGroupID();
-                LoadDirectionName();
-                LoadProgram();
-                Test = new ControlTest(ProgramGroupID);
+                LoadDirectionName(queryResult);
+                LoadProgram(queryResult);
+                Test = new ControlTest(queryResult,ProgramGroupID);
                 return true;
             }
             return false;
         }
 
-        public static void LoadDirectionName()
+        public static void LoadDirectionName(QueryResult queryResult)
         {
-            DirectionName = QueryResult.LoadDirectionName(ProgramGroupID);
+            DirectionName = queryResult.LoadDirectionName(ProgramGroupID);
         }
 
         public static void SetDirection(byte id , string name)
@@ -57,9 +57,9 @@ namespace CoreLib.Main
             ProgramGroupID = id;
         }
 
-        public static void LoadProgram()
+        public static void LoadProgram(QueryResult queryResult)
         {
-            (string name, byte number)? program = QueryResult.LoadProgramByProgramGroupId(ProgramGroupID);
+            (string name, byte number)? program = queryResult.LoadProgramByProgramGroupId(ProgramGroupID);
 
             if(program.HasValue)
             {
@@ -68,10 +68,10 @@ namespace CoreLib.Main
             }
         }
 
-        public static void CreateTrainingTest(ulong programGroupID)
+        public static void CreateTrainingTest(QueryResult queryResult, ulong programGroupID)
         {
             Test = null;
-            Test = new TrainingTest(programGroupID);
+            Test = new TrainingTest(queryResult, programGroupID);
         }
     }
 }

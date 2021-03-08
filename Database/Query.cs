@@ -8,16 +8,18 @@ namespace Database
 {
     public class Query:IDisposable
     {
-        public DbConnection Connection { get; private set; }
-        private DbCommand _command;
+        private readonly DbConnection _connection;// { get; private set; }
+        private readonly DbCommand _command;
 
-        public Query(CommandType commandType = CommandType.Text)
+        public Query(DbConnection connection, CommandType commandType = CommandType.Text)
         {
-            Connection = DbConnectionDefiner.Define();
-            Connection.Open();
-            _command = Connection.CreateCommand();
+            _connection = connection;
+            _connection.Open();
+            _command = _connection.CreateCommand();
             _command.CommandType = commandType;
         }
+
+        public DbTransaction BeginTransaction() => _connection.BeginTransaction();
 
         public DbDataReader ReadData(string _command_text)
         {
@@ -39,8 +41,8 @@ namespace Database
 
         private void ConnectionClose()
         {
-            if (Connection.State != ConnectionState.Closed)
-                Connection.Close();
+            if (_connection.State != ConnectionState.Closed)
+                _connection.Close();
         }
 
         public void AddParameter(string nameparameter ,DbType  typeparameter , object value)
@@ -49,12 +51,10 @@ namespace Database
             param.ParameterName = nameparameter;
             param.DbType = typeparameter;
             param.Value = value;
+            _command.Parameters.Add(param);
         }
 
-        public void Dispose()
-        {
-            ConnectionClose();
-        }
+        public void Dispose() => ConnectionClose();
     }
 }
 

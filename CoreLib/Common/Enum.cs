@@ -38,6 +38,18 @@ namespace CoreLib.Common
         }
     }
 
+    public enum Direction
+    {
+        /// <summary>
+        /// Автодор
+        /// </summary>
+        car = 1,
+        /// <summary>
+        /// Желдор
+        /// </summary>
+        train = 2
+    }
+
     public enum TestType
     {
         [DescriptionAttribute("Обучающего тестирования")]

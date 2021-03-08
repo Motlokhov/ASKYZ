@@ -2,11 +2,14 @@
 using Database;
 using CoreLib.Common;
 using Database.Result;
+using System.Data.Common;
 
 namespace CoreLib.Testing
 {
     public class User : Entity
     {
+        private readonly QueryResult _queryResult;
+
         private byte _programGroupID;
         private DateTime _dateStart;
         private DateTime _dateEnd;
@@ -38,8 +41,10 @@ namespace CoreLib.Testing
         {
             return _dateEnd;
         }
-        public User(ulong id)
+        public User(QueryResult queryResult, ulong id)
         {
+            _queryResult = queryResult;
+
             _id = id;
             (string surname, 
                 string firstname, 
@@ -48,7 +53,7 @@ namespace CoreLib.Testing
                 DateTime dateStartTest, 
                 DateTime dateEndTest, 
                 uint passportNumber, 
-                ushort passportSerie)? result = QueryResult.LoadUserById(id);
+                ushort passportSerie)? result = _queryResult.LoadUserById(id);
 
             if(result.HasValue)
             {
@@ -67,9 +72,9 @@ namespace CoreLib.Testing
         {
             _results = new ChildrenList<Result>
             {
-                new Result(_testingDateID, ExerciseType.common),
-                new Result(_testingDateID, ExerciseType.common),
-                new Result(_testingDateID, ExerciseType.practical)
+                new Result(_queryResult, _testingDateID, ExerciseType.common),
+                new Result(_queryResult, _testingDateID, ExerciseType.common),
+                new Result(_queryResult, _testingDateID, ExerciseType.practical)
             };
         }
     }

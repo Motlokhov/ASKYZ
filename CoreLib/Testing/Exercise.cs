@@ -1,12 +1,11 @@
-﻿using Database;
-using CoreLib.Common;
-using System;
+﻿using CoreLib.Common;
 using Database.Result;
 
 namespace CoreLib.Testing
 {
     public class Exercise:Entity
     {
+        private readonly QueryResult _queryResult;
         public ExerciseType Type { get; private set; }
         public byte RequiredNumberQuestions { get; private set; }
         public byte MaxPoints { get; private set; }
@@ -22,9 +21,9 @@ namespace CoreLib.Testing
             }
         }
 
-        public Exercise()
+        public Exercise(QueryResult queryResult)
         {
-
+            _queryResult = queryResult;
         }
 
         public bool NextQuestion()
@@ -35,7 +34,6 @@ namespace CoreLib.Testing
                 return true;
             }
             return false;
-            
         }
 
         public void DeleteQuestions()
@@ -76,9 +74,9 @@ namespace CoreLib.Testing
 
         protected void Load(ulong testID)
         {
-            ulong[] questionIds = QueryResult.LoadQuestionIds(testID, (int)Type);
+            ulong[] questionIds = _queryResult.LoadQuestionIds(testID, (int)Type);
                 foreach(ulong questionId in questionIds)
-                    Questions.Add(new Question(questionId));
+                    Questions.Add(new Question(_queryResult, questionId));
                 
             SwapQuestions();
         }

@@ -1,11 +1,11 @@
 ﻿using CoreLib.Common;
+using Database.Result;
 
 namespace CoreLib.Testing
 {
     public class CommonExercise : Exercise
     {
-        
-        public CommonExercise(ulong testID): base()
+        public CommonExercise(QueryResult queryResult, ulong testID): base(queryResult)
         {
             SetType(ExerciseType.common);
             SetRequiredNumberQuestions(50);
@@ -13,8 +13,5 @@ namespace CoreLib.Testing
             _name = "Тестовые вопросы";
             Load(testID);
         }
-        
-
-
     }
 }

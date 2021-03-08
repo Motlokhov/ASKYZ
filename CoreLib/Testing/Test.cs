@@ -4,13 +4,20 @@ using Database.Result;
 namespace CoreLib.Testing
 {
     public class Test:Entity
-    {     
-        protected TestType _type;
+    {
+        protected readonly QueryResult QueryResult;
+        protected readonly TestType Type;
 
         public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
 
         public delegate void TestEnding();
         public event TestEnding testEnding;
+
+        public Test(QueryResult queryResult,TestType testType)
+        {
+            QueryResult = queryResult;
+            Type = testType;
+        }
 
         public Exercise Exercise
         {
@@ -22,12 +29,7 @@ namespace CoreLib.Testing
 
         public new TestType GetType()
         {
-            return _type;
-        }
-
-        public Test()
-        {
-
+            return Type;
         }
 
         public virtual bool VerifyQuestion(ulong[] answersIds)

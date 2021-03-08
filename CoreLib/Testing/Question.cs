@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Database;
 using CoreLib.Common;
 using System.IO;
 using System.Data;
@@ -12,23 +11,29 @@ namespace CoreLib.Testing
 {
     public class Question : Entity
     {
+        private readonly QueryResult _queryResult;
         private Image _image;
+
         public ChildrenList<Answer> Answers = new ChildrenList<Answer>();
 
-
-        public Question(ulong questionID)
+        public Question(QueryResult queryResult, ulong questionID)
         {
-            (string description, Image image) question = QueryResult.LoadQuestion(questionID);
-            _name = question.description;
-            _image = question.image;
+            _queryResult = queryResult;
+            (string description, Image image)? question = _queryResult.LoadQuestion(questionID);
+
+            if(!question.HasValue)
+                throw new InvalidDataException($"Question {questionID} is not exists. Class {nameof(Question)}");
+
+            _name = question.Value.description;
+            _image = question.Value.image;
             _id = questionID;
             LoadAnswers();
         }
 
         private void LoadAnswers()
         {
-            (ulong, string)[] loadedAnswers = QueryResult.LoadAnswers(_id);
-            Answers.AddRange(loadedAnswers.Select(a => new Answer(a.Item1, a.Item2)));
+            (ulong id, string description)[] loadedAnswers = _queryResult.LoadAnswers(_id);
+            Answers.AddRange(loadedAnswers.Select(a => new Answer(a.id, a.description)));
         }
 
         public Image GetImage()
@@ -49,7 +54,6 @@ namespace CoreLib.Testing
         {
             List<string> questions = new List<string>();
             string[] file = File.ReadAllLines(filePath, System.Text.Encoding.Default);
-            string question = string.Empty;
             byte[] picture = null;
 
             List<string> answers = new List<string>();
@@ -66,7 +70,7 @@ namespace CoreLib.Testing
                         continue;
                     }
 
-                    question = file[l];
+                    string question = file[l];
                     question = question.Remove(0, "вопрос".Length + 1);
                     while( question[0] != 32 )
                     {
@@ -74,7 +78,6 @@ namespace CoreLib.Testing
                     }
                     question = question.Remove(0, 1);
                     int index = 0;
-                    currentAnswer = 0;
                     l++;
                     var currentLine = file[l];
 

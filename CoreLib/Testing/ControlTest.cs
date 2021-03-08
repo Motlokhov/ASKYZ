@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Data.Common;
+using System.Linq;
 using CoreLib.Common;
 using Database.Result;
 
@@ -6,23 +8,20 @@ namespace CoreLib.Testing
 {
     public class ControlTest : Test
     {
-
-        public ControlTest(ulong programGroupID) : base()
+        public ControlTest(QueryResult queryResult, ulong programGroupID) : base(queryResult, TestType.control)
         {
-            _type = TestType.control;
             _name = "Итоговая аттестация";
-            _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)_type);
+            _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
 
-            Exercises.Add(new CommonExercise(_id));
-            Exercises.Add(new ThemenExercise(_id));
-            Exercises.Add(new PracticalExercise(_id));
+            Exercises.Add(new CommonExercise(queryResult, _id));
+            Exercises.Add(new ThemenExercise(queryResult, _id));
+            Exercises.Add(new PracticalExercise(queryResult, _id));
 
             foreach( Exercise exercise in Exercises )
             {
                 exercise.DeleteQuestions();
-                exercise.Result = new Result();
+                exercise.Result = new Result(QueryResult);
             }
-
         }
 
         public override bool VerifyQuestion(ulong[] answersIds)
@@ -40,7 +39,6 @@ namespace CoreLib.Testing
             foreach( Exercise exercise in Exercises )
             {
                 int countQuestions = exercise.Questions.Count;
-                var result = exercise.Result;
                 exercise.Result.CalculateFalseAnswers(countQuestions);
             }
             SaveResults();
