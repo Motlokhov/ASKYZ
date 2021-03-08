@@ -14,7 +14,7 @@ namespace StudentUI
             Show();
         }
 
-        private void buttonFind_Click(object sender, EventArgs e)
+        private void ButtonFind_Click(object sender, EventArgs e)
         {
             (ulong id, string password)? result = _queryResult.FindPassword((uint)numericUpDownSerialOfPassport.Value, (uint)numericUpDownNumberOfPassport.Value);
 
@@ -26,7 +26,7 @@ namespace StudentUI
                 MessageBox.Show("Пользователь не найден, проверте введенные данные.");
         }
 
-        private void buttonExit_Click(object sender, EventArgs e)
+        private void ButtonExit_Click(object sender, EventArgs e)
         {
             Dispose();
         }

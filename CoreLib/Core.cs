@@ -1,9 +1,5 @@
 ﻿using System;
-using Database;
-using CoreLib.Common;
 using CoreLib.Testing;
-using System.Data.SqlClient;
-using System.Data.Common;
 using Database.Result;
 
 namespace CoreLib.Main

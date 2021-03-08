@@ -57,7 +57,7 @@ namespace StudentUI
             var but = sender as Button;
             Core.SetProgramGroupID(Convert.ToByte(but.Tag));
             Core.CreateTrainingTest(_queryResult, Core.ProgramGroupID);
-            var form = new TestingForm();
+            new TestingForm();
             Close();
         }
 

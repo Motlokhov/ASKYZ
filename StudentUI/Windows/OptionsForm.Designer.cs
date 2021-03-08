@@ -89,7 +89,7 @@
             this.buttonOk.TabIndex = 2;
             this.buttonOk.Text = "Ок";
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
+            this.buttonOk.Click += new System.EventHandler(this.ButtonOk_Click);
             // 
             // button1
             // 
@@ -103,7 +103,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Отмена";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // tabControlOptions
             // 

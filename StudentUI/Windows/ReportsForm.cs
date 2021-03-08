@@ -14,7 +14,7 @@ namespace StudentUI
         private Microsoft.Office.Interop.Word.Application WordApplication;
         private Document WordDoc;
         private Range range;
-        private List<User> users = new List<User>();
+        private readonly List<User> users = new List<User>();
         private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
 
         public ReportsForm()
@@ -38,7 +38,7 @@ namespace StudentUI
                 listViewUsers.Items.Clear();
         }
 
-        private void AddRangeInWord(string _text , int _bold = 0 , WdParagraphAlignment _paragraphAlignment = WdParagraphAlignment.wdAlignParagraphLeft,WdUnderline _underline = WdUnderline.wdUnderlineSingle)
+        private void AddRangeInWord(string _text, int _bold = 0, WdParagraphAlignment _paragraphAlignment = WdParagraphAlignment.wdAlignParagraphLeft)
         {
             range.Start = range.End;
             range.Text = _text;
@@ -47,7 +47,7 @@ namespace StudentUI
             WordDoc.Paragraphs.Add(range);
         }
 
-        private void buttonReport_Click(object sender, EventArgs e) 
+        private void ButtonReport_Click(object sender, EventArgs e) 
         {
             var countItems = users.Count;
             if ( countItems > 0)
@@ -121,7 +121,7 @@ namespace StudentUI
             
         }
 
-        private void comboBoxTestingDate_SelectedIndexChanged(object sender , EventArgs e)
+        private void ComboBoxTestingDate_SelectedIndexChanged(object sender , EventArgs e)
         {
             users.Clear();
 

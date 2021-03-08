@@ -74,7 +74,7 @@ namespace StudentUI
             this.buttonSave.TabIndex = 12;
             this.buttonSave.Text = "Зарегистрироватся";
             this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // buttonClearForm
             // 
@@ -91,7 +91,7 @@ namespace StudentUI
             this.buttonClearForm.TabIndex = 13;
             this.buttonClearForm.Text = "Очистить(ESC)";
             this.buttonClearForm.UseVisualStyleBackColor = false;
-            this.buttonClearForm.Click += new System.EventHandler(this.buttonClearForm_Click);
+            this.buttonClearForm.Click += new System.EventHandler(this.ButtonClearForm_Click);
             // 
             // label6
             // 
@@ -236,7 +236,7 @@ namespace StudentUI
             this.comboBoxDirection.Name = "comboBoxDirection";
             this.comboBoxDirection.Size = new System.Drawing.Size(544, 21);
             this.comboBoxDirection.TabIndex = 6;
-            this.comboBoxDirection.SelectedValueChanged += new System.EventHandler(this.comboBoxDirection_SelectedValueChanged);
+            this.comboBoxDirection.SelectedValueChanged += new System.EventHandler(this.ComboBoxDirection_SelectedValueChanged);
             // 
             // label12
             // 
@@ -260,7 +260,7 @@ namespace StudentUI
             this.comboBoxGroup.Size = new System.Drawing.Size(544, 21);
             this.comboBoxGroup.TabIndex = 7;
             this.comboBoxGroup.Visible = false;
-            this.comboBoxGroup.SelectedValueChanged += new System.EventHandler(this.comboBoxGroup_SelectedValueChanged);
+            this.comboBoxGroup.SelectedValueChanged += new System.EventHandler(this.ComboBoxGroup_SelectedValueChanged);
             // 
             // label13
             // 
@@ -361,8 +361,8 @@ namespace StudentUI
             this.buttonShowPassword.Size = new System.Drawing.Size(30, 29);
             this.buttonShowPassword.TabIndex = 67;
             this.buttonShowPassword.UseVisualStyleBackColor = false;
-            this.buttonShowPassword.MouseEnter += new System.EventHandler(this.buttonShowPassword_MouseEnter);
-            this.buttonShowPassword.MouseLeave += new System.EventHandler(this.buttonShowPassword_MouseLeave);
+            this.buttonShowPassword.MouseEnter += new System.EventHandler(this.ButtonShowPassword_MouseEnter);
+            this.buttonShowPassword.MouseLeave += new System.EventHandler(this.ButtonShowPassword_MouseLeave);
             // 
             // RegistrationForm
             // 

@@ -15,7 +15,7 @@ namespace StudentUI
         {
             InitializeComponent();
             richTextBoxQuestion.Text = string.Empty;
-            Core.Test.testEnding += TestEnding;
+            Core.Test.TestEnding += TestEnding;
             CheckManipulateButtons();
             Show();
         }
@@ -63,7 +63,7 @@ namespace StudentUI
                 Program.MainForm.Show();
                 MessageBox.Show("Обучающее тестирование завершено.");
             }
-            Core.Test.testEnding -= TestEnding;
+            Core.Test.TestEnding -= TestEnding;
             Close();
         }
 
@@ -185,7 +185,7 @@ namespace StudentUI
             linkLabelImage.Visible = false;
         }
 
-        private void linkLabelImage_LinkClicked(object sender , LinkLabelLinkClickedEventArgs e)
+        private void LinkLabelImage_LinkClicked(object sender , LinkLabelLinkClickedEventArgs e)
         {
             if( pictureForm != null )
             {
@@ -241,7 +241,7 @@ namespace StudentUI
             }
         }
 
-        private void buttonGiveAnswer_Click(object sender , EventArgs e)
+        private void ButtonGiveAnswer_Click(object sender , EventArgs e)
         {
             ulong[] answersID = CheckNumberMarking();
             if(answersID.Length == 0)
@@ -265,19 +265,19 @@ namespace StudentUI
             MessageBox.Show("Ответ не правильный.");
         }
 
-        private void buttonPassQuestion_Click(object sender , EventArgs e)
+        private void ButtonPassQuestion_Click(object sender , EventArgs e)
         {
             Core.Test.PassQuestion();
             ShowQuestion();
         }
 
-        private void buttonPreviousExercise_Click(object sender , EventArgs e)
+        private void ButtonPreviousExercise_Click(object sender , EventArgs e)
         {
             Core.Test.PreviousExercise();
             CheckExerciseButtons();
         }
 
-        private void buttonNextExercise_Click(object sender , EventArgs e)
+        private void ButtonNextExercise_Click(object sender , EventArgs e)
         {
             Core.Test.NextExercise();
             CheckExerciseButtons();

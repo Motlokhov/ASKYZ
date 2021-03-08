@@ -13,9 +13,6 @@ namespace StudentUI
             textBoxPassword.Text = _password;
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
+        private void ButtonOk_Click(object sender, EventArgs e) => Dispose();
     }
 }

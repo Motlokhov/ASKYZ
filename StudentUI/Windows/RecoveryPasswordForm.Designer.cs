@@ -55,7 +55,7 @@
             this.buttonFind.TabIndex = 0;
             this.buttonFind.Text = "Найти";
             this.buttonFind.UseVisualStyleBackColor = false;
-            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            this.buttonFind.Click += new System.EventHandler(this.ButtonFind_Click);
             // 
             // buttonExit
             // 
@@ -72,7 +72,7 @@
             this.buttonExit.TabIndex = 1;
             this.buttonExit.Text = "Выход";
             this.buttonExit.UseVisualStyleBackColor = false;
-            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.buttonExit.Click += new System.EventHandler(this.ButtonExit_Click);
             // 
             // numericUpDownSerialOfPassport
             // 

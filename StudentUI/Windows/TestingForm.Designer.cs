@@ -92,7 +92,7 @@ namespace StudentUI
             this.linkLabelImage.TabStop = true;
             this.linkLabelImage.Text = "Показать картинку";
             this.linkLabelImage.VisitedLinkColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.linkLabelImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelImage_LinkClicked);
+            this.linkLabelImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelImage_LinkClicked);
             // 
             // buttonPreviousExercise
             // 
@@ -109,7 +109,7 @@ namespace StudentUI
             this.buttonPreviousExercise.TabIndex = 5;
             this.buttonPreviousExercise.Text = "Предыдущий тест";
             this.buttonPreviousExercise.UseVisualStyleBackColor = false;
-            this.buttonPreviousExercise.Click += new System.EventHandler(this.buttonPreviousExercise_Click);
+            this.buttonPreviousExercise.Click += new System.EventHandler(this.ButtonPreviousExercise_Click);
             // 
             // buttonNextExercise
             // 
@@ -126,7 +126,7 @@ namespace StudentUI
             this.buttonNextExercise.TabIndex = 4;
             this.buttonNextExercise.Text = "Следующий тест";
             this.buttonNextExercise.UseVisualStyleBackColor = false;
-            this.buttonNextExercise.Click += new System.EventHandler(this.buttonNextExercise_Click);
+            this.buttonNextExercise.Click += new System.EventHandler(this.ButtonNextExercise_Click);
             // 
             // buttonPassQuestion
             // 
@@ -142,7 +142,7 @@ namespace StudentUI
             this.buttonPassQuestion.TabIndex = 3;
             this.buttonPassQuestion.Text = "Пропустить вопрос";
             this.buttonPassQuestion.UseVisualStyleBackColor = false;
-            this.buttonPassQuestion.Click += new System.EventHandler(this.buttonPassQuestion_Click);
+            this.buttonPassQuestion.Click += new System.EventHandler(this.ButtonPassQuestion_Click);
             // 
             // buttonGiveAnswer
             // 
@@ -158,7 +158,7 @@ namespace StudentUI
             this.buttonGiveAnswer.TabIndex = 2;
             this.buttonGiveAnswer.Text = "Ответить на вопрос";
             this.buttonGiveAnswer.UseVisualStyleBackColor = false;
-            this.buttonGiveAnswer.Click += new System.EventHandler(this.buttonGiveAnswer_Click);
+            this.buttonGiveAnswer.Click += new System.EventHandler(this.ButtonGiveAnswer_Click);
             // 
             // flowLayoutPanelAnswers
             // 

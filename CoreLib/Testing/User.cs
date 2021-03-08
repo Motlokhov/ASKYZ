@@ -1,8 +1,6 @@
 ﻿using System;
-using Database;
 using CoreLib.Common;
 using Database.Result;
-using System.Data.Common;
 
 namespace CoreLib.Testing
 {
@@ -10,11 +8,11 @@ namespace CoreLib.Testing
     {
         private readonly QueryResult _queryResult;
 
-        private byte _programGroupID;
-        private DateTime _dateStart;
-        private DateTime _dateEnd;
-        private uint _passportNumber;
-        private ushort _passportSerie;
+        private readonly byte _programGroupID;
+        private readonly DateTime _dateStart;
+        private readonly DateTime _dateEnd;
+        private readonly uint _passportNumber;
+        private readonly ushort _passportSerie;
         private ChildrenList<Result> _results;
         private ulong _testingDateID;
 

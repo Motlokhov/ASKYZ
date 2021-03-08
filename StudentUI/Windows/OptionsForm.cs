@@ -7,8 +7,8 @@ namespace StudentUI
 {
     public partial class OptionsForm : Form
     {
-        string pathToConnTxt = @"connection.txt";
-        string pathToDOEC = @"DataOfEC.xml";
+        private readonly string _pathToConnTxt = @"connection.txt";
+        private readonly string _pathToDOEC = @"DataOfEC.xml";
         
         public OptionsForm()
         {
@@ -19,11 +19,11 @@ namespace StudentUI
         private void OptionsForm_Load(object sender, EventArgs e)
         {
             
-            if( !File.Exists(pathToConnTxt) )
-                File.Create(pathToConnTxt);
-            textBoxConnectionString.Text = File.ReadAllText(pathToConnTxt);
+            if( !File.Exists(_pathToConnTxt) )
+                File.Create(_pathToConnTxt);
+            textBoxConnectionString.Text = File.ReadAllText(_pathToConnTxt);
 
-            EducationalCenter EC = new EducationalCenter(pathToDOEC);
+            EducationalCenter EC = new EducationalCenter(_pathToDOEC);
             textBoxAddres.Text = EC.Addres;
             textBoxDirector.Text = EC.Director;
             textBoxName.Text = EC.Name;
@@ -32,16 +32,13 @@ namespace StudentUI
             textBoxSite.Text = EC.Site;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-                Dispose();   
-        }
+        private void Button1_Click(object sender, EventArgs e) => Dispose();
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void ButtonOk_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Сохранить изменения?", "Настройки", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                File.WriteAllText(pathToConnTxt , textBoxConnectionString.Text);
+                File.WriteAllText(_pathToConnTxt , textBoxConnectionString.Text);
                 EducationalCenter EC = new EducationalCenter
                     (
                         textBoxName.Text,
@@ -51,7 +48,7 @@ namespace StudentUI
                         textBoxDirector.Text,
                         textBoxEmail.Text
                     );
-                EC.SaveToXML(pathToDOEC);
+                EC.SaveToXML(_pathToDOEC);
                 Dispose();
             }
         }
