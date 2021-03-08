@@ -24,6 +24,7 @@ namespace DataBaseTest
         {
             CreateSuperTestDatabase();
             CreateTables();
+           FillMoqDbData();
         }
 
         private void CreateSuperTestDatabase()
@@ -59,6 +60,20 @@ namespace DataBaseTest
                 using(DbCommand command = connection.CreateCommand())
                 {
                     command.CommandText = File.ReadAllText("CreateTables.sql");
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        private void FillMoqDbData()
+        {
+            using(DbConnection connection = Connection)
+            {
+                connection.Open();
+                using(DbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = File.ReadAllText("FillTables.sql");
                     command.ExecuteNonQuery();
                 }
                 connection.Close();
