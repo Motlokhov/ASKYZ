@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Result", "Database
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitDatabaseTest", "UnitDatabaseTest\UnitDatabaseTest.csproj", "{263C5E47-BA6F-40DA-A378-6761A7ACCB04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemVerifyKnowledge.Common", "SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj", "{08737B03-CF38-4D9F-B493-1CD92E9F39D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Common", "SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj", "{08737B03-CF38-4D9F-B493-1CD92E9F39D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemVerifyKnowledge.CoreTest", "SystemVerifyKnowledge.CoreTest\SystemVerifyKnowledge.CoreTest.csproj", "{F84B76CF-0D58-4979-9096-CFBF8353CF94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,14 @@ Global
 		{08737B03-CF38-4D9F-B493-1CD92E9F39D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{08737B03-CF38-4D9F-B493-1CD92E9F39D1}.Release|x86.ActiveCfg = Release|Any CPU
 		{08737B03-CF38-4D9F-B493-1CD92E9F39D1}.Release|x86.Build.0 = Release|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Debug|x86.Build.0 = Debug|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Release|x86.ActiveCfg = Release|Any CPU
+		{F84B76CF-0D58-4979-9096-CFBF8353CF94}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
