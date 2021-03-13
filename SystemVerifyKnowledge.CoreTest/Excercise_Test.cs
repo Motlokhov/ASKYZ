@@ -47,5 +47,23 @@ namespace SystemVerifyKnowledge.CoreTest
             //Assert
             Assert.Equal(exercise.Questions.Count, requeredQuestionNumber);
         }
+
+        [Fact]
+        public void When_QuestionCountLesserThanRequred_Then_ArgumentOutOfRangeException()
+        {
+            //Arrange
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            mockQueryResult
+            .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
+            .Returns((null, null));
+
+            const int questionCount = 4;
+            const byte requeredQuestionNumber = 6;
+
+            Exercise exercise = new FakeExcercise(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+
+            //Act
+            Assert.Throws<ArgumentOutOfRangeException>(() => exercise.DeleteQuestions());
+        }
     }
 }
