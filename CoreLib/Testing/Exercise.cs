@@ -3,7 +3,7 @@ using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
-    public class Exercise:Entity
+    public abstract class Exercise:Entity
     {
         private readonly IQueryResult _queryResult;
         public ExerciseType Type { get; private set; }
