@@ -12,15 +12,19 @@ namespace SystemVerifyKnowledge.CoreTest
     {
         public class FakeExcercisePublicFunctoinTestClass : Exercise
         {
-            public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount, byte requiredNumberQuestoins) : base(queryResult)
+            public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount, byte requiredNumberQuestoins) : this(queryResult, questionCount)
+            {
+                SetRequiredNumberQuestions(requiredNumberQuestoins);
+            }
+
+            public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount) : base(queryResult)
             {
                 for(ulong i = 0; i < questionCount; i++)
                 {
                     Questions.Add(new Question(queryResult, i + 1));
                 }
-
-                SetRequiredNumberQuestions(requiredNumberQuestoins);
             }
+
         }
 
         [Fact]
@@ -80,6 +84,24 @@ namespace SystemVerifyKnowledge.CoreTest
 
             //Act and Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => exercise.DeleteQuestions());
+        }
+
+        [Theory]
+        [InlineData(0,false)]
+        [InlineData(1, false)]
+        [InlineData(2, true)]
+        public void When_NextQuestionExists_Then_TrueOtherwiseFalse(ulong questionCount, bool expectedResult)
+        {
+            //Arrange
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            mockQueryResult
+            .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
+            .Returns((null, null));
+
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount);
+
+            //Act and Assert
+            Assert.Equal(expectedResult, exercise.NextQuestion());
         }
     }
 }
