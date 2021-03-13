@@ -1,11 +1,11 @@
 ﻿using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class Exercise:Entity
     {
-        private readonly QueryResult _queryResult;
+        private readonly IQueryResult _queryResult;
         public ExerciseType Type { get; private set; }
         public byte RequiredNumberQuestions { get; private set; }
         public byte MaxPoints { get; private set; }
@@ -21,7 +21,7 @@ namespace CoreLib.Testing
             }
         }
 
-        public Exercise(QueryResult queryResult)
+        public Exercise(IQueryResult queryResult)
         {
             _queryResult = queryResult;
         }

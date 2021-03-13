@@ -1,11 +1,11 @@
 ﻿using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     class TrainingTest : Test
     {
-        public TrainingTest(QueryResult queryResult, ulong programGroupID) : base(queryResult,TestType.training)
+        public TrainingTest(IQueryResult queryResult, ulong programGroupID) : base(queryResult,TestType.training)
         {
             _name = "Обучающее тестирование";
             _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);

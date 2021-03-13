@@ -1,6 +1,6 @@
 ﻿using System;
 using CoreLib.Testing;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Main
 {
@@ -20,7 +20,7 @@ namespace CoreLib.Main
             Random = new Random();
         }
 
-        public static bool CheckPassword(QueryResult queryResult, string id , string password)
+        public static bool CheckPassword(IQueryResult queryResult, string id , string password)
         {
             Test = null;
             User = null;
@@ -37,7 +37,7 @@ namespace CoreLib.Main
             return false;
         }
 
-        public static void LoadDirectionName(QueryResult queryResult)
+        public static void LoadDirectionName(IQueryResult queryResult)
         {
             DirectionName = queryResult.LoadDirectionName(ProgramGroupID);
         }
@@ -53,7 +53,7 @@ namespace CoreLib.Main
             ProgramGroupID = id;
         }
 
-        public static void LoadProgram(QueryResult queryResult)
+        public static void LoadProgram(IQueryResult queryResult)
         {
             (string name, byte number)? program = queryResult.LoadProgramByProgramGroupId(ProgramGroupID);
 
@@ -64,7 +64,7 @@ namespace CoreLib.Main
             }
         }
 
-        public static void CreateTrainingTest(QueryResult queryResult, ulong programGroupID)
+        public static void CreateTrainingTest(IQueryResult queryResult, ulong programGroupID)
         {
             Test = null;
             Test = new TrainingTest(queryResult, programGroupID);

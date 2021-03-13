@@ -1,11 +1,11 @@
 ﻿using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class Test:Entity
     {
-        protected readonly QueryResult QueryResult;
+        protected readonly IQueryResult QueryResult;
         protected readonly TestType Type;
 
         public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
@@ -13,7 +13,7 @@ namespace CoreLib.Testing
         public delegate void TestEndingDelegate();
         public event TestEndingDelegate TestEnding;
 
-        public Test(QueryResult queryResult,TestType testType)
+        public Test(IQueryResult queryResult,TestType testType)
         {
             QueryResult = queryResult;
             Type = testType;

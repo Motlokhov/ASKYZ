@@ -4,19 +4,19 @@ using System.Drawing;
 using CoreLib.Common;
 using System.IO;
 using System.Data;
-using Database.Result;
 using System.Linq;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class Question : Entity
     {
-        private readonly QueryResult _queryResult;
+        private readonly IQueryResult _queryResult;
         private readonly Image _image;
 
         public ChildrenList<Answer> Answers = new ChildrenList<Answer>();
 
-        public Question(QueryResult queryResult, ulong questionID)
+        public Question(IQueryResult queryResult, ulong questionID)
         {
             _queryResult = queryResult;
             (string description, Image image)? question = _queryResult.LoadQuestion(questionID);

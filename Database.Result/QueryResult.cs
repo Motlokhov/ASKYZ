@@ -5,10 +5,11 @@ using System.Data.Common;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace Database.Result
 {
-    public class QueryResult
+    public class QueryResult : IQueryResult
     {
         private readonly Func<DbConnection> _connectionFunction;
         

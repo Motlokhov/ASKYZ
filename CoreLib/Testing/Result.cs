@@ -1,22 +1,22 @@
 ﻿using System;
 using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class Result
     {
-        private readonly QueryResult _queryResult;
+        private readonly IQueryResult _queryResult;
 
         public byte TrueAnswers { get;  set; }
         public byte FalseAnswers { get;  set; }
         public byte Points { get;  set; }
 
-        public Result(QueryResult queryResult)
+        public Result(IQueryResult queryResult)
         {
             _queryResult = queryResult;
         }
-        public Result(QueryResult queryResult, ulong testingDateID,ExerciseType exerciseType)
+        public Result(IQueryResult queryResult, ulong testingDateID,ExerciseType exerciseType)
         {
             _queryResult = queryResult;
             Load(testingDateID , exerciseType);

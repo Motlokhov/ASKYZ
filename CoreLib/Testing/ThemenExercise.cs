@@ -1,11 +1,11 @@
 ﻿using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class ThemenExercise : Exercise
     {
-        public ThemenExercise(QueryResult queryResult, ulong testID) : base(queryResult)
+        public ThemenExercise(IQueryResult queryResult, ulong testID) : base(queryResult)
         {
             SetType(ExerciseType.themen);
             SetRequiredNumberQuestions(3);

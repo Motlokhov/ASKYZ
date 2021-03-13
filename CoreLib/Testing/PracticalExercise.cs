@@ -1,11 +1,11 @@
 ﻿using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class PracticalExercise : Exercise
     {
-        public PracticalExercise(QueryResult queryResult, ulong testID): base(queryResult)
+        public PracticalExercise(IQueryResult queryResult, ulong testID): base(queryResult)
         {
             SetType(ExerciseType.practical);
             SetRequiredNumberQuestions(2);

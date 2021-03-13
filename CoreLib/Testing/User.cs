@@ -1,12 +1,12 @@
 ﻿using System;
 using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class User : Entity
     {
-        private readonly QueryResult _queryResult;
+        private readonly IQueryResult _queryResult;
 
         private readonly byte _programGroupID;
         private readonly DateTime _dateStart;
@@ -39,7 +39,7 @@ namespace CoreLib.Testing
         {
             return _dateEnd;
         }
-        public User(QueryResult queryResult, ulong id)
+        public User(IQueryResult queryResult, ulong id)
         {
             _queryResult = queryResult;
 

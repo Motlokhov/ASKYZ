@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using CoreLib.Common;
-using Database.Result;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
     public class ControlTest : Test
     {
-        public ControlTest(QueryResult queryResult, ulong programGroupID) : base(queryResult, TestType.control)
+        public ControlTest(IQueryResult queryResult, ulong programGroupID) : base(queryResult, TestType.control)
         {
             _name = "Итоговая аттестация";
             _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);

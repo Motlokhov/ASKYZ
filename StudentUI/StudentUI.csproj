@@ -294,12 +294,12 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6 %28x86 и x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -358,6 +358,10 @@
     <ProjectReference Include="..\Database.Result\Database.Result.csproj">
       <Project>{d10ae359-4418-4402-bf98-7c44bc405e13}</Project>
       <Name>Database.Result</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj">
+      <Project>{08737b03-cf38-4d9f-b493-1cd92e9f39d1}</Project>
+      <Name>SystemVerifyKnowledge.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
