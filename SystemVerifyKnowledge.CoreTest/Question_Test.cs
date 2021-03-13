@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using CoreLib.Testing;
 using Moq;
@@ -55,6 +56,21 @@ namespace SystemVerifyKnowledge.CoreTest
 
             Assert.NotSame(question.Answers, expectedAnswers);
             Assert.Equal(expectedAnswers, question.Answers.Select(_ => (_.Id, _.Name)).ToArray());
+        }
+
+        [Fact]
+        public void When_LoadQuestionHasNoResult_Then_InvalidDataException()
+        {
+            //Arrange
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            mockQueryResult
+                .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
+                .Returns(() => null);
+
+            const ulong questionId = 0;
+
+            //Act and Assert
+            Assert.Throws<InvalidDataException>(() => new Question(mockQueryResult.Object, questionId));
         }
     }
 }
