@@ -10,7 +10,7 @@ namespace CoreLib.Testing
             SetType(ExerciseType.common);
             SetRequiredNumberQuestions(50);
             SetMaxPoints(1);
-            _name = "Тестовые вопросы";
+            Name = "Тестовые вопросы";
             Load(testID);
         }
     }

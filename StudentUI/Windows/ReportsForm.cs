@@ -83,7 +83,7 @@ namespace StudentUI
                         AddRangeInWord("" , 0 , WdParagraphAlignment.wdAlignParagraphCenter);
                         AddRangeInWord( Core.ProgramName, 1 , WdParagraphAlignment.wdAlignParagraphCenter);
                         AddRangeInWord("");
-                        AddRangeInWord("ФИО " + user.GetName() );
+                        AddRangeInWord("ФИО " + user.Name );
                         AddRangeInWord("Период обучения с " + user.GetDateStart().ToString("d") + " по " + user.GetDateEnd().ToString("d"));
                         AddRangeInWord("Группа " + Core.ProgramNumber);
                         AddRangeInWord("");
@@ -139,8 +139,8 @@ namespace StudentUI
                         (
                             new string[]
                             {
-                                user.GetID().ToString(),
-                                user.GetName().ToString(),
+                                user.Id.ToString(),
+                                user.Name.ToString(),
                                 _queryResult.LoadProgramByProgramGroupId(user.GetProgramGroupID()).Value.number.ToString()
                             }
                         )

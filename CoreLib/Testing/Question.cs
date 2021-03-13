@@ -24,15 +24,15 @@ namespace CoreLib.Testing
             if(!question.HasValue)
                 throw new InvalidDataException($"Question {questionID} is not exists. Class {nameof(Question)}");
 
-            _name = question.Value.description;
+            Name = question.Value.description;
             _image = question.Value.image;
-            _id = questionID;
+            Id = questionID;
             LoadAnswers();
         }
 
         private void LoadAnswers()
         {
-            (ulong id, string description)[] loadedAnswers = _queryResult.LoadAnswers(_id);
+            (ulong id, string description)[] loadedAnswers = _queryResult.LoadAnswers(Id);
             Answers.AddRange(loadedAnswers.Select(a => new Answer(a.id, a.description)));
         }
 

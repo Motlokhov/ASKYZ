@@ -6,8 +6,8 @@ namespace CoreLib.Testing
     {       
         public Answer(ulong answerID,string name)
         {
-            _id = answerID;
-            _name = name;
+            Id = answerID;
+            Name = name;
         }
 
 

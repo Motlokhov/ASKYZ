@@ -43,7 +43,7 @@ namespace CoreLib.Testing
         {
             _queryResult = queryResult;
 
-            _id = id;
+            Id = id;
             (string surname, 
                 string firstname, 
                 string lastname, 
@@ -55,7 +55,7 @@ namespace CoreLib.Testing
 
             if(result.HasValue)
             {
-                _name = string.Concat(result.Value.surname, " ", result.Value.firstname, " ", result.Value.lastname);
+                Name = string.Concat(result.Value.surname, " ", result.Value.firstname, " ", result.Value.lastname);
                 _programGroupID = result.Value.programGroupId;
                 _dateStart = result.Value.dateStartTest;
                 _dateEnd = result.Value.dateEndTest;

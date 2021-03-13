@@ -7,12 +7,12 @@ namespace CoreLib.Testing
     {
         public TrainingTest(IQueryResult queryResult, ulong programGroupID) : base(queryResult,TestType.training)
         {
-            _name = "Обучающее тестирование";
-            _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
+            Name = "Обучающее тестирование";
+            Id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
 
-            Exercises.Add(new CommonExercise(queryResult, _id));
-            Exercises.Add(new ThemenExercise(queryResult, _id));
-            Exercises.Add(new PracticalExercise(queryResult, _id));
+            Exercises.Add(new CommonExercise(queryResult, Id));
+            Exercises.Add(new ThemenExercise(queryResult, Id));
+            Exercises.Add(new PracticalExercise(queryResult, Id));
         }
 
         public override bool VerifyQuestion(ulong[] answersIds)

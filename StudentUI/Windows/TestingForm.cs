@@ -132,12 +132,12 @@ namespace StudentUI
             var exercise = Core.Test.Exercise;
             int questionCurrentNumber = exercise.Questions.GetIndex() + 1;
             int questionCount = exercise.Questions.Count;
-            string exerciseName = exercise.GetName();
+            string exerciseName = exercise.Name;
             string descriptionString = exerciseName + ": " + questionCurrentNumber + " из " + questionCount + "\n\n";
 
             richTextBoxQuestion.Text = string.Empty;
-            richTextBoxQuestion.SelectedText = descriptionString + "  " + exercise.Question.GetName()+"\n\n";
-            richTextBoxQuestion.Tag = exercise.Question.GetID();
+            richTextBoxQuestion.SelectedText = descriptionString + "  " + exercise.Question.Name+"\n\n";
+            richTextBoxQuestion.Tag = exercise.Question.Id;
             ShowLinkLabelImage();
             ShowAnswers();
         }
@@ -157,7 +157,7 @@ namespace StudentUI
             for(var i = 0 ;i<question.Answers.Count ;i++ )
             {
                 var answer = (Answer)question.Answers[i];
-                var checkbox = CreateAnswerCheckBox(answer.GetID() , i + 1);
+                var checkbox = CreateAnswerCheckBox(answer.Id , i + 1);
                 flowLayoutPanelAnswers.Controls.Add(checkbox);
                 checkBoxes[i] = checkbox;
                 WriteAnswerIntoRichTextBox(answer);
@@ -170,7 +170,7 @@ namespace StudentUI
             richTextBoxQuestion.SelectedText = newString;
             richTextBoxQuestion.SelectionFont = new Font("Arial" , 16 , FontStyle.Bold);
             richTextBoxQuestion.AppendText("\n");
-            newString = "  " + answer.GetName();
+            newString = "  " + answer.Name;
             richTextBoxQuestion.AppendText(newString);
             richTextBoxQuestion.AppendText("\n\n");
         }

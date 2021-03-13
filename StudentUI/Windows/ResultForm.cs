@@ -14,7 +14,7 @@ namespace StudentUI
 
             InitializeComponent();
             groupBoxResult.Text += DateTime.Today.ToString("d");
-            labelUser.Text += user.GetName();
+            labelUser.Text += user.Name;
             labelGroup.Text += Core.DirectionName;
             labelTestNumber.Text += Core.ProgramNumber.ToString();
             labelAllPoints.Text += test.GetAllPoints().ToString();

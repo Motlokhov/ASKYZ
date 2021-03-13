@@ -2,11 +2,6 @@
 {
    public class Identification
     {
-        protected ulong _id;
-
-        public ulong GetID()
-        {
-            return _id;
-        }
+        public ulong Id { get; protected set; }
     }
 }

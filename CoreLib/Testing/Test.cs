@@ -87,13 +87,13 @@ namespace CoreLib.Testing
         public string GetNextExerciseName()
         {
             Exercise exercise = (Exercise) Exercises[Exercises.GetIndex() + 1];
-            return exercise.GetName();
+            return exercise.Name;
         }
 
         public string GetPreviousExerciseName()
         {
             Exercise exercise = (Exercise) Exercises[Exercises.GetIndex() - 1];
-            return exercise.GetName();
+            return exercise.Name;
         }
 
         public byte GetAllPoints()

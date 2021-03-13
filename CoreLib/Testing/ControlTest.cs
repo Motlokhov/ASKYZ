@@ -8,12 +8,12 @@ namespace CoreLib.Testing
     {
         public ControlTest(IQueryResult queryResult, ulong programGroupID) : base(queryResult, TestType.control)
         {
-            _name = "Итоговая аттестация";
-            _id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
+            Name = "Итоговая аттестация";
+            Id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
 
-            Exercises.Add(new CommonExercise(queryResult, _id));
-            Exercises.Add(new ThemenExercise(queryResult, _id));
-            Exercises.Add(new PracticalExercise(queryResult, _id));
+            Exercises.Add(new CommonExercise(queryResult, Id));
+            Exercises.Add(new ThemenExercise(queryResult, Id));
+            Exercises.Add(new PracticalExercise(queryResult, Id));
 
             foreach( Exercise exercise in Exercises )
             {
@@ -46,7 +46,7 @@ namespace CoreLib.Testing
         private void SaveResults()
         {
             QueryResult.WriteTestResults
-            (Main.Core.User.GetID(), 
+            (Main.Core.User.Id, 
             Main.Core.ProgramGroupID, 
             Exercises.Select(e => ((int)e.Type,e.Result.Points,e.Result.TrueAnswers,e.Result.FalseAnswers)).ToArray());
         }
