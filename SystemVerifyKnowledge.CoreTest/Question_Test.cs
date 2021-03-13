@@ -13,7 +13,7 @@ namespace SystemVerifyKnowledge.CoreTest
     public class Question_Test
     {
         [Fact]
-        public void QuestionCorrectCreate()
+        public void When_QueryResultHasResult_Then_QuestionLoadCorrect_And_QueryResultIsUsed()
         {
             //Arrange
             const string excpectedDescription = "expected this";
@@ -30,7 +30,8 @@ namespace SystemVerifyKnowledge.CoreTest
             Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
             mockQueryResult
                 .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
-                .Returns((excpectedDescription, Image.FromFile("testImage.jpg")));
+                .Returns((excpectedDescription, Image.FromFile("testImage.jpg")))
+                .Verifiable();
 
             mockQueryResult
                 .Setup(_ => _.LoadAnswers(It.IsAny<ulong>()))
@@ -40,6 +41,9 @@ namespace SystemVerifyKnowledge.CoreTest
             Question question = new Question(mockQueryResult.Object, expectedQuestionId);
 
             //Assert
+            mockQueryResult.Verify(_ => _.LoadQuestion(expectedQuestionId), Times.Once);
+            mockQueryResult.Verify(_ => _.LoadAnswers(expectedQuestionId), Times.Once);
+
             Assert.Equal(question.Id, expectedQuestionId);
             Assert.Equal(question.Name, excpectedDescription);;
 
