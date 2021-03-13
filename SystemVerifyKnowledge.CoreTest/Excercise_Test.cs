@@ -10,9 +10,9 @@ namespace SystemVerifyKnowledge.CoreTest
 {
     public class Excercise_Test
     {
-        public class FakeExcercise : Exercise
+        public class FakeExcercisePublicFunctoinTestClass : Exercise
         {
-            public FakeExcercise(IQueryResult queryResult, ulong questionCount, byte requiredNumberQuestoins) : base(queryResult)
+            public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount, byte requiredNumberQuestoins) : base(queryResult)
             {
                 for(ulong i = 0; i < questionCount; i++)
                 {
@@ -36,7 +36,7 @@ namespace SystemVerifyKnowledge.CoreTest
             const byte requeredQuestionNumber = 4;
 
             //Act
-            Exercise exercise = new FakeExcercise(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount, requeredQuestionNumber);
 
             //Assert
             Assert.Equal(exercise.RequiredNumberQuestions, requeredQuestionNumber);
@@ -44,7 +44,7 @@ namespace SystemVerifyKnowledge.CoreTest
         }
 
         [Fact]
-        public void When_QuestionCountLargerThanRequred_Then_QuestionCountEqual_Requred()
+        public void When_DeleteQuestionAndQuestionCountLargerThanRequred_Then_QuestionCountEqual_Requred()
         {
             //Arrange
             Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
@@ -55,7 +55,7 @@ namespace SystemVerifyKnowledge.CoreTest
             const int questionCount = 10;
             const byte requeredQuestionNumber = 3;
 
-            Exercise exercise = new FakeExcercise(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount, requeredQuestionNumber);
 
             //Act
             exercise.DeleteQuestions();
@@ -65,7 +65,7 @@ namespace SystemVerifyKnowledge.CoreTest
         }
 
         [Fact]
-        public void When_QuestionCountLesserThanRequred_Then_ArgumentOutOfRangeException()
+        public void When_DeleteQuestionAndQuestionCountLesserThanRequred_Then_ArgumentOutOfRangeException()
         {
             //Arrange
             Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
@@ -76,9 +76,9 @@ namespace SystemVerifyKnowledge.CoreTest
             const int questionCount = 4;
             const byte requeredQuestionNumber = 6;
 
-            Exercise exercise = new FakeExcercise(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount, requeredQuestionNumber);
 
-            //Act
+            //Act and Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => exercise.DeleteQuestions());
         }
     }
