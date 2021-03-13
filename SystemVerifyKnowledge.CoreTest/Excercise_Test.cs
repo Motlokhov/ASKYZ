@@ -24,6 +24,26 @@ namespace SystemVerifyKnowledge.CoreTest
         }
 
         [Fact]
+        public void FaceExcerciseSelfTest()
+        {
+            //Arrange
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            mockQueryResult
+            .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
+            .Returns((null, null));
+
+            const int questionCount = 3;
+            const byte requeredQuestionNumber = 4;
+
+            //Act
+            Exercise exercise = new FakeExcercise(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+
+            //Assert
+            Assert.Equal(exercise.RequiredNumberQuestions, requeredQuestionNumber);
+            Assert.Equal(exercise.Questions.Count, questionCount);
+        }
+
+        [Fact]
         public void When_QuestionCountLargerThanRequred_Then_QuestionCountEqual_Requred()
         {
             //Arrange
@@ -36,10 +56,6 @@ namespace SystemVerifyKnowledge.CoreTest
             const byte requeredQuestionNumber = 3;
 
             Exercise exercise = new FakeExcercise(mockQueryResult.Object, questionCount, requeredQuestionNumber);
-
-            //Assert before Act
-            Assert.Equal(exercise.RequiredNumberQuestions, requeredQuestionNumber);
-            Assert.Equal(exercise.Questions.Count, questionCount);
 
             //Act
             exercise.DeleteQuestions();
