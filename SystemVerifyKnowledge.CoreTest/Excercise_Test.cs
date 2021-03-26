@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using CoreLib.Testing;
 using Moq;
 using SystemVerifyKnowledge.Common.Interface;
@@ -39,21 +37,21 @@ namespace SystemVerifyKnowledge.CoreTest
             .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
             .Returns((null, null));
 
-            const int questionCount = 3;
-            const byte requeredQuestionNumber = 4;
+            const int initialCount = 3;
+            const byte requiredCount = 4;
 
             //Act
-            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, initialCount, requiredCount);
 
             //Assert
-            Assert.Equal(exercise.RequiredNumberQuestions, requeredQuestionNumber);
-            Assert.Equal(exercise.Questions.Count, questionCount);
+            Assert.Equal(exercise.RequiredNumberQuestions, requiredCount);
+            Assert.Equal(exercise.Questions.Count, initialCount);
         }
 
         [Theory]
         [InlineData(10,3)]
         [InlineData(4,4)]
-        public void WhenDeletingQuestionsEndnessEqualRequaredCount(ulong initialCount, byte requeredCount)
+        public void WhenDeletingQuestionsEndnessEqualRequaredCount(ulong initialCount, byte requiredCount)
         {
             //Arrange
             Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
@@ -61,13 +59,13 @@ namespace SystemVerifyKnowledge.CoreTest
             .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
             .Returns((null, null));
 
-            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, initialCount, requeredCount);
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, initialCount, requiredCount);
 
             //Act
             exercise.DeleteQuestions();
 
             //Assert
-            Assert.Equal(exercise.Questions.Count, requeredCount);
+            Assert.Equal(exercise.Questions.Count, requiredCount);
         }
 
         [Fact]
@@ -79,10 +77,10 @@ namespace SystemVerifyKnowledge.CoreTest
             .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
             .Returns((null, null));
 
-            const int questionCount = 4;
-            const byte requeredQuestionNumber = 6;
+            const int initialCount = 4;
+            const byte requiredCount = 6;
 
-            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, initialCount, requiredCount);
 
             //Act and Assert
             Assert.Throws<ArgumentOutOfRangeException>(() => exercise.DeleteQuestions());
