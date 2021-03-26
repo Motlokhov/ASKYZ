@@ -26,6 +26,8 @@ namespace SystemVerifyKnowledge.CoreTest
                 }
             }
 
+            public new void SwapQuestions() => base.SwapQuestions();
+
         }
 
         [Fact]
@@ -102,6 +104,29 @@ namespace SystemVerifyKnowledge.CoreTest
 
             //Act and Assert
             Assert.Equal(expectedResult, exercise.NextQuestion());
+        }
+
+        [Fact]
+        public void When_SwapQuestions_Then_InitialSequenceNotEqualResultSequence()
+        {
+            //Arrange
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            mockQueryResult
+            .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
+            .Returns((null, null));
+
+            const int questionCount = 1000;
+
+            FakeExcercisePublicFunctoinTestClass exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount);
+
+            Question[] initialSequence = new Question[exercise.Questions.Count];
+            exercise.Questions.CopyTo(initialSequence);
+
+            //Act
+            exercise.SwapQuestions();
+
+            //Assert
+            Assert.NotEqual(exercise.Questions.ToArray(), initialSequence);
         }
     }
 }
