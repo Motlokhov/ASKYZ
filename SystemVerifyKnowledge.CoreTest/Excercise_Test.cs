@@ -47,8 +47,10 @@ namespace SystemVerifyKnowledge.CoreTest
             Assert.Equal(exercise.Questions.Count, questionCount);
         }
 
-        [Fact]
-        public void When_DeleteQuestionAndQuestionCountLargerThanRequred_Then_QuestionCountEqual_Requred()
+        [Theory]
+        [InlineData(10,3)]
+        [InlineData(4,4)]
+        public void WhenDeletingQuestionsEndnessEqualRequaredCount(ulong initialCount, byte requeredCount)
         {
             //Arrange
             Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
@@ -56,16 +58,13 @@ namespace SystemVerifyKnowledge.CoreTest
             .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
             .Returns((null, null));
 
-            const int questionCount = 10;
-            const byte requeredQuestionNumber = 3;
-
-            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, questionCount, requeredQuestionNumber);
+            Exercise exercise = new FakeExcercisePublicFunctoinTestClass(mockQueryResult.Object, initialCount, requeredCount);
 
             //Act
             exercise.DeleteQuestions();
 
             //Assert
-            Assert.Equal(exercise.Questions.Count, requeredQuestionNumber);
+            Assert.Equal(exercise.Questions.Count, requeredCount);
         }
 
         [Fact]
