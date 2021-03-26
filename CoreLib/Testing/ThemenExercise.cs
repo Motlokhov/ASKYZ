@@ -7,9 +7,9 @@ namespace CoreLib.Testing
     {
         public ThemenExercise(IQueryResult queryResult, ulong testID) : base(queryResult)
         {
-            SetType(ExerciseType.themen);
-            SetRequiredNumberQuestions(3);
-            SetMaxPoints(10);
+            Type = ExerciseType.themen;
+            RequiredNumberQuestions =3;
+            MaxPoints = 10;
             Name = "Тематические вопросы";
             Load(testID);
         }

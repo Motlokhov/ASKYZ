@@ -15,7 +15,7 @@ namespace SystemVerifyKnowledge.CoreTest
             public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount, byte requiredNumberQuestoins) 
                 : this(queryResult, questionCount)
             {
-                SetRequiredNumberQuestions(requiredNumberQuestoins);
+                RequiredNumberQuestions = requiredNumberQuestoins;
             }
 
             public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount) : base(queryResult)

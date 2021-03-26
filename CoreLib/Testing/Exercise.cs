@@ -6,9 +6,9 @@ namespace CoreLib.Testing
     public abstract class Exercise:Entity
     {
         private readonly IQueryResult _queryResult;
-        public ExerciseType Type { get; private set; }
-        public byte RequiredNumberQuestions { get; private set; }
-        public byte MaxPoints { get; private set; }
+        public ExerciseType Type { get; protected set; }
+        public byte RequiredNumberQuestions { get; protected set; }
+        public byte MaxPoints { get; protected set; }
 
         public Result Result { get; set; }
 
@@ -55,21 +55,6 @@ namespace CoreLib.Testing
                 Questions[randomNumber] = tempQuestion;
                 
             }
-        }
-
-        protected void SetType(ExerciseType type)
-        {
-            Type = type;
-        }
-       
-        protected void SetMaxPoints(byte points)
-        {
-            MaxPoints = points;
-        }
-
-        protected void SetRequiredNumberQuestions(byte number)
-        {
-            RequiredNumberQuestions = number;
         }
 
         protected void Load(ulong testID)

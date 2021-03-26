@@ -7,9 +7,9 @@ namespace CoreLib.Testing
     {
         public PracticalExercise(IQueryResult queryResult, ulong testID): base(queryResult)
         {
-            SetType(ExerciseType.practical);
-            SetRequiredNumberQuestions(2);
-            SetMaxPoints(20);
+            Type = ExerciseType.practical;
+            RequiredNumberQuestions =2;
+            MaxPoints = 20;
             Name = "Практические задачи";
             Load(testID);
         }

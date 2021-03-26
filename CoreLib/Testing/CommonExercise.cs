@@ -7,9 +7,9 @@ namespace CoreLib.Testing
     {
         public CommonExercise(IQueryResult queryResult, ulong testID): base(queryResult)
         {
-            SetType(ExerciseType.common);
-            SetRequiredNumberQuestions(50);
-            SetMaxPoints(1);
+            Type = ExerciseType.common;
+            RequiredNumberQuestions = 50;
+            MaxPoints = 1;
             Name = "Тестовые вопросы";
             Load(testID);
         }
