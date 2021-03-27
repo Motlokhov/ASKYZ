@@ -3,7 +3,7 @@ using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Model
 {
-    class TrainingExerciseSet : ExerciseSet
+    public class TrainingExerciseSet : ExerciseSet
     {
         public TrainingExerciseSet(IQueryResult queryResult, ulong programGroupID) : base(queryResult,ExerciseSetType.Training)
         {
