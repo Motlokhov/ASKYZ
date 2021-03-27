@@ -3,20 +3,20 @@ using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
-    public abstract class Test : Entity
+    public abstract class ExerciseSet : Entity
     {
         protected readonly IQueryResult QueryResult;
-        protected readonly TestType Type;
+        protected readonly ExerciseSetType Type;
 
         public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
 
         public delegate void TestEndingDelegate();
         public event TestEndingDelegate TestEnding;
 
-        public Test(IQueryResult queryResult,TestType testType)
+        public ExerciseSet(IQueryResult queryResult, ExerciseSetType exerciseSetType)
         {
             QueryResult = queryResult;
-            Type = testType;
+            Type = exerciseSetType;
         }
 
         public Exercise Exercise
@@ -27,7 +27,7 @@ namespace CoreLib.Testing
             }
         }
 
-        public new TestType GetType()
+        public new ExerciseSetType GetType()
         {
             return Type;
         }

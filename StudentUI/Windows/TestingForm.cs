@@ -22,8 +22,8 @@ namespace StudentUI
 
         private void CheckManipulateButtons()
         {
-            TestType testType = Core.Test.GetType();
-            if(testType == TestType.training)
+            ExerciseSetType testType = Core.Test.GetType();
+            if(testType == ExerciseSetType.Training)
             {
                 buttonPassQuestion.Visible = false;
                 CheckExerciseButtons();
@@ -53,7 +53,7 @@ namespace StudentUI
 
         private void TestEnding()
         {
-            if( Core.Test.GetType() == TestType.control )
+            if( Core.Test.GetType() == ExerciseSetType.Grand )
             {
                 var resultForm = new ResultForm();
                 resultForm.Show();

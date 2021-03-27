@@ -58,11 +58,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testing\Result.cs" />
     <Compile Include="Testing\Answer.cs" />
-    <Compile Include="Testing\ControlTest.cs" />
+    <Compile Include="Testing\GrandExerciseSet.cs" />
     <Compile Include="Testing\Exercise.cs" />
     <Compile Include="Testing\Question.cs" />
-    <Compile Include="Testing\Test.cs" />
-    <Compile Include="Testing\TrainingTest.cs" />
+    <Compile Include="Testing\ExerciseSet.cs" />
+    <Compile Include="Testing\TrainingExerciseSet.cs" />
     <Compile Include="Testing\ThemenExercise.cs" />
     <Compile Include="Testing\User.cs" />
   </ItemGroup>

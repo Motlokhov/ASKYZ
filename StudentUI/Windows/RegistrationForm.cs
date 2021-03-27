@@ -48,7 +48,7 @@ namespace StudentUI
         {
             int selected = comboBoxDirection.SelectedIndex;
             byte id = directions[selected];
-            programs = _queryResult.LoadProgramsByDirecionAndType(id, (int)TestType.control);
+            programs = _queryResult.LoadProgramsByDirecionAndType(id, (int)ExerciseSetType.Grand);
 
             bool AreProgramsAccesable = programs.Any();
 

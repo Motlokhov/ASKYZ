@@ -20,7 +20,7 @@ namespace StudentUI
 
         private void CreateProgramGroupButtons()
         {
-            (byte id, string name, byte number)[] programs = _queryResult.LoadProgramsByDirecionAndType(Core.DirectionID, (int)TestType.training);
+            (byte id, string name, byte number)[] programs = _queryResult.LoadProgramsByDirecionAndType(Core.DirectionID, (int)ExerciseSetType.Training);
 
             if(!programs.Any())
             {

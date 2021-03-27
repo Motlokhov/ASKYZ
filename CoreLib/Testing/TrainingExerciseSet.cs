@@ -3,9 +3,9 @@ using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
-    class TrainingTest : Test
+    class TrainingExerciseSet : ExerciseSet
     {
-        public TrainingTest(IQueryResult queryResult, ulong programGroupID) : base(queryResult,TestType.training)
+        public TrainingExerciseSet(IQueryResult queryResult, ulong programGroupID) : base(queryResult,ExerciseSetType.Training)
         {
             Name = "Обучающее тестирование";
             Id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);

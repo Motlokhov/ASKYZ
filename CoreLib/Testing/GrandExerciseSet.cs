@@ -4,9 +4,9 @@ using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Testing
 {
-    public class ControlTest : Test
+    public class GrandExerciseSet : ExerciseSet
     {
-        public ControlTest(IQueryResult queryResult, ulong programGroupID) : base(queryResult, TestType.control)
+        public GrandExerciseSet(IQueryResult queryResult, ulong programGroupID) : base(queryResult, ExerciseSetType.Grand)
         {
             Name = "Итоговая аттестация";
             Id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);

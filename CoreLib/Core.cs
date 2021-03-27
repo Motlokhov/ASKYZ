@@ -13,7 +13,7 @@ namespace CoreLib.Main
         public static byte ProgramNumber { get; private set; }
         public static string ProgramName { get; private set; }
         public static User User { get; private set; }
-        public static Test Test { get; private set; }
+        public static ExerciseSet Test { get; private set; }
 
         static Core()
         {
@@ -31,7 +31,7 @@ namespace CoreLib.Main
                 ProgramGroupID = User.GetProgramGroupID();
                 LoadDirectionName(queryResult);
                 LoadProgram(queryResult);
-                Test = new ControlTest(queryResult,ProgramGroupID);
+                Test = new GrandExerciseSet(queryResult,ProgramGroupID);
                 return true;
             }
             return false;
@@ -67,7 +67,7 @@ namespace CoreLib.Main
         public static void CreateTrainingTest(IQueryResult queryResult, ulong programGroupID)
         {
             Test = null;
-            Test = new TrainingTest(queryResult, programGroupID);
+            Test = new TrainingExerciseSet(queryResult, programGroupID);
         }
     }
 }

@@ -50,12 +50,12 @@ namespace CoreLib.Common
         train = 2
     }
 
-    public enum TestType
+    public enum ExerciseSetType
     {
         [DescriptionAttribute("Обучающего тестирования")]
-        training,
+        Training,
         [DescriptionAttribute("Итогового тестирования")]
-        control
+        Grand
     }
     public enum ExerciseType
     {
