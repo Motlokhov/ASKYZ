@@ -1,5 +1,5 @@
 ﻿using CoreLib.Main;
-using CoreLib.Testing;
+using CoreLib.Model;
 using System;
 
 namespace StudentUI

@@ -50,21 +50,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Testing\CommonExercise.cs" />
+    <Compile Include="Model\CommonExercise.cs" />
     <Compile Include="Common\EducationalCenter.cs" />
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Core.cs" />
-    <Compile Include="Testing\PracticalExercise.cs" />
+    <Compile Include="Model\PracticalExercise.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Testing\Result.cs" />
-    <Compile Include="Testing\Answer.cs" />
-    <Compile Include="Testing\GrandExerciseSet.cs" />
-    <Compile Include="Testing\Exercise.cs" />
-    <Compile Include="Testing\Question.cs" />
-    <Compile Include="Testing\ExerciseSet.cs" />
-    <Compile Include="Testing\TrainingExerciseSet.cs" />
-    <Compile Include="Testing\ThemenExercise.cs" />
-    <Compile Include="Testing\User.cs" />
+    <Compile Include="Model\Result.cs" />
+    <Compile Include="Model\Answer.cs" />
+    <Compile Include="Model\GrandExerciseSet.cs" />
+    <Compile Include="Model\Exercise.cs" />
+    <Compile Include="Model\Question.cs" />
+    <Compile Include="Model\ExerciseSet.cs" />
+    <Compile Include="Model\TrainingExerciseSet.cs" />
+    <Compile Include="Model\ThemenExercise.cs" />
+    <Compile Include="Model\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,6 +1,6 @@
 ﻿using CoreLib.Common;
 
-namespace CoreLib.Testing
+namespace CoreLib.Model
 {
     public class Answer:Entity
     {       

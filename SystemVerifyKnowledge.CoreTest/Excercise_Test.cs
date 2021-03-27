@@ -1,6 +1,6 @@
 ﻿using System;
 using CoreLib.Common;
-using CoreLib.Testing;
+using CoreLib.Model;
 using Moq;
 using SystemVerifyKnowledge.Common.Interface;
 using Xunit;

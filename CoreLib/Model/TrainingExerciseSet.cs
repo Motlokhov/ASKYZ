@@ -1,7 +1,7 @@
 ﻿using CoreLib.Common;
 using SystemVerifyKnowledge.Common.Interface;
 
-namespace CoreLib.Testing
+namespace CoreLib.Model
 {
     class TrainingExerciseSet : ExerciseSet
     {

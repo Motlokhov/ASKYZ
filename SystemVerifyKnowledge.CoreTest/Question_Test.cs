@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using CoreLib.Testing;
+using CoreLib.Model;
 using Moq;
 using SystemVerifyKnowledge.Common.Interface;
 using Xunit;

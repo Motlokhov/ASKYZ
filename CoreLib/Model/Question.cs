@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using SystemVerifyKnowledge.Common.Interface;
 
-namespace CoreLib.Testing
+namespace CoreLib.Model
 {
     public class Question : Entity
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using CoreLib.Testing;
+using CoreLib.Model;
 using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Main
