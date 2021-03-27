@@ -1,4 +1,5 @@
 ﻿using System;
+using CoreLib.Common;
 using CoreLib.Testing;
 using Moq;
 using SystemVerifyKnowledge.Common.Interface;
@@ -26,6 +27,17 @@ namespace SystemVerifyKnowledge.CoreTest
 
             public new void SwapQuestions() => base.SwapQuestions();
 
+        }
+
+        private void SetupQueryResult(Mock<IQueryResult> mockQueryResult, int exerciseType)
+        {
+            mockQueryResult
+                .Setup(_ => _.LoadQuestionIds(It.IsAny<ulong>(), exerciseType))
+                .Returns(new ulong[100]);
+
+            mockQueryResult
+                .Setup(_ => _.LoadQuestion(It.IsAny<ulong>()))
+                .Returns((null, null));
         }
 
         [Fact]
@@ -125,6 +137,28 @@ namespace SystemVerifyKnowledge.CoreTest
 
             //Assert
             Assert.NotEqual(exercise.Questions.ToArray(), initialSequence);
+        }
+
+        //Each heir type has defined set of properties
+        [Theory]
+        [InlineData(typeof(CommonExercise), 1, ExerciseType.common, 50)]
+        [InlineData(typeof(ThemenExercise), 10, ExerciseType.themen, 3)]
+        [InlineData(typeof(PracticalExercise), 20, ExerciseType.practical, 2)]
+        public void CreateExerciseTypeTest(Type type, int maxPoints, ExerciseType exerciseType, int requiredQuestionCount)
+        {
+            //Arrange
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            SetupQueryResult(mockQueryResult, (int)exerciseType);
+
+            const ulong testId = 300;
+
+            //Act
+            Exercise exercise = (Exercise)Activator.CreateInstance(type, mockQueryResult.Object, testId);
+
+            //Assert
+            Assert.Equal(maxPoints, exercise.MaxPoints);
+            Assert.Equal(exerciseType, exercise.Type);
+            Assert.Equal(requiredQuestionCount, exercise.RequiredNumberQuestions);
         }
     }
 }
