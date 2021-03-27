@@ -6,7 +6,7 @@ namespace CoreLib.Model
     public abstract class ExerciseSet : Entity
     {
         protected readonly IQueryResult QueryResult;
-        protected readonly ExerciseSetType Type;
+        public ExerciseSetType Type { get; protected set; }
 
         public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
 
@@ -25,11 +25,6 @@ namespace CoreLib.Model
             {
                 return Exercises.Current() as Exercise;
             }
-        }
-
-        public new ExerciseSetType GetType()
-        {
-            return Type;
         }
 
         public virtual bool VerifyQuestion(ulong[] answersIds)
