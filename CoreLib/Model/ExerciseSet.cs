@@ -27,12 +27,7 @@ namespace CoreLib.Model
             }
         }
 
-        public virtual bool VerifyQuestion(ulong[] answersIds)
-        {
-            QueryResult.LoadSumPoints(answersIds);
-            return true;
-        }
-
+        public abstract bool VerifyQuestion(ulong[] answersIds);
 
         public bool NextQuestion()
         {
