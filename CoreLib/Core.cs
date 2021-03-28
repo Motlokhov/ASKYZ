@@ -13,7 +13,7 @@ namespace CoreLib.Main
         public static byte ProgramNumber { get; private set; }
         public static string ProgramName { get; private set; }
         public static User User { get; private set; }
-        public static ExerciseSet Test { get; private set; }
+        public static ExerciseSet Exercises { get; private set; }
 
         static Core()
         {
@@ -22,7 +22,7 @@ namespace CoreLib.Main
 
         public static bool CheckPassword(IQueryResult queryResult, string id , string password)
         {
-            Test = null;
+            Exercises = null;
             User = null;
             ulong? userId = queryResult.GetUserId(id, password);
             if( userId.HasValue )
@@ -31,7 +31,7 @@ namespace CoreLib.Main
                 ProgramGroupID = User.GetProgramGroupID();
                 LoadDirectionName(queryResult);
                 LoadProgram(queryResult);
-                Test = new GrandExerciseSet(queryResult,ProgramGroupID);
+                Exercises = new GrandExerciseSet(queryResult,ProgramGroupID);
                 return true;
             }
             return false;
@@ -66,8 +66,8 @@ namespace CoreLib.Main
 
         public static void CreateTrainingTest(IQueryResult queryResult, ulong programGroupID)
         {
-            Test = null;
-            Test = new TrainingExerciseSet(queryResult, programGroupID);
+            Exercises = null;
+            Exercises = new TrainingExerciseSet(queryResult, programGroupID);
         }
     }
 }

@@ -15,14 +15,14 @@ namespace StudentUI
         {
             InitializeComponent();
             richTextBoxQuestion.Text = string.Empty;
-            Core.Test.TestEnding += TestEnding;
+            Core.Exercises.TestEnding += TestEnding;
             CheckManipulateButtons();
             Show();
         }
 
         private void CheckManipulateButtons()
         {
-            ExerciseSetType testType = Core.Test.Type;
+            ExerciseSetType testType = Core.Exercises.Type;
             if(testType == ExerciseSetType.Training)
             {
                 buttonPassQuestion.Visible = false;
@@ -36,15 +36,15 @@ namespace StudentUI
 
         private void CheckExerciseButtons()
         {
-            bool hasNextIndex = Core.Test.Exercises.HasNextIndex();
+            bool hasNextIndex = Core.Exercises.Exercises.HasNextIndex();
             if(hasNextIndex)
             {
-                buttonNextExercise.Text = Core.Test.GetNextExerciseName();
+                buttonNextExercise.Text = Core.Exercises.GetNextExerciseName();
             }
-            bool hasPreviousIndex = Core.Test.Exercises.HasPreviousIndex();
+            bool hasPreviousIndex = Core.Exercises.Exercises.HasPreviousIndex();
             if( hasPreviousIndex )
             {
-                buttonPreviousExercise.Text = Core.Test.GetPreviousExerciseName();
+                buttonPreviousExercise.Text = Core.Exercises.GetPreviousExerciseName();
             }
             buttonPreviousExercise.Visible = hasPreviousIndex;
             buttonNextExercise.Visible = hasNextIndex;
@@ -53,7 +53,7 @@ namespace StudentUI
 
         private void TestEnding()
         {
-            if( Core.Test.Type == ExerciseSetType.Grand )
+            if( Core.Exercises.Type == ExerciseSetType.Grand )
             {
                 var resultForm = new ResultForm();
                 resultForm.Show();
@@ -63,7 +63,7 @@ namespace StudentUI
                 Program.MainForm.Show();
                 MessageBox.Show("Обучающее тестирование завершено.");
             }
-            Core.Test.TestEnding -= TestEnding;
+            Core.Exercises.TestEnding -= TestEnding;
             Close();
         }
 
@@ -92,7 +92,7 @@ namespace StudentUI
         private void CheckBoxAnswer_Click(object sender , EventArgs e)
         {
            
-            ExerciseType exerciseType = Core.Test.Exercise.Type;
+            ExerciseType exerciseType = Core.Exercises.Exercise.Type;
             var checkBox = sender as CheckBox;
             if( exerciseType == ExerciseType.themen )
             {
@@ -129,7 +129,7 @@ namespace StudentUI
         private void ShowQuestion()
         {
           
-            var exercise = Core.Test.Exercise;
+            var exercise = Core.Exercises.Exercise;
             int questionCurrentNumber = exercise.Questions.GetIndex() + 1;
             int questionCount = exercise.Questions.Count;
             string exerciseName = exercise.Name;
@@ -151,7 +151,7 @@ namespace StudentUI
         private void ShowAnswers()
         {
             ClearFlowLayoutPanelAnswers();
-            var question = Core.Test.Exercise.Question;
+            var question = Core.Exercises.Exercise.Question;
             int countAnswers = question.Answers.Count;
             checkBoxes = new CheckBox[countAnswers];
             for(var i = 0 ;i<question.Answers.Count ;i++ )
@@ -177,7 +177,7 @@ namespace StudentUI
 
         private void ShowLinkLabelImage()
         {
-            if(Core.Test.Exercise.Question.GetImage() != null)
+            if(Core.Exercises.Exercise.Question.GetImage() != null)
             {
                 linkLabelImage.Visible = true;
                 return;
@@ -201,7 +201,7 @@ namespace StudentUI
             PictureBox pictureOfQuestion = new PictureBox
             {
                 Dock = DockStyle.Fill ,
-                Image = Core.Test.Exercise.Question.GetImage() ,
+                Image = Core.Exercises.Exercise.Question.GetImage() ,
                 SizeMode = PictureBoxSizeMode.Zoom
             };
 
@@ -249,13 +249,13 @@ namespace StudentUI
                 MessageBox.Show("Выберите ответ");
                 return;
             }
-            var isAnswerTrue = Core.Test.VerifyQuestion(answersID);
+            var isAnswerTrue = Core.Exercises.VerifyQuestion(answersID);
             if( isAnswerTrue )
             {
-                bool hasNextexercise = Core.Test.NextQuestion();
+                bool hasNextexercise = Core.Exercises.NextQuestion();
                 if( !hasNextexercise )
                 {
-                    Core.Test.TestEnd();
+                    Core.Exercises.TestEnd();
                     return;
                 }
                 ShowQuestion();
@@ -267,19 +267,19 @@ namespace StudentUI
 
         private void ButtonPassQuestion_Click(object sender , EventArgs e)
         {
-            Core.Test.PassQuestion();
+            Core.Exercises.PassQuestion();
             ShowQuestion();
         }
 
         private void ButtonPreviousExercise_Click(object sender , EventArgs e)
         {
-            Core.Test.PreviousExercise();
+            Core.Exercises.PreviousExercise();
             CheckExerciseButtons();
         }
 
         private void ButtonNextExercise_Click(object sender , EventArgs e)
         {
-            Core.Test.NextExercise();
+            Core.Exercises.NextExercise();
             CheckExerciseButtons();
         }
     }

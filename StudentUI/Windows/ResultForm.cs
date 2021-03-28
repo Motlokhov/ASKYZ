@@ -9,7 +9,7 @@ namespace StudentUI
         public ResultForm()
         {
             var user = Core.User;
-            var test = Core.Test;
+            var test = Core.Exercises;
 
 
             InitializeComponent();
