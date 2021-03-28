@@ -43,9 +43,9 @@ namespace SystemVerifyKnowledge.CoreTest
             //Act
             ExerciseSet exerciseSet = (ExerciseSet)Activator.CreateInstance(type, mockQueryResult.Object, programGroupId);
 
-            CommonExercise commonExercise = (CommonExercise)exerciseSet.Exercises[0];
-            ThemenExercise themenExercise = (ThemenExercise)exerciseSet.Exercises[1];
-            PracticalExercise practicalExercise = (PracticalExercise)exerciseSet.Exercises[2];
+            CommonExercise commonExercise = (CommonExercise)exerciseSet[0];
+            ThemenExercise themenExercise = (ThemenExercise)exerciseSet[1];
+            PracticalExercise practicalExercise = (PracticalExercise)exerciseSet[2];
 
             //Assert
             Assert.Equal(testId, exerciseSet.Id);

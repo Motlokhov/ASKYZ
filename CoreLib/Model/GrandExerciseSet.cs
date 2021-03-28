@@ -6,14 +6,9 @@ namespace CoreLib.Model
 {
     public class GrandExerciseSet : ExerciseSet
     {
-        public GrandExerciseSet(IQueryResult queryResult, ulong programGroupID) : base(queryResult, ExerciseSetType.Grand)
+        public GrandExerciseSet(IQueryResult queryResult, ulong programGroupID) : base(queryResult, ExerciseSetType.Grand, programGroupID)
         {
             Name = "Итоговая аттестация";
-            Id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
-
-            Exercises.Add(new CommonExercise(queryResult, Id));
-            Exercises.Add(new ThemenExercise(queryResult, Id));
-            Exercises.Add(new PracticalExercise(queryResult, Id));
 
             foreach( Exercise exercise in Exercises )
             {
@@ -22,8 +17,9 @@ namespace CoreLib.Model
             }
         }
 
-        public override bool VerifyQuestion(ulong[] answersIds)
+        public override bool IsNextQuestionAvailable(ulong[] answersIds)
         {
+            //[todo] Метод частично врет, что он также манипулирует TrueAnswers
             byte points = QueryResult.LoadSumPoints(answersIds);
             Exercise.Result.Points += points;
             if( Exercise.MaxPoints == points )

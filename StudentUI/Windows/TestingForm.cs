@@ -36,18 +36,18 @@ namespace StudentUI
 
         private void CheckExerciseButtons()
         {
-            bool hasNextIndex = Core.Exercises.Exercises.HasNextIndex();
-            if(hasNextIndex)
+            bool hasNextExercise = buttonNextExercise.Visible = Core.Exercises.HasNextExercise;
+            if(hasNextExercise)
             {
-                buttonNextExercise.Text = Core.Exercises.GetNextExerciseName();
+                buttonNextExercise.Text = Core.Exercises.GetNextExerciseName;
             }
-            bool hasPreviousIndex = Core.Exercises.Exercises.HasPreviousIndex();
-            if( hasPreviousIndex )
+
+            bool hasPreviousExercise = buttonPreviousExercise.Visible = Core.Exercises.HasPreviousExercise;
+            if( hasPreviousExercise )
             {
-                buttonPreviousExercise.Text = Core.Exercises.GetPreviousExerciseName();
+                buttonPreviousExercise.Text = Core.Exercises.GetPreviousExerciseName;
             }
-            buttonPreviousExercise.Visible = hasPreviousIndex;
-            buttonNextExercise.Visible = hasNextIndex;
+
             ShowQuestion();
         }
 
@@ -55,7 +55,7 @@ namespace StudentUI
         {
             if( Core.Exercises.Type == ExerciseSetType.Grand )
             {
-                var resultForm = new ResultForm();
+                ResultForm resultForm = new ResultForm();
                 resultForm.Show();
             }
             else
@@ -93,7 +93,7 @@ namespace StudentUI
         {
            
             ExerciseType exerciseType = Core.Exercises.Exercise.Type;
-            var checkBox = sender as CheckBox;
+            CheckBox checkBox = sender as CheckBox;
             if( exerciseType == ExerciseType.themen )
             {
                
@@ -101,7 +101,7 @@ namespace StudentUI
             }
             else
             {
-                foreach(var item in checkBoxes )
+                foreach(CheckBox item in checkBoxes )
                 {
                     item.Checked = false;
                 }
@@ -113,7 +113,7 @@ namespace StudentUI
         {
             int countChecked = 0;
 
-            foreach( var item in checkBoxes )
+            foreach(CheckBox item in checkBoxes )
             {
                 if( item.Checked )
                 {
@@ -128,9 +128,9 @@ namespace StudentUI
         
         private void ShowQuestion()
         {
-          
-            var exercise = Core.Exercises.Exercise;
-            int questionCurrentNumber = exercise.Questions.GetIndex() + 1;
+
+            Exercise exercise = Core.Exercises.Exercise;
+            int questionCurrentNumber = exercise.Questions.Index + 1;
             int questionCount = exercise.Questions.Count;
             string exerciseName = exercise.Name;
             string descriptionString = exerciseName + ": " + questionCurrentNumber + " из " + questionCount + "\n\n";
@@ -151,13 +151,13 @@ namespace StudentUI
         private void ShowAnswers()
         {
             ClearFlowLayoutPanelAnswers();
-            var question = Core.Exercises.Exercise.Question;
+            Question question = Core.Exercises.Exercise.Question;
             int countAnswers = question.Answers.Count;
             checkBoxes = new CheckBox[countAnswers];
-            for(var i = 0 ;i<question.Answers.Count ;i++ )
+            for(int i = 0 ;i<question.Answers.Count ;i++ )
             {
-                var answer = (Answer)question.Answers[i];
-                var checkbox = CreateAnswerCheckBox(answer.Id , i + 1);
+                Answer answer = question.Answers[i];
+                CheckBox checkbox = CreateAnswerCheckBox(answer.Id , i + 1);
                 flowLayoutPanelAnswers.Controls.Add(checkbox);
                 checkBoxes[i] = checkbox;
                 WriteAnswerIntoRichTextBox(answer);
@@ -177,12 +177,7 @@ namespace StudentUI
 
         private void ShowLinkLabelImage()
         {
-            if(Core.Exercises.Exercise.Question.GetImage() != null)
-            {
-                linkLabelImage.Visible = true;
-                return;
-            }
-            linkLabelImage.Visible = false;
+            linkLabelImage.Visible = Core.Exercises.Exercise.Question.GetImage() != null;
         }
 
         private void LinkLabelImage_LinkClicked(object sender , LinkLabelLinkClickedEventArgs e)
@@ -213,7 +208,7 @@ namespace StudentUI
         private ulong[] CheckNumberMarking()
         {
             int countChecked = 0;
-            for( var i = 0 ; i < checkBoxes.Length ; i++ )
+            for(int i = 0 ; i < checkBoxes.Length ; i++ )
             {
                 if( checkBoxes[i].Checked )
                 {
@@ -222,7 +217,7 @@ namespace StudentUI
             }
             ulong[] answersID = new ulong[countChecked];
             int index = 0;
-            for( var i = 0 ; i < checkBoxes.Length ; i++ )
+            for(int i = 0 ; i < checkBoxes.Length ; i++ )
             {
                 if( checkBoxes[i].Checked )
                 {
@@ -235,13 +230,13 @@ namespace StudentUI
 
         private void UncheckCheckBoxes()
         {
-            foreach(var checkbox in checkBoxes )
+            foreach(CheckBox checkbox in checkBoxes )
             {
                 checkbox.Checked = false;
             }
         }
 
-        private void ButtonGiveAnswer_Click(object sender , EventArgs e)
+        private void ButtonGiveAnswer_Click(object sender, EventArgs e)
         {
             ulong[] answersID = CheckNumberMarking();
             if(answersID.Length == 0)
@@ -249,11 +244,10 @@ namespace StudentUI
                 MessageBox.Show("Выберите ответ");
                 return;
             }
-            var isAnswerTrue = Core.Exercises.VerifyQuestion(answersID);
-            if( isAnswerTrue )
+
+            if(Core.Exercises.IsNextQuestionAvailable(answersID))
             {
-                bool hasNextexercise = Core.Exercises.NextQuestion();
-                if( !hasNextexercise )
+                if(!Core.Exercises.NextQuestion())
                 {
                     Core.Exercises.TestEnd();
                     return;

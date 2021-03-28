@@ -6,34 +6,38 @@ namespace CoreLib.Model
 {
     public abstract class ExerciseSet : Entity
     {
-        protected readonly IQueryResult QueryResult;
         public ExerciseSetType Type { get; protected set; }
-
-        public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
+        public Exercise Exercise => Exercises.Current();
+        public Exercise this[int index] => Exercises[index];
+        public bool HasNextExercise => Exercises.HasNext;
+        public bool HasPreviousExercise => Exercises.HasPrevious;
+        public string GetNextExerciseName => Exercises[Exercises.Index + 1].Name;
+        public string GetPreviousExerciseName => Exercises[Exercises.Index - 1].Name;
 
         public event Action KnowledgeVerifyingEnded;
 
-        public ExerciseSet(IQueryResult queryResult, ExerciseSetType exerciseSetType)
+        protected ChildrenList<Exercise> Exercises = new ChildrenList<Exercise>();
+        protected readonly IQueryResult QueryResult;
+
+        public ExerciseSet(IQueryResult queryResult, ExerciseSetType exerciseSetType, ulong programGroupID)
         {
             QueryResult = queryResult;
             Type = exerciseSetType;
+            Id = QueryResult.LoadTestIdByProgramGroupIdAndType(programGroupID, (int)Type);
+
+            Exercises.Add(new CommonExercise(queryResult, Id));
+            Exercises.Add(new ThemenExercise(queryResult, Id));
+            Exercises.Add(new PracticalExercise(queryResult, Id));
         }
 
-        public Exercise Exercise
-        {
-            get
-            {
-                return Exercises.Current() as Exercise;
-            }
-        }
-
-        public abstract bool VerifyQuestion(ulong[] answersIds);
+        public abstract bool IsNextQuestionAvailable(ulong[] answersIds);
+        public virtual void TestEnd() => KnowledgeVerifyingEnded();
 
         public bool NextQuestion()
         {
-            if( !Exercise.NextQuestion() )
+            if(!Exercise.NextQuestion())
             {
-                if( !NextExercise() )
+                if(!NextExercise())
                 {
                     return false;
                 }
@@ -44,9 +48,9 @@ namespace CoreLib.Model
 
         public bool NextExercise()
         {
-            if( Exercises.HasNextIndex() )
+            if(Exercises.HasNext)
             {
-                Exercises.Next();
+                Exercises.SetNext();
                 return true;
             }
             return false;
@@ -54,9 +58,9 @@ namespace CoreLib.Model
 
         public bool PreviousExercise()
         {
-            if( Exercises.GetIndex() != 0 )
+            if(Exercises.HasPrevious)
             {
-                Exercises.Previous();
+                Exercises.SetPrevious();
                 return true;
             }
             return false;
@@ -69,27 +73,10 @@ namespace CoreLib.Model
             Exercise.Questions.Add(question);
         }
 
-        public virtual void TestEnd()
-        {
-            KnowledgeVerifyingEnded();
-        }
-
-        public string GetNextExerciseName()
-        {
-            Exercise exercise = (Exercise) Exercises[Exercises.GetIndex() + 1];
-            return exercise.Name;
-        }
-
-        public string GetPreviousExerciseName()
-        {
-            Exercise exercise = (Exercise) Exercises[Exercises.GetIndex() - 1];
-            return exercise.Name;
-        }
-
         public byte GetAllPoints()
         {
             byte points = 0;
-            foreach(Exercise exercise in Exercises )
+            foreach(Exercise exercise in Exercises)
             {
                 points += exercise.Result.Points;
             }

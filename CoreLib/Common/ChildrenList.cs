@@ -5,55 +5,16 @@ namespace CoreLib.Common
 {
     public class ChildrenList<T>:List<T>
     {
-        protected int _index;
+        public int Index { get; private set; }
 
-        public void Next()
-        {
-            _index++;
-        }
+        public void SetNext() => Index++;
 
-        public void Previous()
-        {
-            _index--;
-        }
+        public void SetPrevious() => Index--;
 
-        public T Current()
-        {
-            return this[_index];
-        }
+        public T Current() => this[Index];
 
-        public int GetIndex()
-        {
-            return _index;
-        }
+        public bool HasNext => Index + 1 < Count;
 
-        public void GoToIndex(int index)
-        {
-            if( Count > index )
-            {
-                _index = index;
-                return;
-            }
-            throw new Exception("Out of range exeption: Выход за пределы массива("+this.ToString()+")");
-            
-        }
-
-        public bool HasNextIndex()
-        {
-            if(_index + 1 < Count )
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public bool HasPreviousIndex()
-        {
-            if(_index > 0 )
-            {
-                return true;
-            }
-            return false;
-        }
+        public bool HasPrevious => Index > 0;
     }
 }

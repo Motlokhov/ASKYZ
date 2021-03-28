@@ -13,13 +13,7 @@ namespace CoreLib.Model
         public Result Result { get; set; }
 
         public ChildrenList<Question> Questions { get; private set; } = new ChildrenList<Question>();
-        public Question Question
-        {
-            get
-            {
-                return Questions.Current();
-            }
-        }
+        public Question Question => Questions.Current();
 
         public Exercise(IQueryResult queryResult)
         {
@@ -28,9 +22,9 @@ namespace CoreLib.Model
 
         public bool NextQuestion()
         {
-            if( Questions.GetIndex() + 1 < Questions.Count )
+            if( Questions.HasNext)
             {
-                Questions.Next();
+                Questions.SetNext();
                 return true;
             }
             return false;
