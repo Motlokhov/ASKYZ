@@ -1,4 +1,5 @@
-﻿using CoreLib.Common;
+﻿using System;
+using CoreLib.Common;
 using SystemVerifyKnowledge.Common.Interface;
 
 namespace CoreLib.Model
@@ -10,8 +11,7 @@ namespace CoreLib.Model
 
         public ChildrenList<Exercise> Exercises { get; private set; } = new ChildrenList<Exercise>();
 
-        public delegate void TestEndingDelegate();
-        public event TestEndingDelegate TestEnding;
+        public event Action KnowledgeVerifyingEnded;
 
         public ExerciseSet(IQueryResult queryResult, ExerciseSetType exerciseSetType)
         {
@@ -71,7 +71,7 @@ namespace CoreLib.Model
 
         public virtual void TestEnd()
         {
-            TestEnding();
+            KnowledgeVerifyingEnded();
         }
 
         public string GetNextExerciseName()

@@ -15,7 +15,7 @@ namespace StudentUI
         {
             InitializeComponent();
             richTextBoxQuestion.Text = string.Empty;
-            Core.Exercises.TestEnding += TestEnding;
+            Core.Exercises.KnowledgeVerifyingEnded += KnowledgeVerifyingEnded;
             CheckManipulateButtons();
             Show();
         }
@@ -51,7 +51,7 @@ namespace StudentUI
             ShowQuestion();
         }
 
-        private void TestEnding()
+        private void KnowledgeVerifyingEnded()
         {
             if( Core.Exercises.Type == ExerciseSetType.Grand )
             {
@@ -63,7 +63,7 @@ namespace StudentUI
                 Program.MainForm.Show();
                 MessageBox.Show("Обучающее тестирование завершено.");
             }
-            Core.Exercises.TestEnding -= TestEnding;
+            Core.Exercises.KnowledgeVerifyingEnded -= KnowledgeVerifyingEnded;
             Close();
         }
 
