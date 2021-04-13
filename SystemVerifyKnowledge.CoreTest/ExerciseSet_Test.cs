@@ -79,5 +79,32 @@ namespace SystemVerifyKnowledge.CoreTest
 
             Assert.Equal(iterationUntilFalse, actualIterationCount);
         }
+
+        [Theory]
+        [InlineData(typeof(GrandExerciseSet))]
+        [InlineData(typeof(TrainingExerciseSet))]
+        public void ExerciseSetHasExactlyThreeExcercises(Type type)
+        {
+            //Arrange
+            ulong testId = 500;
+            int questionFromDBCount = 50;
+
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            SetupQueryResult(mockQueryResult, questionFromDBCount, testId);
+
+            ulong programGroupId = 10;
+
+            //Act
+            ExerciseSet exerciseSet = (ExerciseSet)Activator.CreateInstance(type, mockQueryResult.Object, programGroupId);
+
+            //Assert
+            Assert.True(exerciseSet.NextExercise());
+            Assert.True(exerciseSet.NextExercise());
+            Assert.False(exerciseSet.NextExercise());
+
+            Assert.True(exerciseSet.PreviousExercise());
+            Assert.True(exerciseSet.PreviousExercise());
+            Assert.False(exerciseSet.PreviousExercise());
+        }
     }
 }
