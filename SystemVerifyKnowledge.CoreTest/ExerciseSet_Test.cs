@@ -54,5 +54,30 @@ namespace SystemVerifyKnowledge.CoreTest
             Assert.Equal(exerciseSet.Type == ExerciseSetType.Training ? questionFromDBCount : themenExercise.RequiredNumberQuestions, themenExercise.Questions.Count);
             Assert.Equal(exerciseSet.Type == ExerciseSetType.Training ? questionFromDBCount : practicalExercise.RequiredNumberQuestions, practicalExercise.Questions.Count);
         }
+
+        [Theory]
+        [InlineData(typeof(GrandExerciseSet), 50, 54)]
+        [InlineData(typeof(TrainingExerciseSet), 2, 5)]
+        [InlineData(typeof(TrainingExerciseSet), 1, 2)]
+        [InlineData(typeof(TrainingExerciseSet), 0, 2)]
+        public void When_HasNextQuestion_Then_True_Otherwise_False(Type type, int questionFromDBCount, int iterationUntilFalse)
+        {
+            //Arrange
+            ulong testId = 500;
+
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            SetupQueryResult(mockQueryResult, questionFromDBCount, testId);
+
+            ulong programGroupId = 10;
+
+            //Act
+            ExerciseSet exerciseSet = (ExerciseSet)Activator.CreateInstance(type, mockQueryResult.Object, programGroupId);
+            int actualIterationCount = 0;
+
+            while(exerciseSet.NextQuestion())
+                actualIterationCount++;
+
+            Assert.Equal(iterationUntilFalse, actualIterationCount);
+        }
     }
 }
