@@ -106,5 +106,34 @@ namespace SystemVerifyKnowledge.CoreTest
             Assert.True(exerciseSet.PreviousExercise());
             Assert.False(exerciseSet.PreviousExercise());
         }
+
+        [Theory]
+        [InlineData(typeof(GrandExerciseSet))]
+        public void When_PassCurrentQuestion_Then_QuestionGoToEndArray(Type type)
+        {
+            //Arrange
+            ulong testId = 500;
+            int questionFromDBCount = 50;
+
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            SetupQueryResult(mockQueryResult, questionFromDBCount, testId);
+
+            ulong programGroupId = 10;
+
+            //Act
+            ExerciseSet exerciseSet = (ExerciseSet)Activator.CreateInstance(type, mockQueryResult.Object, programGroupId);
+
+            Question questionBeforePass = exerciseSet.Exercise.Question;
+
+            exerciseSet.PassQuestion();
+
+            Question questionAfterPass = exerciseSet.Exercise.Question;
+
+
+            //Assert
+            Assert.Equal(questionAfterPass, exerciseSet.Exercise.Questions[0]);
+            Assert.Equal(questionBeforePass, exerciseSet.Exercise.Questions[exerciseSet.Exercise.Questions.Count - 1]);
+            Assert.NotSame(questionBeforePass, questionAfterPass);
+        }
     }
 }
