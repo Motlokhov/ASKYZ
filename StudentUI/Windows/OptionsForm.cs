@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.IO;
-using CoreLib.Common;
+using SystemVerifyKnowledge.CoreLib.Common;
 
 namespace StudentUI
 {

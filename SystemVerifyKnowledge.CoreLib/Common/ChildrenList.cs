@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace CoreLib.Common
+namespace SystemVerifyKnowledge.CoreLib.Common
 {
     public class ChildrenList<T>:List<T>
     {

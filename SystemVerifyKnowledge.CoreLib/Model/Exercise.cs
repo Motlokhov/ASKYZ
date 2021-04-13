@@ -1,7 +1,7 @@
-﻿using CoreLib.Common;
-using SystemVerifyKnowledge.Common.Interface;
+﻿using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Common;
 
-namespace CoreLib.Model
+namespace SystemVerifyKnowledge.CoreLib.Model
 {
     public abstract class Exercise:Entity
     {
@@ -41,7 +41,7 @@ namespace CoreLib.Model
             int questionsCount = Questions.Count;
             for( var i = 0 ; i < questionsCount / 2 ; i++ )
             {
-                var random = Main.Core.Random;
+                var random = Core.Random;
                 int randomNumber = random.Next(questionsCount);
 
                 var tempQuestion = Questions[i];

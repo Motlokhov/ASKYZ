@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using CoreLib.Main;
-using CoreLib.Common;
 using Database.Result;
 using System.Linq;
+using SystemVerifyKnowledge.CoreLib.Common;
+using SystemVerifyKnowledge.CoreLib;
 
 namespace StudentUI
 {

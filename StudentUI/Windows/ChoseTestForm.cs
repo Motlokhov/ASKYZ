@@ -1,7 +1,7 @@
-﻿using CoreLib.Main;
-using Database.Result;
+﻿using Database.Result;
 using System;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.CoreLib;
 
 namespace StudentUI
 {

@@ -1,4 +1,4 @@
-﻿namespace CoreLib.Common
+﻿namespace SystemVerifyKnowledge.CoreLib.Common
 {
    public class Identification
     {

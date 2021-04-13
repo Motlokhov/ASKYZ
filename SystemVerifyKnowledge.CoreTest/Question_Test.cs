@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using CoreLib.Model;
 using Moq;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Model;
 using Xunit;
 
 namespace SystemVerifyKnowledge.CoreTest

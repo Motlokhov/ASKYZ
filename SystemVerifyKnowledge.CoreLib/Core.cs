@@ -1,8 +1,8 @@
 ﻿using System;
-using CoreLib.Model;
+using SystemVerifyKnowledge.CoreLib.Model;
 using SystemVerifyKnowledge.Common.Interface;
 
-namespace CoreLib.Main
+namespace SystemVerifyKnowledge.CoreLib
 {
     public static class Core
     {

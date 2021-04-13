@@ -1,6 +1,6 @@
-﻿using CoreLib.Common;
+﻿using SystemVerifyKnowledge.CoreLib.Common;
 
-namespace CoreLib.Model
+namespace SystemVerifyKnowledge.CoreLib.Model
 {
     public class Answer:Entity
     {       

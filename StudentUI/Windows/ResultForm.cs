@@ -1,6 +1,6 @@
-﻿using CoreLib.Main;
-using CoreLib.Model;
-using System;
+﻿using System;
+using SystemVerifyKnowledge.CoreLib;
+using SystemVerifyKnowledge.CoreLib.Model;
 
 namespace StudentUI
 {

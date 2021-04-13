@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using CoreLib.Common;
 using Database.Result;
 using System.Linq;
+using SystemVerifyKnowledge.CoreLib.Common;
 
 namespace StudentUI
 {

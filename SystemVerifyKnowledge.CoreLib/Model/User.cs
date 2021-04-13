@@ -1,8 +1,8 @@
 ﻿using System;
-using CoreLib.Common;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Common;
 
-namespace CoreLib.Model
+namespace SystemVerifyKnowledge.CoreLib.Model
 {
     public class User : Entity
     {

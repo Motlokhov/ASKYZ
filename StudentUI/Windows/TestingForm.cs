@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using CoreLib.Model;
-using CoreLib.Main;
-using CoreLib.Common;
+using SystemVerifyKnowledge.CoreLib.Common;
+using SystemVerifyKnowledge.CoreLib.Model;
+using SystemVerifyKnowledge.CoreLib;
 
 namespace StudentUI
 {

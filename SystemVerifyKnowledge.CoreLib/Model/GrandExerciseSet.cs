@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using CoreLib.Common;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Common;
 
-namespace CoreLib.Model
+namespace SystemVerifyKnowledge.CoreLib.Model
 {
     public class GrandExerciseSet : ExerciseSet
     {
@@ -42,8 +42,8 @@ namespace CoreLib.Model
         private void SaveResults()
         {
             QueryResult.WriteTestResults
-            (Main.Core.User.Id, 
-            Main.Core.ProgramGroupID, 
+            (Core.User.Id, 
+            Core.ProgramGroupID, 
             Exercises.Select(e => ((int)e.Type,e.Result.Points,e.Result.TrueAnswers,e.Result.FalseAnswers)).ToArray());
         }
     }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using CoreLib.Common;
+﻿using System.Drawing;
 using System.IO;
-using System.Data;
 using System.Linq;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Common;
 
-namespace CoreLib.Model
+namespace SystemVerifyKnowledge.CoreLib.Model
 {
     public class Question : Entity
     {

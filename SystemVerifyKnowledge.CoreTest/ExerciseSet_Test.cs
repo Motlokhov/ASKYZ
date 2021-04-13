@@ -1,8 +1,8 @@
 ﻿using System;
-using CoreLib.Common;
-using CoreLib.Model;
 using Moq;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Common;
+using SystemVerifyKnowledge.CoreLib.Model;
 using Xunit;
 
 namespace SystemVerifyKnowledge.CoreTest

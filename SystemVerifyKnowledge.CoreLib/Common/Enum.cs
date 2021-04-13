@@ -2,24 +2,24 @@
 using System.ComponentModel;
 using System.Reflection;
 
-namespace CoreLib.Common
+namespace SystemVerifyKnowledge.CoreLib.Common
 {
     public static class EnumUtils
     {
         public static string ValueOf(Enum value)
         {
             FieldInfo fieldInfo = value.GetType().GetField(value.ToString());
-            DescriptionAttribute attribute = (DescriptionAttribute) fieldInfo.GetCustomAttribute(typeof(DescriptionAttribute));
+            DescriptionAttribute attribute = (DescriptionAttribute)fieldInfo.GetCustomAttribute(typeof(DescriptionAttribute));
             return attribute.Description;
         }
 
-        public static object EnumValueOf(string value , Type enum_type)
+        public static object EnumValueOf(string value, Type enum_type)
         {
             string[] names = Enum.GetNames(enum_type);
-            foreach( string name in names )
+            foreach(string name in names)
             {
-                if( ValueOf((Enum) Enum.Parse(enum_type , name)).Equals(value) )
-                    return Enum.Parse(enum_type , name);
+                if(ValueOf((Enum)Enum.Parse(enum_type, name)).Equals(value))
+                    return Enum.Parse(enum_type, name);
             }
             throw new ArgumentException("Строка не описана или не задана.");
         }
@@ -29,9 +29,9 @@ namespace CoreLib.Common
             Array enums = Enum.GetValues(enum_type);
             string[] values = new string[enums.Length];
             int i = 0;
-            foreach( object val in enums )
+            foreach(object val in enums)
             {
-                values[i] = EnumUtils.ValueOf((Enum) val);
+                values[i] = ValueOf((Enum)val);
                 i++;
             }
             return values;
@@ -52,18 +52,18 @@ namespace CoreLib.Common
 
     public enum ExerciseSetType
     {
-        [DescriptionAttribute("Обучающего тестирования")]
+        [Description("Обучающего тестирования")]
         Training,
-        [DescriptionAttribute("Итогового тестирования")]
+        [Description("Итогового тестирования")]
         Grand
     }
     public enum ExerciseType
     {
-        [DescriptionAttribute("Тестовые вопросы")]
+        [Description("Тестовые вопросы")]
         common,
-        [DescriptionAttribute("Тематические вопросы")]
+        [Description("Тематические вопросы")]
         themen,
-        [DescriptionAttribute("Практические задачи")]
+        [Description("Практические задачи")]
         practical
     };
 }

@@ -1,11 +1,11 @@
-﻿using CoreLib.Common;
-using CoreLib.Main;
-using CoreLib.Model;
-using Database.Result;
+﻿using Database.Result;
 using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.CoreLib;
+using SystemVerifyKnowledge.CoreLib.Common;
+using SystemVerifyKnowledge.CoreLib.Model;
 
 namespace StudentUI
 {

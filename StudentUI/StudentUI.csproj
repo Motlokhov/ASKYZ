@@ -86,6 +86,9 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
@@ -249,7 +252,6 @@
     <EmbeddedResource Include="Windows\UserData.resx">
       <DependentUpon>UserData.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -351,10 +353,6 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoreLib\CoreLib.csproj">
-      <Project>{cb6933bb-e6c3-4a21-bf5f-8eb359af5eef}</Project>
-      <Name>CoreLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Database.Result\Database.Result.csproj">
       <Project>{d10ae359-4418-4402-bf98-7c44bc405e13}</Project>
       <Name>Database.Result</Name>
@@ -362,6 +360,10 @@
     <ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj">
       <Project>{08737b03-cf38-4d9f-b493-1cd92e9f39d1}</Project>
       <Name>SystemVerifyKnowledge.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj">
+      <Project>{e824336c-fd96-4d0e-a678-b2a0d24fc7ce}</Project>
+      <Name>SystemVerifyKnowledge.CoreLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
