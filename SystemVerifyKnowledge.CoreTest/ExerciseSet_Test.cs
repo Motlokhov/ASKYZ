@@ -135,5 +135,30 @@ namespace SystemVerifyKnowledge.CoreTest
             Assert.Equal(questionBeforePass, exerciseSet.Exercise.Questions[exerciseSet.Exercise.Questions.Count - 1]);
             Assert.NotSame(questionBeforePass, questionAfterPass);
         }
+
+        [Theory]
+        [InlineData(typeof(GrandExerciseSet))]
+        public void GetAllPointsTest(Type type)
+        {
+            //Arrange
+            const ulong testId = 500;
+            const int questionFromDBCount = 50;
+
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            SetupQueryResult(mockQueryResult, questionFromDBCount, testId);
+
+            ulong programGroupId = 10;
+
+            ExerciseSet exerciseSet = (ExerciseSet)Activator.CreateInstance(type, mockQueryResult.Object, programGroupId);
+
+            const byte expectedPoints = 36;
+
+            exerciseSet[0].Result.Points = 6;
+            exerciseSet[1].Result.Points = 11;
+            exerciseSet[2].Result.Points = 19;
+            
+            //Act, Assert
+            Assert.Equal(expectedPoints, exerciseSet.GetAllPoints());
+        }
     }
 }
