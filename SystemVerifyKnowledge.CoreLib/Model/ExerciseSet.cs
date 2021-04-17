@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib.Common;
 
@@ -73,14 +74,6 @@ namespace SystemVerifyKnowledge.CoreLib.Model
             Exercise.Questions.Add(question);
         }
 
-        public byte GetAllPoints()
-        {
-            byte points = 0;
-            foreach(Exercise exercise in Exercises)
-            {
-                points += exercise.Result.Points;
-            }
-            return points;
-        }
+        public byte GetAllPoints() => (byte)Exercises.Sum(e => e.Result.Points);
     }
 }
