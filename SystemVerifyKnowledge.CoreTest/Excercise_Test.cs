@@ -160,5 +160,27 @@ namespace SystemVerifyKnowledge.CoreTest
             Assert.Equal(exerciseType, exercise.Type);
             Assert.Equal(requiredQuestionCount, exercise.RequiredNumberQuestions);
         }
+
+        [Theory]
+        [InlineData(typeof(CommonExercise), 1, ExerciseType.common, true)]
+        [InlineData(typeof(ThemenExercise), 10, ExerciseType.themen, true)]
+        [InlineData(typeof(PracticalExercise), 20, ExerciseType.practical, true)]
+        [InlineData(typeof(CommonExercise), 100, ExerciseType.common, false)]
+        [InlineData(typeof(ThemenExercise), 100, ExerciseType.themen, false)]
+        [InlineData(typeof(PracticalExercise), 100, ExerciseType.practical, false)]
+        public void When_CorrectAnswerNumberPointsEqualPoints_Then_True_OtherwiseFalse(Type type, byte points, ExerciseType exerciseType, bool expectedResult)
+        {
+            //Arrange
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            SetupQueryResult(mockQueryResult, (int)exerciseType);
+
+            const ulong testId = 300;
+
+            //Act
+            Exercise exercise = (Exercise)Activator.CreateInstance(type, mockQueryResult.Object, testId);
+
+            //Assert
+            Assert.Equal(expectedResult, exercise.IsAnswerCorrect(points));
+        }
     }
 }
