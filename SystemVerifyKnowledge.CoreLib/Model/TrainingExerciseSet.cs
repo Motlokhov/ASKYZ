@@ -13,7 +13,7 @@ namespace SystemVerifyKnowledge.CoreLib.Model
         public override bool IsNextQuestionAvailable(ulong[] answersIds)
         {
             byte points = QueryResult.LoadSumPoints(answersIds);
-            return Exercise.MaxPoints == points;
+            return Exercise.IsAnswerCorrect(points);
         }
     }
 }

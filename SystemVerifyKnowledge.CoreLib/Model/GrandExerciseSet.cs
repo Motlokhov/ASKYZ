@@ -22,9 +22,9 @@ namespace SystemVerifyKnowledge.CoreLib.Model
             //[todo] Метод частично врет, что он также манипулирует TrueAnswers
             byte points = QueryResult.LoadSumPoints(answersIds);
             Exercise.Result.Points += points;
-            if( Exercise.MaxPoints == points )
+            if(Exercise.IsAnswerCorrect(points))
                 Exercise.Result.TrueAnswers += 1;
-            
+
             return true;
         }
 

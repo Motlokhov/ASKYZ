@@ -144,7 +144,7 @@ namespace SystemVerifyKnowledge.CoreTest
         [InlineData(typeof(CommonExercise), 1, ExerciseType.common, 50)]
         [InlineData(typeof(ThemenExercise), 10, ExerciseType.themen, 3)]
         [InlineData(typeof(PracticalExercise), 20, ExerciseType.practical, 2)]
-        public void CreateExerciseTypeTest(Type type, int maxPoints, ExerciseType exerciseType, int requiredQuestionCount)
+        public void CreateExerciseTypeTest(Type type, int correctAnswerNumberPoints, ExerciseType exerciseType, int requiredQuestionCount)
         {
             //Arrange
             Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
@@ -156,7 +156,7 @@ namespace SystemVerifyKnowledge.CoreTest
             Exercise exercise = (Exercise)Activator.CreateInstance(type, mockQueryResult.Object, testId);
 
             //Assert
-            Assert.Equal(maxPoints, exercise.MaxPoints);
+            Assert.Equal(correctAnswerNumberPoints, exercise.CorrectAnswerNumberPoints);
             Assert.Equal(exerciseType, exercise.Type);
             Assert.Equal(requiredQuestionCount, exercise.RequiredNumberQuestions);
         }

@@ -8,7 +8,7 @@ namespace SystemVerifyKnowledge.CoreLib.Model
         private readonly IQueryResult _queryResult;
         public ExerciseType Type { get; protected set; }
         public byte RequiredNumberQuestions { get; protected set; }
-        public byte MaxPoints { get; protected set; }
+        public byte CorrectAnswerNumberPoints { get; protected set; }
 
         public Result Result { get; set; }
 
@@ -59,6 +59,8 @@ namespace SystemVerifyKnowledge.CoreLib.Model
                 
             SwapQuestions();
         }
+
+        public bool IsAnswerCorrect(byte points) => CorrectAnswerNumberPoints == points;
     }
 }
 

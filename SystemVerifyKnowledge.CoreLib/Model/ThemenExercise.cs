@@ -9,7 +9,7 @@ namespace SystemVerifyKnowledge.CoreLib.Model
         {
             Type = ExerciseType.themen;
             RequiredNumberQuestions =3;
-            MaxPoints = 10;
+            CorrectAnswerNumberPoints = 10;
             Name = "Тематические вопросы";
             Load(testID);
         }
