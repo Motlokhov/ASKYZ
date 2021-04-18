@@ -1,5 +1,8 @@
-﻿using Moq;
+﻿using System;
+using Moq;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib;
+using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib.Model;
 using Xunit;
 
@@ -52,6 +55,59 @@ namespace SystemVerifyKnowledge.CoreTest
             Assert.Equal(commonTrueAnswersCount, grandExerciseSet[0].Result.TrueAnswers);
             Assert.Equal(themenTrueAnswersCount, grandExerciseSet[1].Result.TrueAnswers);
             Assert.Equal(practicalTrueAnswersCount, grandExerciseSet[2].Result.TrueAnswers);
+        }
+
+        [Fact]
+        public void When_TestEnd_Then_SaveResult()
+        {
+            //Arrange
+            const ulong testId = 500;
+            const int questionFromDBCount = 50;
+            const byte programGroupId = 10;
+            const ulong userId = 2;
+
+            Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
+            SetupQueryResult(mockQueryResult, questionFromDBCount, testId);
+
+            mockQueryResult.Setup(_ => _.LoadUserById(It.IsAny<ulong>()))
+                            .Returns((null, null, null, programGroupId, DateTime.Now, DateTime.Now, 0, 0));
+
+            mockQueryResult.Setup(_ => _.GetUserId(It.IsAny<string>(), It.IsAny<string>()))
+                            .Returns(userId);
+
+            Core.CheckPassword(mockQueryResult.Object, userId.ToString(), "password");
+
+            byte commonTrueAnswersCount = 30;
+            byte commonTrueAnswersPoints = 30;
+            byte themenTrueAnswersCount = 1;
+            byte themenTrueAnswersPoints = 10;
+            byte practicalTrueAnswersCount = 2;
+            byte practicalTrueAnswersPoints = 40;
+
+            GrandExerciseSet grandExerciseSet = Core.Exercises as GrandExerciseSet;
+            grandExerciseSet[0].Result.TrueAnswers = commonTrueAnswersCount;
+            grandExerciseSet[0].Result.Points = commonTrueAnswersPoints;
+            grandExerciseSet[1].Result.TrueAnswers = themenTrueAnswersCount;
+            grandExerciseSet[1].Result.Points = themenTrueAnswersPoints;
+            grandExerciseSet[2].Result.TrueAnswers = practicalTrueAnswersCount;
+            grandExerciseSet[2].Result.Points = practicalTrueAnswersPoints;
+
+            byte commonExpectedFalseAnswersCount = 20;
+            byte thementExpectedFalseAnswersCount = 2;
+            byte practicalFalseAnswersCount = 0;
+
+            //Act
+            grandExerciseSet.TestEnd();
+
+            //Assert
+            (int, byte, byte, byte)[] expectedWriteResult = new (int, byte, byte, byte)[]
+            {
+                ((int)ExerciseType.common, commonTrueAnswersPoints, commonTrueAnswersCount, commonExpectedFalseAnswersCount),
+                ((int)ExerciseType.themen, themenTrueAnswersPoints, themenTrueAnswersCount, thementExpectedFalseAnswersCount),
+                ((int)ExerciseType.practical, practicalTrueAnswersPoints, practicalTrueAnswersCount, practicalFalseAnswersCount)
+            };
+
+            mockQueryResult.Verify(_ => _.WriteTestResults(userId, programGroupId, expectedWriteResult));
         }
     }
 }

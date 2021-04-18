@@ -32,7 +32,7 @@ namespace SystemVerifyKnowledge.CoreLib.Model
         }
 
         public abstract bool IsNextQuestionAvailable(ulong[] answersIds);
-        public virtual void TestEnd() => KnowledgeVerifyingEnded();
+        public virtual void TestEnd() => KnowledgeVerifyingEnded?.Invoke();
 
         public bool NextQuestion()
         {
