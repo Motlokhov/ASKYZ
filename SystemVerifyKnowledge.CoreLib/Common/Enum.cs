@@ -4,16 +4,6 @@ using System.Reflection;
 
 namespace SystemVerifyKnowledge.CoreLib.Common
 {
-    public static class EnumUtils
-    {
-        public static string ValueOf(Enum value)
-        {
-            FieldInfo fieldInfo = value.GetType().GetField(value.ToString());
-            DescriptionAttribute attribute = (DescriptionAttribute)fieldInfo.GetCustomAttribute(typeof(DescriptionAttribute));
-            return attribute.Description;
-        }
-    }
-
     public enum Direction
     {
         /// <summary>
