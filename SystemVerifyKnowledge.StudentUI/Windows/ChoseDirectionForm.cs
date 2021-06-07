@@ -1,16 +1,17 @@
-﻿using Database.Result;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib;
 
 namespace StudentUI
 {
     public partial class ChoseDirectionForm : AbstractForm
     {
-        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+        private readonly IQueryResult _queryResult;
 
-        public ChoseDirectionForm()
+        public ChoseDirectionForm(IQueryResult queryResult)
         {
+            _queryResult = queryResult;
             InitializeComponent();
             Show();
             CreateDirectionsButtons();
@@ -40,7 +41,7 @@ namespace StudentUI
                 {
                     var but = s as Button;  
                     Core.SetDirection(Convert.ToByte(but.Tag),but.Text);
-                    var form = new ChoseProgramGroup();
+                    var form = new ChoseProgramGroup(_queryResult);
                     form.Show();
                     Close();
                 };

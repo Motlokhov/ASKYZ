@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Database.Result;
+using System;
 using System.Windows.Forms;
 
 namespace StudentUI
@@ -14,7 +15,7 @@ namespace StudentUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(MainForm = new ChoseTestForm());
+            Application.Run(MainForm = new ChoseTestForm(new QueryResult(CustomDependencyInjection.DbConnection)));
         }
         
     }

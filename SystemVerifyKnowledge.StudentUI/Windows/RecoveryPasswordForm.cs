@@ -1,15 +1,16 @@
-﻿using Database.Result;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace StudentUI
 {
     public partial class RecoveryPasswordForm : AbstractForm
     {
-        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+        private readonly IQueryResult _queryResult;
 
-        public RecoveryPasswordForm()
+        public RecoveryPasswordForm(IQueryResult queryResult)
         {
+            _queryResult = queryResult;
             InitializeComponent();
             Show();
         }

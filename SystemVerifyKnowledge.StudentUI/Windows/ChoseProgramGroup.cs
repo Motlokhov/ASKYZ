@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Database.Result;
 using System.Linq;
 using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace StudentUI
 {
     public partial class ChoseProgramGroup : AbstractForm
     {
-        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+        private readonly IQueryResult _queryResult;
 
-        public ChoseProgramGroup()
+        public ChoseProgramGroup(IQueryResult queryResult)
         {
+            _queryResult = queryResult;
             InitializeComponent();
             CreateProgramGroupButtons();
         }

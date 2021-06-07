@@ -1,16 +1,17 @@
-﻿using Database.Result;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib;
 
 namespace StudentUI
 {
     public partial class ChoseTestForm : AbstractForm
     {
-        public ChoseTestForm()
+        private IQueryResult _queryResult;
+        public ChoseTestForm(IQueryResult queryResult)
         {
+            _queryResult = queryResult;
             InitializeComponent();
-            //Question.ParseQuestionDocument(@"C:\Users\Hiruko\Desktop\Вопросы\Тестовые вопросы\7 категория.txt");
         }
 
         private void ButtonSignIn_Click(object sender, EventArgs e)
@@ -20,7 +21,7 @@ namespace StudentUI
                 string id = textBoxLogin.Text;
                 string password = textBoxPassword.Text;
 
-                if(Core.CheckPassword(new QueryResult(CustomDependencyInjection.DbConnection), id, password))
+                if(Core.CheckPassword(_queryResult, id, password))
                 {
                     new TestingForm();
                     WindowState = FormWindowState.Minimized;
@@ -36,19 +37,16 @@ namespace StudentUI
         }
 
         private void ButtonRegistration_Click(object sender, EventArgs e)
-        {
-            RegistrationForm registrationForm = new RegistrationForm();
-            registrationForm.Show();
-        }
+            => new RegistrationForm(_queryResult).Show();
 
         private void ButtonChoseTrainingTest_Click(object sender, EventArgs e)
-            => new ChoseDirectionForm();
+            => new ChoseDirectionForm(_queryResult);
 
         private void ButtonRecoveryPassword_Click(object sender, EventArgs e)
-            => new RecoveryPasswordForm();
+            => new RecoveryPasswordForm(_queryResult);
 
         private void ОтчетыToolStripMenuItem_Click(object sender, EventArgs e)
-            => new ReportsForm();
+            => new ReportsForm(_queryResult);
 
         private void НастройкиToolStripMenuItem_Click(object sender, EventArgs e)
             => new OptionsForm();

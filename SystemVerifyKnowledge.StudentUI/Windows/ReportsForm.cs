@@ -1,8 +1,8 @@
-﻿using Database.Result;
-using Microsoft.Office.Interop.Word;
+﻿using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib;
 using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib.Model;
@@ -15,10 +15,11 @@ namespace StudentUI
         private Document WordDoc;
         private Range range;
         private readonly List<User> users = new List<User>();
-        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+        private readonly IQueryResult _queryResult ;
 
-        public ReportsForm()
+        public ReportsForm(IQueryResult queryResult)
         {
+            _queryResult = queryResult;
             InitializeComponent();
             Show();
         }

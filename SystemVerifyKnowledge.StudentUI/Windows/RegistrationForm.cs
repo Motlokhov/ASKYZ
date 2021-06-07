@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using Database.Result;
 using System.Linq;
 using SystemVerifyKnowledge.CoreLib.Common;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace StudentUI
 {
     public partial class RegistrationForm 
     {
-        private readonly QueryResult _queryResult = new QueryResult(CustomDependencyInjection.DbConnection);
+        private readonly IQueryResult _queryResult;
         private List<byte> directions;
         private (byte id, string name, byte number)[] programs;
         private byte programId;
 
-        public RegistrationForm()
+        public RegistrationForm(IQueryResult queryResult)
         {
+            _queryResult = queryResult;
             InitializeComponent();
             
         }
