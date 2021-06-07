@@ -1,0 +1,42 @@
+﻿using System.Drawing;
+using System.IO;
+using System.Linq;
+using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Common;
+
+namespace SystemVerifyKnowledge.CoreLib.Model
+{
+    public class Question : Entity
+    {
+        private readonly IQueryResult _queryResult;
+        private readonly Image _image;
+
+        public ChildrenList<Answer> Answers = new ChildrenList<Answer>();
+
+        public Question(IQueryResult queryResult, ulong questionID)
+        {
+            _queryResult = queryResult;
+            (string description, Image image)? question = _queryResult.LoadQuestion(questionID);
+
+            if(!question.HasValue)
+                throw new InvalidDataException($"Question {questionID} is not exists. Class {nameof(Question)}");
+
+            Name = question.Value.description;
+            _image = question.Value.image;
+            Id = questionID;
+            LoadAnswers();
+        }
+
+        private void LoadAnswers()
+        {
+            (ulong id, string description)[] loadedAnswers = _queryResult.LoadAnswers(Id);
+            Answers.AddRange(loadedAnswers.Select(a => new Answer(a.id, a.description)));
+        }
+
+        public Image GetImage()
+        {
+            return _image;
+        }
+    }
+}
+
