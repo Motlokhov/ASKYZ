@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace SystemVerifyKnowledge.CoreLib.Common
@@ -55,7 +54,8 @@ namespace SystemVerifyKnowledge.CoreLib.Common
                         }
                         catch( Exception exept )
                         {
-                            MessageBox.Show(exept.Message);
+                            throw exept;
+                            //MessageBox.Show(exept.Message);
                         }
 
                     }

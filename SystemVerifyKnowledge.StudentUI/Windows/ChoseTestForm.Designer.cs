@@ -30,6 +30,7 @@ namespace StudentUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChoseTestForm));
             this.panelSignIn = new System.Windows.Forms.Panel();
             this.buttonChoseTrainingTest = new System.Windows.Forms.Button();
             this.buttonSignIn = new System.Windows.Forms.Button();
@@ -71,8 +72,9 @@ namespace StudentUI
             this.panelSignIn.Controls.Add(this.menuStrip1);
             this.panelSignIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSignIn.Location = new System.Drawing.Point(0, 0);
+            this.panelSignIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelSignIn.Name = "panelSignIn";
-            this.panelSignIn.Size = new System.Drawing.Size(1350, 729);
+            this.panelSignIn.Size = new System.Drawing.Size(1575, 970);
             this.panelSignIn.TabIndex = 2;
             // 
             // buttonChoseTrainingTest
@@ -83,11 +85,12 @@ namespace StudentUI
             this.buttonChoseTrainingTest.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
             this.buttonChoseTrainingTest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.buttonChoseTrainingTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonChoseTrainingTest.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonChoseTrainingTest.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonChoseTrainingTest.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonChoseTrainingTest.Location = new System.Drawing.Point(556, 436);
+            this.buttonChoseTrainingTest.Location = new System.Drawing.Point(649, 632);
+            this.buttonChoseTrainingTest.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonChoseTrainingTest.Name = "buttonChoseTrainingTest";
-            this.buttonChoseTrainingTest.Size = new System.Drawing.Size(243, 46);
+            this.buttonChoseTrainingTest.Size = new System.Drawing.Size(284, 53);
             this.buttonChoseTrainingTest.TabIndex = 8;
             this.buttonChoseTrainingTest.Text = "Выбрать программу";
             this.buttonChoseTrainingTest.UseVisualStyleBackColor = false;
@@ -101,11 +104,12 @@ namespace StudentUI
             this.buttonSignIn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
             this.buttonSignIn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.buttonSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSignIn.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSignIn.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonSignIn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonSignIn.Location = new System.Drawing.Point(831, 179);
+            this.buttonSignIn.Location = new System.Drawing.Point(969, 336);
+            this.buttonSignIn.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonSignIn.Name = "buttonSignIn";
-            this.buttonSignIn.Size = new System.Drawing.Size(158, 64);
+            this.buttonSignIn.Size = new System.Drawing.Size(184, 74);
             this.buttonSignIn.TabIndex = 8;
             this.buttonSignIn.Text = "Войти";
             this.buttonSignIn.UseVisualStyleBackColor = false;
@@ -114,10 +118,12 @@ namespace StudentUI
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Navy;
-            this.pictureBox1.BackgroundImage = global::StudentUI.Properties.Resources.Значок;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 27);
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(48, 61);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(142, 172);
+            this.pictureBox1.Size = new System.Drawing.Size(166, 175);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
@@ -129,11 +135,12 @@ namespace StudentUI
             this.buttonRecoveryPassword.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
             this.buttonRecoveryPassword.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.buttonRecoveryPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRecoveryPassword.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRecoveryPassword.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonRecoveryPassword.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonRecoveryPassword.Location = new System.Drawing.Point(449, 274);
+            this.buttonRecoveryPassword.Location = new System.Drawing.Point(524, 445);
+            this.buttonRecoveryPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonRecoveryPassword.Name = "buttonRecoveryPassword";
-            this.buttonRecoveryPassword.Size = new System.Drawing.Size(237, 46);
+            this.buttonRecoveryPassword.Size = new System.Drawing.Size(276, 53);
             this.buttonRecoveryPassword.TabIndex = 5;
             this.buttonRecoveryPassword.Text = "Восстановить пароль";
             this.buttonRecoveryPassword.UseVisualStyleBackColor = false;
@@ -147,11 +154,12 @@ namespace StudentUI
             this.buttonRegistration.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
             this.buttonRegistration.FlatAppearance.MouseOverBackColor = System.Drawing.Color.CornflowerBlue;
             this.buttonRegistration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonRegistration.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRegistration.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonRegistration.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonRegistration.Location = new System.Drawing.Point(692, 274);
+            this.buttonRegistration.Location = new System.Drawing.Point(807, 445);
+            this.buttonRegistration.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonRegistration.Name = "buttonRegistration";
-            this.buttonRegistration.Size = new System.Drawing.Size(237, 46);
+            this.buttonRegistration.Size = new System.Drawing.Size(276, 53);
             this.buttonRegistration.TabIndex = 5;
             this.buttonRegistration.Text = "Регистрация";
             this.buttonRegistration.UseVisualStyleBackColor = false;
@@ -162,9 +170,10 @@ namespace StudentUI
             this.labelPassword.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelPassword.AutoSize = true;
             this.labelPassword.BackColor = System.Drawing.Color.Navy;
-            this.labelPassword.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPassword.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelPassword.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelPassword.Location = new System.Drawing.Point(445, 223);
+            this.labelPassword.Location = new System.Drawing.Point(519, 386);
+            this.labelPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(88, 23);
             this.labelPassword.TabIndex = 3;
@@ -176,9 +185,10 @@ namespace StudentUI
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Navy;
             this.label3.Font = new System.Drawing.Font("Arial", 18F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(511, 396);
+            this.label3.Location = new System.Drawing.Point(596, 586);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(340, 28);
             this.label3.TabIndex = 2;
@@ -190,9 +200,10 @@ namespace StudentUI
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Navy;
             this.label2.Font = new System.Drawing.Font("Arial", 18F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
-                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(495, 127);
+            this.label2.Location = new System.Drawing.Point(578, 276);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(298, 28);
             this.label2.TabIndex = 2;
@@ -203,9 +214,10 @@ namespace StudentUI
             this.labelLogin.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelLogin.AutoSize = true;
             this.labelLogin.BackColor = System.Drawing.Color.Navy;
-            this.labelLogin.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLogin.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelLogin.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.labelLogin.Location = new System.Drawing.Point(458, 176);
+            this.labelLogin.Location = new System.Drawing.Point(534, 332);
+            this.labelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogin.Name = "labelLogin";
             this.labelLogin.Size = new System.Drawing.Size(75, 23);
             this.labelLogin.TabIndex = 2;
@@ -214,28 +226,32 @@ namespace StudentUI
             // textBoxLogin
             // 
             this.textBoxLogin.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.textBoxLogin.Location = new System.Drawing.Point(550, 179);
+            this.textBoxLogin.Location = new System.Drawing.Point(642, 336);
+            this.textBoxLogin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxLogin.Name = "textBoxLogin";
-            this.textBoxLogin.Size = new System.Drawing.Size(265, 20);
+            this.textBoxLogin.Size = new System.Drawing.Size(308, 23);
             this.textBoxLogin.TabIndex = 0;
             // 
             // textBoxPassword
             // 
             this.textBoxPassword.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.textBoxPassword.Location = new System.Drawing.Point(550, 223);
+            this.textBoxPassword.Location = new System.Drawing.Point(642, 386);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(265, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(308, 23);
             this.textBoxPassword.TabIndex = 1;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Navy;
-            this.pictureBox2.Image = global::StudentUI.Properties.Resources.Значок3;
-            this.pictureBox2.Location = new System.Drawing.Point(1029, 27);
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1246, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(391, 353);
+            this.pictureBox2.Size = new System.Drawing.Size(329, 317);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
@@ -249,7 +265,8 @@ namespace StudentUI
             this.оНасToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1350, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1575, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -279,12 +296,13 @@ namespace StudentUI
             // 
             // ChoseTestForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.ClientSize = new System.Drawing.Size(1575, 970);
             this.Controls.Add(this.panelSignIn);
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(2000, 2000);
-            this.MinimumSize = new System.Drawing.Size(1022, 726);
+            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.MaximumSize = new System.Drawing.Size(2331, 2302);
+            this.MinimumSize = new System.Drawing.Size(1190, 832);
             this.Name = "ChoseTestForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.panelSignIn.ResumeLayout(false);

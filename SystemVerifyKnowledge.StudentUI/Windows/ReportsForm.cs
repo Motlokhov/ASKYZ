@@ -6,6 +6,7 @@ using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib;
 using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib.Model;
+using Range = Microsoft.Office.Interop.Word.Range;
 
 namespace StudentUI
 {
