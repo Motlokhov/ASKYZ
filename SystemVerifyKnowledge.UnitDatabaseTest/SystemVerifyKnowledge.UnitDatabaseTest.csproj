@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database.Result\Database.Result.csproj" />
+    <ProjectReference Include="..\SystemVerifyKnowledge.Database.Result\SystemVerifyKnowledge.Database.Result.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -353,10 +353,6 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Database.Result\Database.Result.csproj">
-      <Project>{d10ae359-4418-4402-bf98-7c44bc405e13}</Project>
-      <Name>Database.Result</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj">
       <Project>{08737b03-cf38-4d9f-b493-1cd92e9f39d1}</Project>
       <Name>SystemVerifyKnowledge.Common</Name>
@@ -364,6 +360,10 @@
     <ProjectReference Include="..\SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj">
       <Project>{e824336c-fd96-4d0e-a678-b2a0d24fc7ce}</Project>
       <Name>SystemVerifyKnowledge.CoreLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemVerifyKnowledge.Database.Result\SystemVerifyKnowledge.Database.Result.csproj">
+      <Project>{d10ae359-4418-4402-bf98-7c44bc405e13}</Project>
+      <Name>SystemVerifyKnowledge.Database.Result</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

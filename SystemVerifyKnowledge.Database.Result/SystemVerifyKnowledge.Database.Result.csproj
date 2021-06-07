@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj" />
     <ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj" />
+    <ProjectReference Include="..\SystemVerifyKnowledge.Database\SystemVerifyKnowledge.Database.csproj" />
   </ItemGroup>
 
 </Project>

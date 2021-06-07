@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentUI", "StudentUI\StudentUI.csproj", "{4B863F7C-5DAC-49B6-8D7F-9AE84FBA75AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentUI", "SystemVerifyKnowledge.StudentUI\SystemVerifyKnowledge.StudentUI.csproj", "{4B863F7C-5DAC-49B6-8D7F-9AE84FBA75AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{7CB8027B-8C9B-45C5-ABFB-5978431E24BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "SystemVerifyKnowledge.Database\SystemVerifyKnowledge.Database.csproj", "{7CB8027B-8C9B-45C5-ABFB-5978431E24BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Result", "Database.Result\Database.Result.csproj", "{D10AE359-4418-4402-BF98-7C44BC405E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database.Result", "SystemVerifyKnowledge.Database.Result\SystemVerifyKnowledge.Database.Result.csproj", "{D10AE359-4418-4402-BF98-7C44BC405E13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitDatabaseTest", "UnitDatabaseTest\UnitDatabaseTest.csproj", "{263C5E47-BA6F-40DA-A378-6761A7ACCB04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitDatabaseTest", "SystemVerifyKnowledge.UnitDatabaseTest\SystemVerifyKnowledge.UnitDatabaseTest.csproj", "{263C5E47-BA6F-40DA-A378-6761A7ACCB04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Common", "SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj", "{08737B03-CF38-4D9F-B493-1CD92E9F39D1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.CoreTest", "SystemVerifyKnowledge.CoreTest\SystemVerifyKnowledge.CoreTest.csproj", "{F84B76CF-0D58-4979-9096-CFBF8353CF94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemVerifyKnowledge.CoreLib", "SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj", "{E824336C-FD96-4D0E-A678-B2A0D24FC7CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.CoreLib", "SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj", "{E824336C-FD96-4D0E-A678-B2A0D24FC7CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
