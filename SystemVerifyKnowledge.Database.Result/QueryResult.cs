@@ -11,11 +11,11 @@ namespace Database.Result
 {
     public class QueryResult : IQueryResult
     {
-        private readonly Func<DbConnection> _connectionFunction;
+        private readonly IConnection _dbConnection;
         
-        public QueryResult(Func<DbConnection> connectionFunction)
+        public QueryResult(IConnection connection)
         {
-            _connectionFunction = connectionFunction;
+            _dbConnection = connection;  
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Database.Result
         /// <returns>A tuple collection (id,name) of directions</returns>
         public (byte id, string name)[] LoadAllDirections()
         {
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 string command = "SELECT Id,Name FROM Direction";
                 using(DbDataReader dbDataReader = query.ReadData(command))
@@ -54,7 +54,7 @@ namespace Database.Result
             if(string.IsNullOrEmpty(password))
                 throw new ArgumentException($"Parameter {nameof(password)} can't be null or empty in {nameof(GetUserId)}");
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("@id", DbType.Int64, id);
                 query.AddParameter("@password", DbType.String, password);
@@ -76,7 +76,7 @@ namespace Database.Result
             JOIN ProgramGroup ON Direction.ID = ProgramGroup.DirectionID 
             WHERE ProgramGroup.ID = @programGroupId;";
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("programGroupId", DbType.Byte, programGroupId);
                 return query.ExecuteScalar(command)?.ToString();
@@ -100,7 +100,7 @@ namespace Database.Result
             JOIN Test ON Test.ProgramGroupID = ProgramGroup.ID 
             WHERE DirectionID = @directionID AND Test.[Type] = @testType";
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("directionId", DbType.Byte, directionID);
                 query.AddParameter("testType", DbType.Byte, testType);
@@ -127,7 +127,7 @@ namespace Database.Result
         {
             string command = "SELECT Name,Number FROM ProgramGroup WHERE ID = @programGroupId";
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("programGroupId", DbType.String, programGroupId);
                 using(DbDataReader reader = query.ReadData(command))
@@ -145,7 +145,7 @@ namespace Database.Result
         public DateTime[] LoadTestingDates()
         {
             string commandString = "SELECT distinct [Date] FROM TestingDate ORDER BY [Date] DESC";
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 List<DateTime> result = new List<DateTime>();
                 using(var reader = query.ReadData(commandString))
@@ -174,7 +174,7 @@ namespace Database.Result
         {
             string command = "SELECT * FROM[User] WHERE ID = @id";
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("id", DbType.Int64, userId);
                 using(DbDataReader reader = query.ReadData(command))
@@ -259,7 +259,7 @@ namespace Database.Result
             ,@programgroupId
             ,@id)";
 
-            using(var query = new Query(_connectionFunction.Invoke()))
+            using(var query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("firstname", DbType.String, firstname);
                 query.AddParameter("surname", DbType.String, surname);
@@ -285,7 +285,7 @@ namespace Database.Result
         public (ulong id, string password)? FindPassword(uint passportSerie, uint passportNumber)
         {
             string commandString = "SELECT Id,Password FROM [User] WHERE PassportSerie = @passportSerie and PassportNumber = @passportNumber";
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("passportSerie", DbType.Int32, passportSerie);
                 query.AddParameter("passportNumber", DbType.Int32, passportNumber);
@@ -309,7 +309,7 @@ namespace Database.Result
         {
             string command = "SELECT ID FROM Question WHERE TestID = @testId AND Type = @exerciseType";
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("testId", DbType.Int64, testId);
                 query.AddParameter("exerciseType", DbType.Int32, exerciseType);
@@ -334,7 +334,7 @@ namespace Database.Result
 
             string command = "SELECT UserID,ID FROM TestingDate WHERE Date = @testingDate";
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 List<(ulong, ulong)> result = new List<(ulong, ulong)>();
 
@@ -359,7 +359,7 @@ namespace Database.Result
         {
             string command = "SELECT ID FROM Test WHERE ProgramGroupID = @programGroupID AND Type = @testType";
 
-            using(var query = new Query(_connectionFunction.Invoke()))
+            using(var query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("programGroupId", DbType.Int64, programGroupID);
                 query.AddParameter("testType", DbType.Int32, testType);
@@ -390,7 +390,7 @@ namespace Database.Result
             WHERE TestingDateID = testingDateId 
                 AND ExerciseType = @exerciseType";
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("testingDateId", DbType.Int64, testingDateId);
                 query.AddParameter("exerciseType", DbType.Int64, exerciseType);
@@ -415,7 +415,7 @@ namespace Database.Result
         public (string description, Image image)? LoadQuestion(ulong questionId)
         {
             string command = "SELECT Description,Picture FROM Question WHERE ID =  @questionId";
-            using(var query = new Query(_connectionFunction.Invoke()))
+            using(var query = new Query(_dbConnection.GetConnection()))
             {
                 query.AddParameter("questionId", DbType.Int64, questionId);
                 using(DbDataReader reader = query.ReadData(command))
@@ -445,7 +445,7 @@ namespace Database.Result
         /// <returns>An question's answers tuple collection(id,description)</returns>
         public (ulong id,string description)[] LoadAnswers(ulong questionId)
         {
-            using(var query = new Query(_connectionFunction.Invoke()))
+            using(var query = new Query(_dbConnection.GetConnection()))
             {
                 using(DbDataReader reader = query.ReadData("SELECT Id,Description FROM Answer WHERE QuestionID = " + questionId))
                 {
@@ -483,7 +483,7 @@ namespace Database.Result
             string template = "SELECT SUM(Points) FROM Answer WHERE ID IN ({0})";
             string command = string.Format(template, answerIdsArray);
 
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 object result = query.ExecuteScalar(command);
                 if(result.Equals(DBNull.Value))
@@ -495,7 +495,7 @@ namespace Database.Result
 
         public void WriteTestResults(ulong userId, ulong programGroupId, (int type, byte points, byte trueAnswers, byte falseAnswers)[] exercises)
         {
-            using(Query query = new Query(_connectionFunction.Invoke()))
+            using(Query query = new Query(_dbConnection.GetConnection()))
             {
                 using(DbTransaction transaction = query.BeginTransaction())
                 {
@@ -513,7 +513,7 @@ namespace Database.Result
         public void WriteQuestions(int testID, int questionType, string question, byte[] picture, List<string> answers, List<short> trueAnswers)
         {
             ulong questionID = 0;
-            using(var query = new Query(_connectionFunction.Invoke(), CommandType.StoredProcedure))
+            using(var query = new Query(_dbConnection.GetConnection(), CommandType.StoredProcedure))
             {
                 query.AddParameter("@TestID", DbType.Int32, testID);
                 query.AddParameter("@description", DbType.String, question);
@@ -521,7 +521,7 @@ namespace Database.Result
                 query.AddParameter("@picture", DbType.Binary, picture);
                 questionID = Convert.ToUInt64(query.ExecuteScalar("AddQuestion"));
             }
-            using(var query = new Query(_connectionFunction.Invoke()))
+            using(var query = new Query(_dbConnection.GetConnection()))
             {
                 for(var i = 0; i < answers.Count; i++)
                 {

@@ -2,6 +2,8 @@
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
+using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.UnitDatabaseTest;
 
 namespace DataBaseTest
 {
@@ -17,11 +19,11 @@ namespace DataBaseTest
             ApplicationIntent=ReadWrite;
             MultiSubnetFailover=False";
 
-        public SqlConnection Connection => new SqlConnection(_SuperTestDatabaseConnectionString);
-        public Func<DbConnection> FunctionConnection => new Func<DbConnection>(() => Connection);
+        public readonly IConnection Connection;
 
         public SystemVerifyKnowledgeFixture()
         {
+            Connection = new TestConnection();
             CreateSuperTestDatabase();
             CreateTables();
            FillMoqDbData();
@@ -54,7 +56,7 @@ namespace DataBaseTest
 
         private void CreateTables()
         {
-            using(DbConnection connection = Connection)
+            using(DbConnection connection = Connection.GetConnection())
             {
                 connection.Open();
                 using(DbCommand command = connection.CreateCommand())
@@ -68,7 +70,7 @@ namespace DataBaseTest
 
         private void FillMoqDbData()
         {
-            using(DbConnection connection = Connection)
+            using(DbConnection connection = Connection.GetConnection())
             {
                 connection.Open();
                 using(DbCommand command = connection.CreateCommand())

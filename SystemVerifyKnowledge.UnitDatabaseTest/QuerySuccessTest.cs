@@ -14,7 +14,7 @@ namespace DataBaseTest
         public QuerySuccess(SystemVerifyKnowledgeFixture fixture)
         {
             _fixture = fixture;
-            _queryResult = new QueryResult(_fixture.FunctionConnection);
+            _queryResult = new QueryResult(_fixture.Connection);
         }
 
         [Theory]
