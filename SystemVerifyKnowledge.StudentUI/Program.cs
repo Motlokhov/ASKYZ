@@ -19,7 +19,9 @@ namespace StudentUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            AppController.RegisterService<IQueryResult, QueryResult>()
+            AppController
+            .RegisterService<IConnection, ProductionConnection>()
+            .RegisterService<IQueryResult, QueryResult>()
             .RegisterView<IChoseTestView, ChoseTestForm>()
             .RegisterView<ITestingView, TestingForm>()
             .Run<ChoseTestPresenter>();
