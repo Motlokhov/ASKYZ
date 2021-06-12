@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SystemVerifyKnowledge.ApplicationController\SystemVerifyKnowledge.ApplicationController.csproj" />
+    <ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj" />
+    <ProjectReference Include="..\SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -75,7 +75,7 @@ namespace SystemVerifyKnowledge.CoreTest
             mockQueryResult.Setup(_ => _.GetUserId(It.IsAny<string>(), It.IsAny<string>()))
                             .Returns(userId);
 
-            Core.CheckPassword(mockQueryResult.Object, userId.ToString(), "password");
+            Core.CheckPassword(mockQueryResult.Object, new UserSignIn() { Login = userId.ToString(), Password = "password" });
 
             byte commonTrueAnswersCount = 30;
             byte commonTrueAnswersPoints = 30;

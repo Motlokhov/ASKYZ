@@ -9,13 +9,18 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
 	  <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1003" />
 	  <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
 	</ItemGroup>
 	
 	<ItemGroup>
+		<ProjectReference Include="..\SystemVerifyKnowledge.ApplicationController\SystemVerifyKnowledge.ApplicationController.csproj" />
 		<ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj"></ProjectReference>
 		<ProjectReference Include="..\SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj"></ProjectReference>
 		<ProjectReference Include="..\SystemVerifyKnowledge.Database.Result\SystemVerifyKnowledge.Database.Result.csproj"></ProjectReference>
+		<ProjectReference Include="..\SystemVerifyKnowledge.Presenters\SystemVerifyKnowledge.Presenters.csproj" />
 	</ItemGroup>
 </Project>

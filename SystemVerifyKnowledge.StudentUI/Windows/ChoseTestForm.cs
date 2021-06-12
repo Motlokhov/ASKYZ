@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Windows.Forms;
 using SystemVerifyKnowledge.Common.Interface;
-using SystemVerifyKnowledge.CoreLib;
+using SystemVerifyKnowledge.CoreLib.Model;
 
 namespace StudentUI
 {
-    public partial class ChoseTestForm : AbstractForm
+    public partial class ChoseTestForm : AbstractForm, IChoseTestView
     {
-        private IQueryResult _queryResult;
-        public ChoseTestForm(IQueryResult queryResult)
-        {
-            _queryResult = queryResult;
-            InitializeComponent();
-        }
+        public event Action<IUserSignIn> SingIn;
+        public event Action ShowRegistrationWindow;
+        public event Action ShowTrainingTestWindow;
+        public event Action ShowRecoveryPasswordWindow;
+        public event Action ShowReportsWindow;
 
-        private void ButtonSignIn_Click(object sender, EventArgs e)
+        private readonly IQueryResult _queryResult;
+
+        public IUserSignIn UserSignIn  
         {
-            if(!string.IsNullOrEmpty(textBoxLogin.Text) && !string.IsNullOrEmpty(textBoxPassword.Text))
+            get
             {
-                string id = textBoxLogin.Text;
-                string password = textBoxPassword.Text;
-
-                if(Core.CheckPassword(_queryResult, id, password))
+                return new UserSignIn
                 {
-                    new TestingForm();
-                    WindowState = FormWindowState.Minimized;
-                }
+                    Login = textBoxLogin.Text,
+                    Password = textBoxPassword.Text
+                };
             }
         }
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        public ChoseTestForm()
         {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            Dispose();
+            InitializeComponent();
+            buttonSignIn.Click += delegate { SingIn?.Invoke(UserSignIn); };
+            buttonChoseTrainingTest.Click += delegate { ShowTrainingTestWindow?.Invoke(); };
+            buttonRecoveryPassword.Click += delegate { ShowRecoveryPasswordWindow.Invoke(); };
+            buttonRegistration.Click += delegate { ShowRegistrationWindow.Invoke(); };
+            отчетыToolStripMenuItem.Click += delegate { ShowReportsWindow.Invoke(); };
         }
 
+        public new void Show() => Application.Run(this);
+
+        //Избавиться от реализаций ниже с зависимостью 
         private void ButtonRegistration_Click(object sender, EventArgs e)
             => new RegistrationForm(_queryResult).Show();
 
@@ -53,5 +57,10 @@ namespace StudentUI
 
         private void ОНасToolStripMenuItem_Click(object sender, EventArgs e)
             => new AboutForm();
+
+        public void ShowInfoMessage(string message)
+        {
+            MessageBox.Show(message, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

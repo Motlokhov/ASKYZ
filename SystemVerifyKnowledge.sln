@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.CoreT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.CoreLib", "SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj", "{E824336C-FD96-4D0E-A678-B2A0D24FC7CE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Presenters", "SystemVerifyKnowledge.Presenters\SystemVerifyKnowledge.Presenters.csproj", "{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemVerifyKnowledge.ApplicationController", "SystemVerifyKnowledge.ApplicationController\SystemVerifyKnowledge.ApplicationController.csproj", "{726A30D3-F3FE-4217-A713-7FEA13252704}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,22 @@ Global
 		{E824336C-FD96-4D0E-A678-B2A0D24FC7CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E824336C-FD96-4D0E-A678-B2A0D24FC7CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{E824336C-FD96-4D0E-A678-B2A0D24FC7CE}.Release|x86.Build.0 = Release|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Debug|x86.Build.0 = Debug|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}.Release|x86.Build.0 = Release|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Debug|x86.Build.0 = Debug|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Release|x86.ActiveCfg = Release|Any CPU
+		{726A30D3-F3FE-4217-A713-7FEA13252704}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

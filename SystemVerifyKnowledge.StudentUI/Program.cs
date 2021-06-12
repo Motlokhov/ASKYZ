@@ -1,6 +1,9 @@
 ﻿using Database.Result;
 using System;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.ApplicationController;
+using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.Presenters;
 
 namespace StudentUI
 {
@@ -9,14 +12,17 @@ namespace StudentUI
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static public Form MainForm;
+        static public ApplicationController AppController = new();
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(MainForm = new ChoseTestForm(new QueryResult(CustomDependencyInjection.DbConnection)));
+
+            AppController.RegisterService<IQueryResult, QueryResult>()
+            .RegisterView<IChoseTestView, ChoseTestForm>()
+            .RegisterView<ITestingView, TestingForm>()
+            .Run<ChoseTestPresenter>();
         }
-        
     }
 }

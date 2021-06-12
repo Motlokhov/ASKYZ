@@ -4,10 +4,12 @@ using System.Drawing;
 using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib.Model;
 using SystemVerifyKnowledge.CoreLib;
+using SystemVerifyKnowledge.Presenters;
+using SystemVerifyKnowledge.Common.Interface;
 
 namespace StudentUI
 {
-    public partial class TestingForm : AbstractForm
+    public partial class TestingForm : AbstractForm, ITestingView
     {
         private Form pictureForm;
         private CheckBox[] checkBoxes;
@@ -17,7 +19,6 @@ namespace StudentUI
             richTextBoxQuestion.Text = string.Empty;
             Core.Exercises.KnowledgeVerifyingEnded += KnowledgeVerifyingEnded;
             CheckManipulateButtons();
-            Show();
         }
 
         private void CheckManipulateButtons()
@@ -55,12 +56,12 @@ namespace StudentUI
         {
             if( Core.Exercises.Type == ExerciseSetType.Grand )
             {
-                ResultForm resultForm = new ResultForm();
+                ResultForm resultForm = new();
                 resultForm.Show();
             }
             else
             {
-                Program.MainForm.Show();
+                Program.AppController.Run<ChoseTestPresenter>();
                 MessageBox.Show("Обучающее тестирование завершено.");
             }
             Core.Exercises.KnowledgeVerifyingEnded -= KnowledgeVerifyingEnded;

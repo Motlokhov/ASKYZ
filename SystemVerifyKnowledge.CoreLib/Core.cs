@@ -20,11 +20,9 @@ namespace SystemVerifyKnowledge.CoreLib
             Random = new Random();
         }
 
-        public static bool CheckPassword(IQueryResult queryResult, string id , string password)
+        public static bool CheckPassword(IQueryResult queryResult, IUserSignIn userSignIn)
         {
-            Exercises = null;
-            User = null;
-            ulong? userId = queryResult.GetUserId(id, password);
+            ulong? userId = queryResult.GetUserId(userSignIn.Login, userSignIn.Password);
             if( userId.HasValue )
             {
                 User = new User(queryResult, userId.Value);

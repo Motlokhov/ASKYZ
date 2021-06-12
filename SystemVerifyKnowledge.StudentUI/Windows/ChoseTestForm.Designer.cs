@@ -113,7 +113,6 @@ namespace StudentUI
             this.buttonSignIn.TabIndex = 8;
             this.buttonSignIn.Text = "Войти";
             this.buttonSignIn.UseVisualStyleBackColor = false;
-            this.buttonSignIn.Click += new System.EventHandler(this.ButtonSignIn_Click);
             // 
             // pictureBox1
             // 
@@ -304,7 +303,6 @@ namespace StudentUI
             this.MaximumSize = new System.Drawing.Size(2331, 2302);
             this.MinimumSize = new System.Drawing.Size(1190, 832);
             this.Name = "ChoseTestForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.panelSignIn.ResumeLayout(false);
             this.panelSignIn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
