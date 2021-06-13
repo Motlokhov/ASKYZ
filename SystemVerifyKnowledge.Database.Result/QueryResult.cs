@@ -499,7 +499,7 @@ namespace Database.Result
             {
                 using(DbTransaction transaction = query.BeginTransaction())
                 {
-                    object testingDateID = query.ExecuteScalar("INSERT INTO TestingDate (UserID,ProgramGroupID,Date) VALUES(" + userId + "," + programGroupId + ",'" + DateTime.Today.ToString("d") + "') SELECT @@IDENTITY");
+                    object testingDateID = query.ExecuteNonQuery("INSERT INTO TestingDate (UserID,ProgramGroupID,Date) VALUES(" + userId + "," + programGroupId + ",'" + DateTime.Today.ToString("yyyy-MM-dd HH:mm:ss") + "') SELECT @@IDENTITY");
 
                     foreach(var (type, points, trueAnswers, falseAnswers) in exercises)
                         query.ExecuteNonQuery("INSERT INTO TestingResult(TestingDateID,ExerciseType,Points,TrueAnswers,FalseAnswers) VALUES(" + testingDateID + "," + type + "," + points + "," + trueAnswers + "," + falseAnswers + ")");

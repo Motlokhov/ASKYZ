@@ -4,7 +4,7 @@ using System.Data.Common;
 
 namespace Database
 {
-    public class Query:IDisposable
+    public class Query : IDisposable
     {
         private readonly DbConnection _connection;// { get; private set; }
         private readonly DbCommand _command;
@@ -17,7 +17,12 @@ namespace Database
             _command.CommandType = commandType;
         }
 
-        public DbTransaction BeginTransaction() => _connection.BeginTransaction();
+        public DbTransaction BeginTransaction()
+        {
+            DbTransaction transaction = _connection.BeginTransaction();
+            _command.Transaction = transaction;
+            return transaction;
+        }
 
         public DbDataReader ReadData(string _command_text)
         {

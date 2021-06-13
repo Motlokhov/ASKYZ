@@ -30,7 +30,7 @@ create table [User]
 
 Create table TestingDate 
 (
- Id bigint primary key,
+ Id bigint primary key IDENTITY,
  UserId bigint not null,
  ProgramGroupID tinyint not null,
  Date datetime not null,
