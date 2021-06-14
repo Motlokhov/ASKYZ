@@ -38,11 +38,12 @@
             // buttonOk
             // 
             this.buttonOk.BackColor = System.Drawing.Color.Navy;
-            this.buttonOk.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.buttonOk.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonOk.Location = new System.Drawing.Point(114, 169);
+            this.buttonOk.Location = new System.Drawing.Point(133, 195);
+            this.buttonOk.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonOk.Name = "buttonOk";
-            this.buttonOk.Size = new System.Drawing.Size(85, 29);
+            this.buttonOk.Size = new System.Drawing.Size(99, 33);
             this.buttonOk.TabIndex = 9;
             this.buttonOk.Text = "Ок";
             this.buttonOk.UseVisualStyleBackColor = false;
@@ -50,29 +51,32 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(114, 116);
+            this.textBoxPassword.Location = new System.Drawing.Point(133, 134);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.ReadOnly = true;
-            this.textBoxPassword.Size = new System.Drawing.Size(152, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(177, 23);
             this.textBoxPassword.TabIndex = 8;
             // 
             // textBoxId
             // 
-            this.textBoxId.Location = new System.Drawing.Point(114, 65);
+            this.textBoxId.Location = new System.Drawing.Point(133, 75);
+            this.textBoxId.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxId.Name = "textBoxId";
             this.textBoxId.ReadOnly = true;
-            this.textBoxId.Size = new System.Drawing.Size(152, 20);
+            this.textBoxId.Size = new System.Drawing.Size(177, 23);
             this.textBoxId.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Navy;
-            this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(19, 116);
+            this.label2.Location = new System.Drawing.Point(22, 134);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 20);
+            this.label2.Size = new System.Drawing.Size(105, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "Ваш пароль:";
             // 
@@ -80,25 +84,27 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Navy;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(29, 65);
+            this.label1.Location = new System.Drawing.Point(34, 75);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 20);
+            this.label1.Size = new System.Drawing.Size(94, 20);
             this.label1.TabIndex = 5;
             this.label1.Text = "Ваш логин:";
             // 
             // UserData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(296, 228);
+            this.ClientSize = new System.Drawing.Size(351, 263);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "UserData";
             this.Text = "Найти пользователя";
             this.ResumeLayout(false);

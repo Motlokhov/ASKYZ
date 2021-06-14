@@ -44,7 +44,7 @@
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
             this.textBox.ShortcutsEnabled = false;
-            this.textBox.Size = new System.Drawing.Size(936, 26);
+            this.textBox.Size = new System.Drawing.Size(940, 26);
             this.textBox.TabIndex = 2;
             this.textBox.Text = "текст \r\nтекст\r\nтекст\r\n текст\r\n текст";
             this.textBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -54,7 +54,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(936, 35);
+            this.ClientSize = new System.Drawing.Size(940, 34);
             this.Controls.Add(this.textBox);
             this.ForeColor = System.Drawing.Color.Snow;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

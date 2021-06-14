@@ -73,18 +73,20 @@
             this.panelFirstTest.Controls.Add(this.labelCountPoints1);
             this.panelFirstTest.Controls.Add(this.label1);
             this.panelFirstTest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelFirstTest.Font = new System.Drawing.Font("Arial", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.panelFirstTest.Location = new System.Drawing.Point(0, 282);
+            this.panelFirstTest.Font = new System.Drawing.Font("Arial", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.panelFirstTest.Location = new System.Drawing.Point(0, 325);
+            this.panelFirstTest.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelFirstTest.Name = "panelFirstTest";
-            this.panelFirstTest.Size = new System.Drawing.Size(1377, 447);
+            this.panelFirstTest.Size = new System.Drawing.Size(1610, 645);
             this.panelFirstTest.TabIndex = 1;
             // 
             // labelCountFalseAnswers3
             // 
             this.labelCountFalseAnswers3.AutoSize = true;
-            this.labelCountFalseAnswers3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountFalseAnswers3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountFalseAnswers3.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountFalseAnswers3.Location = new System.Drawing.Point(951, 347);
+            this.labelCountFalseAnswers3.Location = new System.Drawing.Point(1110, 400);
+            this.labelCountFalseAnswers3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountFalseAnswers3.Name = "labelCountFalseAnswers3";
             this.labelCountFalseAnswers3.Size = new System.Drawing.Size(398, 23);
             this.labelCountFalseAnswers3.TabIndex = 21;
@@ -93,9 +95,10 @@
             // labelCountQuestions3
             // 
             this.labelCountQuestions3.AutoSize = true;
-            this.labelCountQuestions3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountQuestions3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountQuestions3.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountQuestions3.Location = new System.Drawing.Point(951, 209);
+            this.labelCountQuestions3.Location = new System.Drawing.Point(1110, 241);
+            this.labelCountQuestions3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountQuestions3.Name = "labelCountQuestions3";
             this.labelCountQuestions3.Size = new System.Drawing.Size(245, 23);
             this.labelCountQuestions3.TabIndex = 20;
@@ -104,9 +107,10 @@
             // labelCountTrueAnswers3
             // 
             this.labelCountTrueAnswers3.AutoSize = true;
-            this.labelCountTrueAnswers3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountTrueAnswers3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountTrueAnswers3.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountTrueAnswers3.Location = new System.Drawing.Point(951, 279);
+            this.labelCountTrueAnswers3.Location = new System.Drawing.Point(1110, 322);
+            this.labelCountTrueAnswers3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountTrueAnswers3.Name = "labelCountTrueAnswers3";
             this.labelCountTrueAnswers3.Size = new System.Drawing.Size(370, 23);
             this.labelCountTrueAnswers3.TabIndex = 19;
@@ -115,9 +119,10 @@
             // labelCountPoints3
             // 
             this.labelCountPoints3.AutoSize = true;
-            this.labelCountPoints3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountPoints3.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountPoints3.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountPoints3.Location = new System.Drawing.Point(951, 143);
+            this.labelCountPoints3.Location = new System.Drawing.Point(1110, 165);
+            this.labelCountPoints3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountPoints3.Name = "labelCountPoints3";
             this.labelCountPoints3.Size = new System.Drawing.Size(341, 23);
             this.labelCountPoints3.TabIndex = 18;
@@ -127,18 +132,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Yellow;
-            this.label3.Location = new System.Drawing.Point(949, 35);
+            this.label3.Location = new System.Drawing.Point(1107, 40);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(311, 32);
+            this.label3.Size = new System.Drawing.Size(310, 32);
             this.label3.TabIndex = 17;
             this.label3.Text = "Практические задачи";
             // 
             // labelCountFalseAnswers2
             // 
             this.labelCountFalseAnswers2.AutoSize = true;
-            this.labelCountFalseAnswers2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountFalseAnswers2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountFalseAnswers2.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountFalseAnswers2.Location = new System.Drawing.Point(478, 347);
+            this.labelCountFalseAnswers2.Location = new System.Drawing.Point(558, 400);
+            this.labelCountFalseAnswers2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountFalseAnswers2.Name = "labelCountFalseAnswers2";
             this.labelCountFalseAnswers2.Size = new System.Drawing.Size(398, 23);
             this.labelCountFalseAnswers2.TabIndex = 16;
@@ -147,9 +154,10 @@
             // labelCountQuestions2
             // 
             this.labelCountQuestions2.AutoSize = true;
-            this.labelCountQuestions2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountQuestions2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountQuestions2.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountQuestions2.Location = new System.Drawing.Point(478, 209);
+            this.labelCountQuestions2.Location = new System.Drawing.Point(558, 241);
+            this.labelCountQuestions2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountQuestions2.Name = "labelCountQuestions2";
             this.labelCountQuestions2.Size = new System.Drawing.Size(245, 23);
             this.labelCountQuestions2.TabIndex = 15;
@@ -158,9 +166,10 @@
             // labelCountTrueAnswers2
             // 
             this.labelCountTrueAnswers2.AutoSize = true;
-            this.labelCountTrueAnswers2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountTrueAnswers2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountTrueAnswers2.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountTrueAnswers2.Location = new System.Drawing.Point(478, 279);
+            this.labelCountTrueAnswers2.Location = new System.Drawing.Point(558, 322);
+            this.labelCountTrueAnswers2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountTrueAnswers2.Name = "labelCountTrueAnswers2";
             this.labelCountTrueAnswers2.Size = new System.Drawing.Size(370, 23);
             this.labelCountTrueAnswers2.TabIndex = 14;
@@ -169,9 +178,10 @@
             // labelCountPoints2
             // 
             this.labelCountPoints2.AutoSize = true;
-            this.labelCountPoints2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountPoints2.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountPoints2.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountPoints2.Location = new System.Drawing.Point(478, 143);
+            this.labelCountPoints2.Location = new System.Drawing.Point(558, 165);
+            this.labelCountPoints2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountPoints2.Name = "labelCountPoints2";
             this.labelCountPoints2.Size = new System.Drawing.Size(336, 23);
             this.labelCountPoints2.TabIndex = 13;
@@ -181,18 +191,20 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(476, 35);
+            this.label2.Location = new System.Drawing.Point(555, 40);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(338, 32);
+            this.label2.Size = new System.Drawing.Size(337, 32);
             this.label2.TabIndex = 12;
             this.label2.Text = "Тематические вопросы";
             // 
             // labelCountFalseAnswers1
             // 
             this.labelCountFalseAnswers1.AutoSize = true;
-            this.labelCountFalseAnswers1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountFalseAnswers1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountFalseAnswers1.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountFalseAnswers1.Location = new System.Drawing.Point(10, 347);
+            this.labelCountFalseAnswers1.Location = new System.Drawing.Point(12, 400);
+            this.labelCountFalseAnswers1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountFalseAnswers1.Name = "labelCountFalseAnswers1";
             this.labelCountFalseAnswers1.Size = new System.Drawing.Size(398, 23);
             this.labelCountFalseAnswers1.TabIndex = 7;
@@ -201,9 +213,10 @@
             // labelCountQuestions1
             // 
             this.labelCountQuestions1.AutoSize = true;
-            this.labelCountQuestions1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountQuestions1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountQuestions1.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountQuestions1.Location = new System.Drawing.Point(10, 209);
+            this.labelCountQuestions1.Location = new System.Drawing.Point(12, 241);
+            this.labelCountQuestions1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountQuestions1.Name = "labelCountQuestions1";
             this.labelCountQuestions1.Size = new System.Drawing.Size(245, 23);
             this.labelCountQuestions1.TabIndex = 6;
@@ -212,9 +225,10 @@
             // labelCountTrueAnswers1
             // 
             this.labelCountTrueAnswers1.AutoSize = true;
-            this.labelCountTrueAnswers1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountTrueAnswers1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountTrueAnswers1.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountTrueAnswers1.Location = new System.Drawing.Point(10, 279);
+            this.labelCountTrueAnswers1.Location = new System.Drawing.Point(12, 322);
+            this.labelCountTrueAnswers1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountTrueAnswers1.Name = "labelCountTrueAnswers1";
             this.labelCountTrueAnswers1.Size = new System.Drawing.Size(370, 23);
             this.labelCountTrueAnswers1.TabIndex = 5;
@@ -223,9 +237,10 @@
             // labelCountPoints1
             // 
             this.labelCountPoints1.AutoSize = true;
-            this.labelCountPoints1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCountPoints1.Font = new System.Drawing.Font("Arial", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.labelCountPoints1.ForeColor = System.Drawing.Color.Beige;
-            this.labelCountPoints1.Location = new System.Drawing.Point(10, 143);
+            this.labelCountPoints1.Location = new System.Drawing.Point(12, 165);
+            this.labelCountPoints1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCountPoints1.Name = "labelCountPoints1";
             this.labelCountPoints1.Size = new System.Drawing.Size(336, 23);
             this.labelCountPoints1.TabIndex = 4;
@@ -235,9 +250,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(8, 35);
+            this.label1.Location = new System.Drawing.Point(9, 40);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 32);
+            this.label1.Size = new System.Drawing.Size(280, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "Тестовые вопросы";
             // 
@@ -248,11 +264,13 @@
             this.groupBoxResult.Controls.Add(this.labelGroup);
             this.groupBoxResult.Controls.Add(this.labelUser);
             this.groupBoxResult.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBoxResult.Font = new System.Drawing.Font("Arial", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBoxResult.Font = new System.Drawing.Font("Arial", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.groupBoxResult.ForeColor = System.Drawing.Color.Yellow;
             this.groupBoxResult.Location = new System.Drawing.Point(0, 0);
+            this.groupBoxResult.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxResult.Name = "groupBoxResult";
-            this.groupBoxResult.Size = new System.Drawing.Size(1377, 282);
+            this.groupBoxResult.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBoxResult.Size = new System.Drawing.Size(1610, 325);
             this.groupBoxResult.TabIndex = 0;
             this.groupBoxResult.TabStop = false;
             this.groupBoxResult.Text = "Результаты \"Итогового тестирования\" за ";
@@ -260,46 +278,52 @@
             // labelAllPoints
             // 
             this.labelAllPoints.AutoSize = true;
-            this.labelAllPoints.Location = new System.Drawing.Point(10, 217);
+            this.labelAllPoints.Location = new System.Drawing.Point(12, 250);
+            this.labelAllPoints.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAllPoints.Name = "labelAllPoints";
-            this.labelAllPoints.Size = new System.Drawing.Size(335, 32);
+            this.labelAllPoints.Size = new System.Drawing.Size(334, 32);
             this.labelAllPoints.TabIndex = 3;
             this.labelAllPoints.Text = "Набрано баллов всего: ";
             // 
             // labelTestNumber
             // 
             this.labelTestNumber.AutoSize = true;
-            this.labelTestNumber.Location = new System.Drawing.Point(123, 164);
+            this.labelTestNumber.Location = new System.Drawing.Point(144, 189);
+            this.labelTestNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTestNumber.Name = "labelTestNumber";
-            this.labelTestNumber.Size = new System.Drawing.Size(222, 32);
+            this.labelTestNumber.Size = new System.Drawing.Size(221, 32);
             this.labelTestNumber.TabIndex = 2;
             this.labelTestNumber.Text = "Программа №: ";
             // 
             // labelGroup
             // 
             this.labelGroup.AutoSize = true;
-            this.labelGroup.Location = new System.Drawing.Point(220, 111);
+            this.labelGroup.Location = new System.Drawing.Point(257, 128);
+            this.labelGroup.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGroup.Name = "labelGroup";
-            this.labelGroup.Size = new System.Drawing.Size(135, 32);
+            this.labelGroup.Size = new System.Drawing.Size(134, 32);
             this.labelGroup.TabIndex = 1;
             this.labelGroup.Text = "Группа:  ";
             // 
             // labelUser
             // 
             this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(128, 61);
+            this.labelUser.Location = new System.Drawing.Point(149, 70);
+            this.labelUser.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(222, 32);
+            this.labelUser.Size = new System.Drawing.Size(221, 32);
             this.labelUser.TabIndex = 0;
             this.labelUser.Text = "Тестируемый: ";
             // 
             // ResultForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1377, 729);
+            this.ClientSize = new System.Drawing.Size(1610, 970);
             this.Controls.Add(this.panelFirstTest);
             this.Controls.Add(this.groupBoxResult);
+            this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.MinimumSize = new System.Drawing.Size(1388, 1009);
             this.Name = "ResultForm";
             this.panelFirstTest.ResumeLayout(false);
             this.panelFirstTest.PerformLayout();

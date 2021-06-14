@@ -45,7 +45,7 @@
             this.MainmenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainmenuStrip.Name = "MainmenuStrip";
             this.MainmenuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.MainmenuStrip.Size = new System.Drawing.Size(1575, 24);
+            this.MainmenuStrip.Size = new System.Drawing.Size(1551, 24);
             this.MainmenuStrip.TabIndex = 5;
             this.MainmenuStrip.Text = "Главное меню";
             // 
@@ -85,7 +85,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1575, 970);
+            this.ClientSize = new System.Drawing.Size(1551, 970);
             this.Controls.Add(this.MainmenuStrip);
             this.MainMenuStrip = this.MainmenuStrip;
             this.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);

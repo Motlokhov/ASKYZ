@@ -38,9 +38,10 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Navy;
             this.label1.ForeColor = System.Drawing.Color.Yellow;
-            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Location = new System.Drawing.Point(16, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(337, 91);
+            this.label1.Size = new System.Drawing.Size(362, 105);
             this.label1.TabIndex = 1;
             this.label1.Text = "Автоматизированная система контроля уровня знаний. (АСКУЗ)\r\n\r\nАвторы\\разработчики" +
     ":\r\n\r\n  Мотлохов Михаил Дмитриевич e-mail:\r\n\r\n  Павлов Александр Викторович e-mai" +
@@ -53,9 +54,10 @@
             this.linkLabel1.ForeColor = System.Drawing.Color.White;
             this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(217, 70);
+            this.linkLabel1.Location = new System.Drawing.Point(253, 81);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(124, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(142, 15);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "m.motlokhov@yandex.ru";
@@ -69,9 +71,10 @@
             this.linkLabel2.ForeColor = System.Drawing.Color.White;
             this.linkLabel2.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabel2.LinkColor = System.Drawing.Color.White;
-            this.linkLabel2.Location = new System.Drawing.Point(220, 96);
+            this.linkLabel2.Location = new System.Drawing.Point(257, 111);
+            this.linkLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(118, 13);
+            this.linkLabel2.Size = new System.Drawing.Size(125, 15);
             this.linkLabel2.TabIndex = 3;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "pav280808@yandex.ru";
@@ -80,13 +83,14 @@
             // 
             // AboutForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(357, 133);
+            this.ClientSize = new System.Drawing.Size(416, 153);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AboutForm";

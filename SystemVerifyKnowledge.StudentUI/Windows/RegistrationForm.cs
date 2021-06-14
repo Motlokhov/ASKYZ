@@ -7,7 +7,7 @@ using SystemVerifyKnowledge.Common.Interface;
 
 namespace StudentUI
 {
-    public partial class RegistrationForm 
+    public partial class RegistrationForm
     {
         private readonly IQueryResult _queryResult;
         private List<byte> directions;

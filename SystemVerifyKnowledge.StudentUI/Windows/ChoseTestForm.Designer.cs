@@ -87,7 +87,7 @@ namespace StudentUI
             this.buttonChoseTrainingTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonChoseTrainingTest.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.buttonChoseTrainingTest.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonChoseTrainingTest.Location = new System.Drawing.Point(649, 632);
+            this.buttonChoseTrainingTest.Location = new System.Drawing.Point(649, 631);
             this.buttonChoseTrainingTest.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonChoseTrainingTest.Name = "buttonChoseTrainingTest";
             this.buttonChoseTrainingTest.Size = new System.Drawing.Size(284, 53);

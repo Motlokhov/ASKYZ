@@ -50,13 +50,13 @@ namespace StudentUI
             this.richTextBoxQuestion.BackColor = System.Drawing.Color.Navy;
             this.richTextBoxQuestion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBoxQuestion.Cursor = System.Windows.Forms.Cursors.Default;
-            this.richTextBoxQuestion.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.richTextBoxQuestion.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.richTextBoxQuestion.ForeColor = System.Drawing.Color.Yellow;
             this.richTextBoxQuestion.Location = new System.Drawing.Point(9, 8);
             this.richTextBoxQuestion.Margin = new System.Windows.Forms.Padding(20);
             this.richTextBoxQuestion.Name = "richTextBoxQuestion";
             this.richTextBoxQuestion.ReadOnly = true;
-            this.richTextBoxQuestion.Size = new System.Drawing.Size(1333, 610);
+            this.richTextBoxQuestion.Size = new System.Drawing.Size(1336, 722);
             this.richTextBoxQuestion.TabIndex = 4;
             this.richTextBoxQuestion.Text = "Вопрос";
             // 
@@ -71,9 +71,9 @@ namespace StudentUI
             this.OtherPanel.Controls.Add(this.buttonPassQuestion);
             this.OtherPanel.Controls.Add(this.buttonGiveAnswer);
             this.OtherPanel.ForeColor = System.Drawing.Color.Yellow;
-            this.OtherPanel.Location = new System.Drawing.Point(9, 676);
+            this.OtherPanel.Location = new System.Drawing.Point(9, 788);
             this.OtherPanel.Name = "OtherPanel";
-            this.OtherPanel.Size = new System.Drawing.Size(1333, 47);
+            this.OtherPanel.Size = new System.Drawing.Size(1336, 47);
             this.OtherPanel.TabIndex = 2;
             // 
             // linkLabelImage
@@ -82,7 +82,7 @@ namespace StudentUI
             this.linkLabelImage.AutoSize = true;
             this.linkLabelImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.linkLabelImage.DisabledLinkColor = System.Drawing.Color.Yellow;
-            this.linkLabelImage.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabelImage.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.linkLabelImage.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.linkLabelImage.LinkColor = System.Drawing.SystemColors.ButtonHighlight;
             this.linkLabelImage.Location = new System.Drawing.Point(445, 8);
@@ -101,9 +101,9 @@ namespace StudentUI
             this.buttonPreviousExercise.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.buttonPreviousExercise.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.buttonPreviousExercise.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreviousExercise.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonPreviousExercise.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.buttonPreviousExercise.ForeColor = System.Drawing.Color.AliceBlue;
-            this.buttonPreviousExercise.Location = new System.Drawing.Point(913, 4);
+            this.buttonPreviousExercise.Location = new System.Drawing.Point(916, 4);
             this.buttonPreviousExercise.Name = "buttonPreviousExercise";
             this.buttonPreviousExercise.Size = new System.Drawing.Size(200, 35);
             this.buttonPreviousExercise.TabIndex = 5;
@@ -118,9 +118,9 @@ namespace StudentUI
             this.buttonNextExercise.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.buttonNextExercise.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.buttonNextExercise.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonNextExercise.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonNextExercise.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.buttonNextExercise.ForeColor = System.Drawing.Color.AliceBlue;
-            this.buttonNextExercise.Location = new System.Drawing.Point(1119, 4);
+            this.buttonNextExercise.Location = new System.Drawing.Point(1122, 4);
             this.buttonNextExercise.Name = "buttonNextExercise";
             this.buttonNextExercise.Size = new System.Drawing.Size(200, 35);
             this.buttonNextExercise.TabIndex = 4;
@@ -134,7 +134,7 @@ namespace StudentUI
             this.buttonPassQuestion.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.buttonPassQuestion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.buttonPassQuestion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPassQuestion.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonPassQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.buttonPassQuestion.ForeColor = System.Drawing.Color.Beige;
             this.buttonPassQuestion.Location = new System.Drawing.Point(214, 4);
             this.buttonPassQuestion.Name = "buttonPassQuestion";
@@ -150,7 +150,7 @@ namespace StudentUI
             this.buttonGiveAnswer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
             this.buttonGiveAnswer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.buttonGiveAnswer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGiveAnswer.Font = new System.Drawing.Font("Arial Narrow", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonGiveAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.buttonGiveAnswer.ForeColor = System.Drawing.Color.Beige;
             this.buttonGiveAnswer.Location = new System.Drawing.Point(8, 4);
             this.buttonGiveAnswer.Name = "buttonGiveAnswer";
@@ -167,9 +167,9 @@ namespace StudentUI
             this.flowLayoutPanelAnswers.BackColor = System.Drawing.Color.Navy;
             this.flowLayoutPanelAnswers.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flowLayoutPanelAnswers.ForeColor = System.Drawing.Color.Yellow;
-            this.flowLayoutPanelAnswers.Location = new System.Drawing.Point(9, 624);
+            this.flowLayoutPanelAnswers.Location = new System.Drawing.Point(9, 736);
             this.flowLayoutPanelAnswers.Name = "flowLayoutPanelAnswers";
-            this.flowLayoutPanelAnswers.Size = new System.Drawing.Size(1333, 47);
+            this.flowLayoutPanelAnswers.Size = new System.Drawing.Size(1336, 47);
             this.flowLayoutPanelAnswers.TabIndex = 5;
             // 
             // TestingForm
@@ -177,11 +177,11 @@ namespace StudentUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1353, 841);
             this.Controls.Add(this.richTextBoxQuestion);
             this.Controls.Add(this.OtherPanel);
             this.Controls.Add(this.flowLayoutPanelAnswers);
-            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1366, 768);
