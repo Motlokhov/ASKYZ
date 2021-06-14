@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Datab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Database.Result", "SystemVerifyKnowledge.Database.Result\SystemVerifyKnowledge.Database.Result.csproj", "{D10AE359-4418-4402-BF98-7C44BC405E13}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.UnitDatabaseTest", "SystemVerifyKnowledge.UnitDatabaseTest\SystemVerifyKnowledge.UnitDatabaseTest.csproj", "{263C5E47-BA6F-40DA-A378-6761A7ACCB04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Tests", "SystemVerifyKnowledge.Tests\SystemVerifyKnowledge.Tests.csproj", "{263C5E47-BA6F-40DA-A378-6761A7ACCB04}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Common", "SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj", "{08737B03-CF38-4D9F-B493-1CD92E9F39D1}"
 EndProject
@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.CoreL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.Presenters", "SystemVerifyKnowledge.Presenters\SystemVerifyKnowledge.Presenters.csproj", "{EC8FD2B9-95D4-4FE9-8A0F-2EB4A664F361}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemVerifyKnowledge.ApplicationController", "SystemVerifyKnowledge.ApplicationController\SystemVerifyKnowledge.ApplicationController.csproj", "{726A30D3-F3FE-4217-A713-7FEA13252704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemVerifyKnowledge.ApplicationController", "SystemVerifyKnowledge.ApplicationController\SystemVerifyKnowledge.ApplicationController.csproj", "{726A30D3-F3FE-4217-A713-7FEA13252704}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

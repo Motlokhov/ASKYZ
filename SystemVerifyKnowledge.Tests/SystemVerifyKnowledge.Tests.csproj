@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
-    <AssemblyName>SystemVerifyKnowledge.UnitDatabaseTest</AssemblyName>
-    <RootNamespace>SystemVerifyKnowledge.UnitDatabaseTest</RootNamespace>
+    <AssemblyName>SystemVerifyKnowledge.Tests</AssemblyName>
+    <RootNamespace>SystemVerifyKnowledge.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
