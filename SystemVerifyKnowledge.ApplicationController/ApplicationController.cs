@@ -54,5 +54,10 @@ namespace SystemVerifyKnowledge.ApplicationController
             _container.GetInstance<TPresenter>()
                       .Run(argumnent);
         }
+
+        public IQueryResult GetQueryResult()
+        {
+            return _container.GetInstance<IQueryResult>();
+        }
     }
 }

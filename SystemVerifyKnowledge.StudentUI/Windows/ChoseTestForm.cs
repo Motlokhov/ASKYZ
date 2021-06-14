@@ -13,7 +13,7 @@ namespace StudentUI
         public event Action ShowRecoveryPasswordWindow;
         public event Action ShowReportsWindow;
 
-        private readonly IQueryResult _queryResult;
+        private readonly IQueryResult _queryResult = Program.AppController.GetQueryResult();
 
         public IUserSignIn UserSignIn  
         {
@@ -31,10 +31,10 @@ namespace StudentUI
         {
             InitializeComponent();
             buttonSignIn.Click += delegate { SingIn?.Invoke(UserSignIn); };
-            buttonChoseTrainingTest.Click += delegate { ShowTrainingTestWindow?.Invoke(); };
-            buttonRecoveryPassword.Click += delegate { ShowRecoveryPasswordWindow.Invoke(); };
-            buttonRegistration.Click += delegate { ShowRegistrationWindow.Invoke(); };
-            отчетыToolStripMenuItem.Click += delegate { ShowReportsWindow.Invoke(); };
+            //buttonChoseTrainingTest.Click += delegate { ShowTrainingTestWindow?.Invoke(); };
+            //buttonRecoveryPassword.Click += delegate { ShowRecoveryPasswordWindow.Invoke(); };
+            //buttonRegistration.Click += delegate { ShowRegistrationWindow.Invoke(); };
+            //отчетыToolStripMenuItem.Click += delegate { ShowReportsWindow.Invoke(); };
         }
 
         public new void Show() => Application.Run(this);
