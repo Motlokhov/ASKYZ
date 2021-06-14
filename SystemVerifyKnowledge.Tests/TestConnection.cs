@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using SystemVerifyKnowledge.Common.Interface;
 
-namespace SystemVerifyKnowledge.UnitDatabaseTest
+namespace SystemVerifyKnowledge.Tests
 {
     public class TestConnection : IConnection
     {

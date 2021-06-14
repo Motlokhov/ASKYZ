@@ -3,7 +3,7 @@ using System.IO;
 using Database.Result;
 using Xunit;
 
-namespace DataBaseTest
+namespace SystemVerifyKnowledge.Tests
 {
     [Collection(nameof(SystemVerifyKnowledgeFixture))]
     public class QuerySuccess

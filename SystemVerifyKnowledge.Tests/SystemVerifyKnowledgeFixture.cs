@@ -1,11 +1,9 @@
-﻿using System;
-using System.Data.Common;
+﻿using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
 using SystemVerifyKnowledge.Common.Interface;
-using SystemVerifyKnowledge.UnitDatabaseTest;
 
-namespace DataBaseTest
+namespace SystemVerifyKnowledge.Tests
 {
     public class SystemVerifyKnowledgeFixture
     {
