@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 using SystemVerifyKnowledge.CoreLib.Common;
 
 namespace StudentUI
@@ -9,7 +9,7 @@ namespace StudentUI
     {
         private readonly string _pathToConnTxt = @"connection.txt";
         private readonly string _pathToDOEC = @"DataOfEC.xml";
-        
+
         public OptionsForm()
         {
             InitializeComponent();
@@ -18,8 +18,8 @@ namespace StudentUI
 
         private void OptionsForm_Load(object sender, EventArgs e)
         {
-            
-            if( !File.Exists(_pathToConnTxt) )
+
+            if(!File.Exists(_pathToConnTxt))
                 File.Create(_pathToConnTxt);
             textBoxConnectionString.Text = File.ReadAllText(_pathToConnTxt);
 
@@ -36,9 +36,9 @@ namespace StudentUI
 
         private void ButtonOk_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Сохранить изменения?", "Настройки", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if(MessageBox.Show("Сохранить изменения?", "Настройки", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                File.WriteAllText(_pathToConnTxt , textBoxConnectionString.Text);
+                File.WriteAllText(_pathToConnTxt, textBoxConnectionString.Text);
                 EducationalCenter EC = new EducationalCenter
                     (
                         textBoxName.Text,

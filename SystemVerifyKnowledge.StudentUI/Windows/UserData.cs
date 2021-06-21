@@ -6,7 +6,7 @@ namespace StudentUI
     public partial class UserData : Form
     {
 
-        public UserData(ulong id,string _password)
+        public UserData(ulong id, string _password)
         {
             InitializeComponent();
             textBoxId.Text = Convert.ToString(id);

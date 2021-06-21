@@ -44,13 +44,13 @@ namespace SystemVerifyKnowledge.CoreLib.Model
             _queryResult = queryResult;
 
             Id = id;
-            (string surname, 
-                string firstname, 
-                string lastname, 
-                byte programGroupId, 
-                DateTime dateStartTest, 
-                DateTime dateEndTest, 
-                uint passportNumber, 
+            (string surname,
+                string firstname,
+                string lastname,
+                byte programGroupId,
+                DateTime dateStartTest,
+                DateTime dateEndTest,
+                uint passportNumber,
                 ushort passportSerie)? result = _queryResult.LoadUserById(id);
 
             if(result.HasValue)

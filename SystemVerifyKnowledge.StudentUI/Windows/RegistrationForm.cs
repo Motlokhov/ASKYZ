@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
-using SystemVerifyKnowledge.CoreLib.Common;
+using System.Windows.Forms;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Common;
 
 namespace StudentUI
 {
@@ -18,34 +18,34 @@ namespace StudentUI
         {
             _queryResult = queryResult;
             InitializeComponent();
-            
+
         }
 
-        private void ButtonShowPassword_MouseEnter(object sender , EventArgs e)
+        private void ButtonShowPassword_MouseEnter(object sender, EventArgs e)
         {
             textBoxPassword.PasswordChar = char.MinValue;
             textBoxRepeatPassword.PasswordChar = char.MinValue;
         }
 
-        private void ButtonShowPassword_MouseLeave(object sender , EventArgs e)
+        private void ButtonShowPassword_MouseLeave(object sender, EventArgs e)
         {
             textBoxPassword.PasswordChar = Convert.ToChar("*");
             textBoxRepeatPassword.PasswordChar = Convert.ToChar("*");
         }
 
-        private void RegistrationForm_Load(object sender , EventArgs e)
+        private void RegistrationForm_Load(object sender, EventArgs e)
         {
             directions = new List<byte>();
 
             (byte id, string name)[] result = _queryResult.LoadAllDirections();
-            for( int i = 0; i < result.Length; i++ )
+            for(int i = 0; i < result.Length; i++)
             {
                 directions.Add(result[i].id);
                 comboBoxDirection.Items.Add(result[i].name);
             }
         }
 
-        private void ComboBoxDirection_SelectedValueChanged(object sender , EventArgs e)
+        private void ComboBoxDirection_SelectedValueChanged(object sender, EventArgs e)
         {
             int selected = comboBoxDirection.SelectedIndex;
             byte id = directions[selected];
@@ -64,19 +64,19 @@ namespace StudentUI
                 return;
             }
 
-            for(int i = 0; i < programs.Length; i++)             
+            for(int i = 0; i < programs.Length; i++)
                 comboBoxGroup.Items.Add(string.Concat("Группа № ", programs[i].number, ": ", programs[i].name));
         }
 
-        private void ComboBoxGroup_SelectedValueChanged(object sender , EventArgs e)
+        private void ComboBoxGroup_SelectedValueChanged(object sender, EventArgs e)
         {
             int index = comboBoxGroup.SelectedIndex;
             programId = programs[index].id;
         }
 
-        private void ButtonSave_Click(object sender , EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
-            if(textBoxPassword.Text != textBoxRepeatPassword.Text )
+            if(textBoxPassword.Text != textBoxRepeatPassword.Text)
             {
                 MessageBox.Show("Пароли не совпадают.");
                 return;
@@ -84,32 +84,32 @@ namespace StudentUI
 
             bool isRegOK = _queryResult.InsertNewUser
                 (
-                textBoxFirstname.Text ,
-                textBoxSurname.Text ,
-                textBoxLastname.Text ,
-                Convert.ToUInt16(numericSeriePassport.Value) ,
-                Convert.ToUInt32(numericNumberPassport.Value) ,
-                dateStartTest.Value ,
-                dateEndTest.Value ,
-                textBoxPassword.Text ,
+                textBoxFirstname.Text,
+                textBoxSurname.Text,
+                textBoxLastname.Text,
+                Convert.ToUInt16(numericSeriePassport.Value),
+                Convert.ToUInt32(numericNumberPassport.Value),
+                dateStartTest.Value,
+                dateEndTest.Value,
+                textBoxPassword.Text,
                 programId
                 );
 
-            if( isRegOK )
+            if(isRegOK)
                 MessageBox.Show("Регистрация прошла успешно.");
             else
                 MessageBox.Show("Регистрация не удалась.");
         }
 
-        private void ButtonClearForm_Click(object sender , EventArgs e)
+        private void ButtonClearForm_Click(object sender, EventArgs e)
         {
-            foreach( Control control in Controls )
+            foreach(Control control in Controls)
             {
                 if(control is TextBox textbox)
                     textbox.Text = "";
-                if( control is DateTimePicker dataTimePicker )
+                if(control is DateTimePicker dataTimePicker)
                     dataTimePicker.Value = DateTime.Today;
-                if( control is NumericUpDown numericUpDown )
+                if(control is NumericUpDown numericUpDown)
                     numericUpDown.Value = 0;
             }
         }

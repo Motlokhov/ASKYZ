@@ -1,5 +1,5 @@
-﻿using System;
-using Moq;
+﻿using Moq;
+using System;
 using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib.Model;
@@ -11,7 +11,7 @@ namespace SystemVerifyKnowledge.CoreTest
     {
         public class FakeExcercisePublicFunctoinTestClass : Exercise
         {
-            public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount, byte requiredNumberQuestoins) 
+            public FakeExcercisePublicFunctoinTestClass(IQueryResult queryResult, ulong questionCount, byte requiredNumberQuestoins)
                 : this(queryResult, questionCount)
             {
                 RequiredNumberQuestions = requiredNumberQuestoins;
@@ -61,8 +61,8 @@ namespace SystemVerifyKnowledge.CoreTest
         }
 
         [Theory]
-        [InlineData(10,3)]
-        [InlineData(4,4)]
+        [InlineData(10, 3)]
+        [InlineData(4, 4)]
         public void WhenDeletingQuestionsEndnessEqualRequaredCount(ulong initialCount, byte requiredCount)
         {
             //Arrange
@@ -99,7 +99,7 @@ namespace SystemVerifyKnowledge.CoreTest
         }
 
         [Theory]
-        [InlineData(0,false)]
+        [InlineData(0, false)]
         [InlineData(1, false)]
         [InlineData(2, true)]
         public void When_NextQuestionExists_Then_TrueOtherwiseFalse(ulong questionCount, bool expectedResult)

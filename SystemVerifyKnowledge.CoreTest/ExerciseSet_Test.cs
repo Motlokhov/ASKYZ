@@ -1,5 +1,5 @@
-﻿using System;
-using Moq;
+﻿using Moq;
+using System;
 using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib.Model;
@@ -36,7 +36,7 @@ namespace SystemVerifyKnowledge.CoreTest
             ulong testId = 500;
 
             Mock<IQueryResult> mockQueryResult = new Mock<IQueryResult>();
-            SetupQueryResult(mockQueryResult,questionFromDBCount, testId);
+            SetupQueryResult(mockQueryResult, questionFromDBCount, testId);
 
             ulong programGroupId = 10;
 
@@ -156,7 +156,7 @@ namespace SystemVerifyKnowledge.CoreTest
             exerciseSet[0].Result.Points = 6;
             exerciseSet[1].Result.Points = 11;
             exerciseSet[2].Result.Points = 19;
-            
+
             //Act, Assert
             Assert.Equal(expectedPoints, exerciseSet.GetAllPoints());
         }

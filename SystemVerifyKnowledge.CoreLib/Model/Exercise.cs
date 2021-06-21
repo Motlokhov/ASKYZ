@@ -3,7 +3,7 @@ using SystemVerifyKnowledge.CoreLib.Common;
 
 namespace SystemVerifyKnowledge.CoreLib.Model
 {
-    public abstract class Exercise:Entity
+    public abstract class Exercise : Entity
     {
         private readonly IQueryResult _queryResult;
         public ExerciseType Type { get; protected set; }
@@ -22,7 +22,7 @@ namespace SystemVerifyKnowledge.CoreLib.Model
 
         public bool NextQuestion()
         {
-            if( Questions.HasNext)
+            if(Questions.HasNext)
             {
                 Questions.SetNext();
                 return true;
@@ -33,13 +33,13 @@ namespace SystemVerifyKnowledge.CoreLib.Model
         public void DeleteQuestions()
         {
             var count = Questions.Count - RequiredNumberQuestions;
-            Questions.RemoveRange(RequiredNumberQuestions , count);
+            Questions.RemoveRange(RequiredNumberQuestions, count);
         }
 
         protected void SwapQuestions()
         {
             int questionsCount = Questions.Count;
-            for( var i = 0 ; i < questionsCount / 2 ; i++ )
+            for(var i = 0; i < questionsCount / 2; i++)
             {
                 var random = Core.Random;
                 int randomNumber = random.Next(questionsCount);
@@ -47,16 +47,16 @@ namespace SystemVerifyKnowledge.CoreLib.Model
                 var tempQuestion = Questions[i];
                 Questions[i] = Questions[randomNumber];
                 Questions[randomNumber] = tempQuestion;
-                
+
             }
         }
 
         protected void Load(ulong testID)
         {
             ulong[] questionIds = _queryResult.LoadQuestionIds(testID, (int)Type);
-                foreach(ulong questionId in questionIds)
-                    Questions.Add(new Question(_queryResult, questionId));
-                
+            foreach(ulong questionId in questionIds)
+                Questions.Add(new Question(_queryResult, questionId));
+
             SwapQuestions();
         }
 

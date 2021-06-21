@@ -7,7 +7,7 @@ namespace SystemVerifyKnowledge.Tests
 {
     public class SystemVerifyKnowledgeFixture
     {
-        private const string _SuperTestDatabaseConnectionString = 
+        private const string _SuperTestDatabaseConnectionString =
             @"Data Source=(localdb)\MSSQLLocalDB;
             Initial Catalog=superTestDatabase;
             Integrated Security=True;
@@ -24,7 +24,7 @@ namespace SystemVerifyKnowledge.Tests
             Connection = new TestConnection();
             CreateSuperTestDatabase();
             CreateTables();
-           FillMoqDbData();
+            FillMoqDbData();
         }
 
         private void CreateSuperTestDatabase()

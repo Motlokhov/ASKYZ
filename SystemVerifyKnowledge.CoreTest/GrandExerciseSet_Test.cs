@@ -1,5 +1,6 @@
-﻿using System;
-using Moq;
+﻿using Moq;
+using System;
+using SystemVerifyKnowledge.Common;
 using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib;
 using SystemVerifyKnowledge.CoreLib.Common;
@@ -26,9 +27,9 @@ namespace SystemVerifyKnowledge.CoreTest
         }
 
         [Theory]
-        [InlineData(20,0,0,1)]
-        [InlineData(10,0,1,0)]
-        [InlineData(1,1,0,0)]
+        [InlineData(20, 0, 0, 1)]
+        [InlineData(10, 0, 1, 0)]
+        [InlineData(1, 1, 0, 0)]
         public void When_ExerciseMaxPointsEqualAnswersPoint_Then_AddTrueAnswersCount(byte points, int commonTrueAnswersCount, int themenTrueAnswersCount, int practicalTrueAnswersCount)
         {
             //Arrange
@@ -72,10 +73,10 @@ namespace SystemVerifyKnowledge.CoreTest
             mockQueryResult.Setup(_ => _.LoadUserById(It.IsAny<ulong>()))
                             .Returns((null, null, null, programGroupId, DateTime.Now, DateTime.Now, 0, 0));
 
-            mockQueryResult.Setup(_ => _.GetUserId(It.IsAny<string>(), It.IsAny<string>()))
+            mockQueryResult.Setup(_ => _.GetUserId(It.IsAny<SignIn>()))
                             .Returns(userId);
 
-            Core.CheckPassword(mockQueryResult.Object, new UserSignIn() { Login = userId.ToString(), Password = "password" });
+            Core.CheckPassword(mockQueryResult.Object, new SignIn(userId, "password"));
 
             byte commonTrueAnswersCount = 30;
             byte commonTrueAnswersPoints = 30;

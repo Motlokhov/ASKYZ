@@ -10,7 +10,7 @@ namespace SystemVerifyKnowledge.CoreLib.Model
         {
             Name = "Итоговая аттестация";
 
-            foreach( Exercise exercise in Exercises )
+            foreach(Exercise exercise in Exercises)
             {
                 exercise.DeleteQuestions();
                 exercise.Result = new Result(QueryResult);
@@ -30,7 +30,7 @@ namespace SystemVerifyKnowledge.CoreLib.Model
 
         public override void TestEnd()
         {
-            foreach( Exercise exercise in Exercises )
+            foreach(Exercise exercise in Exercises)
             {
                 int countQuestions = exercise.Questions.Count;
                 exercise.Result.CalculateFalseAnswers(countQuestions);
@@ -42,9 +42,9 @@ namespace SystemVerifyKnowledge.CoreLib.Model
         private void SaveResults()
         {
             QueryResult.WriteTestResults
-            (Core.User.Id, 
-            Core.ProgramGroupID, 
-            Exercises.Select(e => ((int)e.Type,e.Result.Points,e.Result.TrueAnswers,e.Result.FalseAnswers)).ToArray());
+            (Core.User.Id,
+            Core.ProgramGroupID,
+            Exercises.Select(e => ((int)e.Type, e.Result.Points, e.Result.TrueAnswers, e.Result.FalseAnswers)).ToArray());
         }
     }
 }

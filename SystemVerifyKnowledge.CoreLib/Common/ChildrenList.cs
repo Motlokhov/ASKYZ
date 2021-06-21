@@ -2,7 +2,7 @@
 
 namespace SystemVerifyKnowledge.CoreLib.Common
 {
-    public class ChildrenList<T>:List<T>
+    public class ChildrenList<T> : List<T>
     {
         public int Index { get; private set; }
 

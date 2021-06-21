@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Linq;
-using SystemVerifyKnowledge.CoreLib.Common;
-using SystemVerifyKnowledge.CoreLib;
+using System.Windows.Forms;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib;
+using SystemVerifyKnowledge.CoreLib.Common;
 
 namespace StudentUI
 {
@@ -38,14 +38,14 @@ namespace StudentUI
             {
                 var button = new Button
                 {
-                    Text = string.Concat("Программа №", programs[i].number + ": " + programs[i].name) ,
-                    Tag = programs[i].id ,
-                    Width = width ,
-                    Height = height ,
-                    Left = Width / 2 - width / 2 ,
-                    Top = top ,
-                    Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left ,
-                    Font = new Font("Arial" , 18)
+                    Text = string.Concat("Программа №", programs[i].number + ": " + programs[i].name),
+                    Tag = programs[i].id,
+                    Width = width,
+                    Height = height,
+                    Left = Width / 2 - width / 2,
+                    Top = top,
+                    Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left,
+                    Font = new Font("Arial", 18)
                 };
                 button.Click += StartProgram_Click;
                 Controls.Add(button);
@@ -53,7 +53,7 @@ namespace StudentUI
             }
         }
 
-        private void StartProgram_Click(object sender , EventArgs e)
+        private void StartProgram_Click(object sender, EventArgs e)
         {
             var but = sender as Button;
             Core.SetProgramGroupID(Convert.ToByte(but.Tag));

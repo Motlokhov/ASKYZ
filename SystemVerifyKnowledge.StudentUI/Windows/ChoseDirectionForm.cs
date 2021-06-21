@@ -24,23 +24,23 @@ namespace StudentUI
             int width = 500;
             int height = 60;
             int margin = height + 10;
-            for( int i = 0; i < result.Length; i++ )
-                        {
+            for(int i = 0; i < result.Length; i++)
+            {
                 Button button = new Button
                 {
                     Text = result[i].name,
                     Tag = result[i].id,
-                    Width = width ,
-                    Height = height ,
-                    Left = Width / 2 - width / 2 ,
-                    Top = top ,
-                    Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left ,
-                    Font = new System.Drawing.Font("Arial" , 18)
+                    Width = width,
+                    Height = height,
+                    Left = Width / 2 - width / 2,
+                    Top = top,
+                    Anchor = AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Left,
+                    Font = new System.Drawing.Font("Arial", 18)
                 };
-                button.Click += (s , e) =>
+                button.Click += (s, e) =>
                 {
-                    var but = s as Button;  
-                    Core.SetDirection(Convert.ToByte(but.Tag),but.Text);
+                    var but = s as Button;
+                    Core.SetDirection(Convert.ToByte(but.Tag), but.Text);
                     var form = new ChoseProgramGroup(_queryResult);
                     form.Show();
                     Close();

@@ -1,7 +1,7 @@
+using Moq;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using Moq;
 using SystemVerifyKnowledge.Common.Interface;
 using SystemVerifyKnowledge.CoreLib.Model;
 using Xunit;
@@ -43,7 +43,7 @@ namespace SystemVerifyKnowledge.CoreTest
             mockQueryResult.Verify(_ => _.LoadAnswers(expectedQuestionId), Times.Once);
 
             Assert.Equal(question.Id, expectedQuestionId);
-            Assert.Equal(question.Name, excpectedDescription);;
+            Assert.Equal(question.Name, excpectedDescription);
 
             Image questionImage = question.GetImage();
             Assert.NotSame(excpectedImage, questionImage);

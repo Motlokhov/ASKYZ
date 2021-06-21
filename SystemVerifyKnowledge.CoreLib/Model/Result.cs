@@ -8,18 +8,18 @@ namespace SystemVerifyKnowledge.CoreLib.Model
     {
         private readonly IQueryResult _queryResult;
 
-        public byte TrueAnswers { get;  set; }
-        public byte FalseAnswers { get;  set; }
-        public byte Points { get;  set; }
+        public byte TrueAnswers { get; set; }
+        public byte FalseAnswers { get; set; }
+        public byte Points { get; set; }
 
         public Result(IQueryResult queryResult)
         {
             _queryResult = queryResult;
         }
-        public Result(IQueryResult queryResult, ulong testingDateID,ExerciseType exerciseType)
+        public Result(IQueryResult queryResult, ulong testingDateID, ExerciseType exerciseType)
         {
             _queryResult = queryResult;
-            Load(testingDateID , exerciseType);
+            Load(testingDateID, exerciseType);
         }
         public ExerciseType ExerciseType { get; set; }
         public void CalculateFalseAnswers(int parentCountQuestions)
@@ -27,12 +27,12 @@ namespace SystemVerifyKnowledge.CoreLib.Model
             FalseAnswers = Convert.ToByte(parentCountQuestions - TrueAnswers);
         }
 
-        private void Load(ulong testingDateID,ExerciseType exerciseType)
+        private void Load(ulong testingDateID, ExerciseType exerciseType)
         {
             ExerciseType = exerciseType;
 
             (byte trueAnswersCount, byte falseAnswerCount, byte points)? testResult = _queryResult.LoadTestResult(testingDateID, (int)exerciseType);
-            
+
             if(testResult.HasValue)
             {
                 TrueAnswers = testResult.Value.trueAnswersCount;

@@ -16,7 +16,7 @@ namespace StudentUI
         private Document WordDoc;
         private Range range;
         private readonly List<User> users = new List<User>();
-        private readonly IQueryResult _queryResult ;
+        private readonly IQueryResult _queryResult;
 
         public ReportsForm(IQueryResult queryResult)
         {
@@ -36,7 +36,7 @@ namespace StudentUI
         //очистка listView
         private void ClearItems()
         {
-            if( listViewUsers.Items.Count > 0 )
+            if(listViewUsers.Items.Count > 0)
                 listViewUsers.Items.Clear();
         }
 
@@ -49,23 +49,23 @@ namespace StudentUI
             WordDoc.Paragraphs.Add(range);
         }
 
-        private void ButtonReport_Click(object sender, EventArgs e) 
+        private void ButtonReport_Click(object sender, EventArgs e)
         {
             var countItems = users.Count;
-            if ( countItems > 0)
+            if(countItems > 0)
             {
                 EducationalCenter EC = new EducationalCenter(@"DataOfEC.xml");
                 WordApplication = new Microsoft.Office.Interop.Word.Application();
                 WordDoc = WordApplication.Documents.Add(Type.Missing, false, WdNewDocumentType.wdNewBlankDocument, true);
                 WordDoc.Paragraphs.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                 WordApplication.Visible = true;
-                range = WordDoc.Range(0, 0);    
+                range = WordDoc.Range(0, 0);
                 range.Select();
                 range.Bold = 1;
 
-                for(var i =0 ;i<countItems ;i++ )
+                for(var i = 0; i < countItems; i++)
                 {
-                    if( listViewUsers.Items[i].Checked )
+                    if(listViewUsers.Items[i].Checked)
                     {
                         var user = users[i];
                         Core.SetProgramGroupID(user.GetProgramGroupID());
@@ -73,40 +73,40 @@ namespace StudentUI
                         Core.LoadProgram(_queryResult);
                         WordDoc.Paragraphs.SpaceAfter = 1;
                         WordDoc.Paragraphs.SpaceBefore = 1;
-                        AddRangeInWord("Автономная некоммерческая организация" , 1 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("Дополнительного профессионального образования " , 1 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("Учебный центр " + EC.Name , 1 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("Адрес: " + EC.Addres + ", тел." + EC.Phone , 0 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("Сайт: " + EC.Site + " E-mail: " + EC.Email , _paragraphAlignment: WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("___________________________________________________________________________" , 0 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("Протокол № " , 0 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("компьютерного тестирования" , 0 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord(DateTime.Today.ToString("d") , 0 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord("" , 0 , WdParagraphAlignment.wdAlignParagraphCenter);
-                        AddRangeInWord( Core.ProgramName, 1 , WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("Автономная некоммерческая организация", 1, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("Дополнительного профессионального образования ", 1, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("Учебный центр " + EC.Name, 1, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("Адрес: " + EC.Addres + ", тел." + EC.Phone, 0, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("Сайт: " + EC.Site + " E-mail: " + EC.Email, _paragraphAlignment: WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("___________________________________________________________________________", 0, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("Протокол № ", 0, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("компьютерного тестирования", 0, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord(DateTime.Today.ToString("d"), 0, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord("", 0, WdParagraphAlignment.wdAlignParagraphCenter);
+                        AddRangeInWord(Core.ProgramName, 1, WdParagraphAlignment.wdAlignParagraphCenter);
                         AddRangeInWord("");
-                        AddRangeInWord("ФИО " + user.Name );
+                        AddRangeInWord("ФИО " + user.Name);
                         AddRangeInWord("Период обучения с " + user.GetDateStart().ToString("d") + " по " + user.GetDateEnd().ToString("d"));
                         AddRangeInWord("Группа " + Core.ProgramNumber);
                         AddRangeInWord("");
-                        AddRangeInWord("Результаты:" , 1);
-                        AddRangeInWord("Задание 1 (Тестовые вопросы)" , 1);
+                        AddRangeInWord("Результаты:", 1);
+                        AddRangeInWord("Задание 1 (Тестовые вопросы)", 1);
                         AddRangeInWord("Не правильных ответов " + user.GetResult(0).FalseAnswers);
                         AddRangeInWord("Правильных ответов " + user.GetResult(0).TrueAnswers);
                         AddRangeInWord("Количество набранных баллов -" + user.GetResult(0).Points);
                         AddRangeInWord("");
-                        AddRangeInWord("Задание 2 (Тематические вопросы)" , 1);
+                        AddRangeInWord("Задание 2 (Тематические вопросы)", 1);
                         AddRangeInWord("Не правильных ответов " + user.GetResult(1).FalseAnswers);
                         AddRangeInWord("Правильных ответов " + user.GetResult(1).TrueAnswers);
                         AddRangeInWord("Количество набранных баллов -" + user.GetResult(1).Points);
                         AddRangeInWord("");
-                        AddRangeInWord("Задание 3 (Практические задачи)" , 1);
+                        AddRangeInWord("Задание 3 (Практические задачи)", 1);
                         AddRangeInWord("Не правильных ответов " + user.GetResult(2).FalseAnswers);
                         AddRangeInWord("Правильных ответов " + user.GetResult(2).TrueAnswers);
                         AddRangeInWord("Количество набранных баллов -" + user.GetResult(2).Points);
                         AddRangeInWord("");
                         AddRangeInWord("Итоговое количество набранных баллов - " +
-                            ( user.GetResult(0).Points + user.GetResult(1).Points + user.GetResult(2).Points ).ToString() , 1);
+                            (user.GetResult(0).Points + user.GetResult(1).Points + user.GetResult(2).Points).ToString(), 1);
                         AddRangeInWord("");
                         AddRangeInWord("Директор: __________________  " + EC.Director);
 
@@ -114,16 +114,16 @@ namespace StudentUI
                         range.InsertBreak(WdBreakType.wdPageBreak);
                         user = null;
                     }
-                }   
+                }
             }
 
             range = null;
             WordDoc = null;
             WordApplication = null;
-            
+
         }
 
-        private void ComboBoxTestingDate_SelectedIndexChanged(object sender , EventArgs e)
+        private void ComboBoxTestingDate_SelectedIndexChanged(object sender, EventArgs e)
         {
             users.Clear();
 
@@ -148,7 +148,7 @@ namespace StudentUI
                         )
                     );
             }
-            
+
         }
     }
 }

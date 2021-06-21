@@ -44,11 +44,11 @@ namespace Database
 
         private void ConnectionClose()
         {
-            if (_connection.State != ConnectionState.Closed)
+            if(_connection.State != ConnectionState.Closed)
                 _connection.Close();
         }
 
-        public void AddParameter(string nameparameter ,DbType  typeparameter , object value)
+        public void AddParameter(string nameparameter, DbType typeparameter, object value)
         {
             DbParameter param = _command.CreateParameter();
             param.ParameterName = nameparameter;

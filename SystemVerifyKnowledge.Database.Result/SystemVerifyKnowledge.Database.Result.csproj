@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj" />
+    <ProjectReference Include="..\SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj" />
     <ProjectReference Include="..\SystemVerifyKnowledge.Database\SystemVerifyKnowledge.Database.csproj" />
   </ItemGroup>
 

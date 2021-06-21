@@ -10,7 +10,7 @@ namespace StudentUI.Windows
             FormBorderStyle = FormBorderStyle.None;
             textBox.Text = message;
             Show();
-            
+
         }
     }
 }
