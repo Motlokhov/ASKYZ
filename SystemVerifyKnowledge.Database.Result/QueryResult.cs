@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using SystemVerifyKnowledge.Common;
 using SystemVerifyKnowledge.Common.Interface;
 
 namespace Database.Result
@@ -12,10 +13,10 @@ namespace Database.Result
     public class QueryResult : IQueryResult
     {
         private readonly IConnection _dbConnection;
-        
+
         public QueryResult(IConnection connection)
         {
-            _dbConnection = connection;  
+            _dbConnection = connection;
         }
 
         /// <summary>
@@ -45,21 +46,51 @@ namespace Database.Result
         /// <param name="id">User's id</param>
         /// <param name="password">User's password</param>
         /// <returns>If exists returns id else null.</returns>
-        /// <exception cref="ArgumentException">Throws if <paramref name="id"/> or <paramref name="password"/> is null or empty</exception>
-        public ulong? GetUserId(string id, string password)
+        /// <exception cref="ArgumentException">Throws if <paramref name="password"/> is null or empty</exception>
+        public ulong? GetUserId(SignIn signIn)
         {
-            if(string.IsNullOrEmpty(id))
-                throw new ArgumentException($"Parameter {nameof(id)} can't be null or empty in {nameof(GetUserId)}");
-
-            if(string.IsNullOrEmpty(password))
-                throw new ArgumentException($"Parameter {nameof(password)} can't be null or empty in {nameof(GetUserId)}");
+            if(string.IsNullOrEmpty(signIn.Password))
+                throw new ArgumentException($"Parameter {nameof(signIn.Password)} can't be null or empty in {nameof(GetUserId)}");
 
             using(Query query = new Query(_dbConnection.GetConnection()))
             {
-                query.AddParameter("@id", DbType.Int64, id);
-                query.AddParameter("@password", DbType.String, password);
+                query.AddParameter("@id", DbType.Int64, signIn.Id);
+                query.AddParameter("@password", DbType.String, signIn.Password);
                 object result = query.ExecuteScalar("SELECT ID FROM [User] WHERE ID = @id AND Password = @password");
                 return result == null ? default(ulong?) : Convert.ToUInt64(result);
+            }
+        }
+
+        public Student GetStudent(SignIn signIn)
+        {
+            if(string.IsNullOrEmpty(signIn.Password))
+                throw new ArgumentException($"Parameter {nameof(signIn.Password)} can't be null or empty in {nameof(GetUserId)}");
+            using(Query query = new Query(_dbConnection.GetConnection()))
+            {
+                string command = 
+                    @"SELECT * 
+                    FROM [User] 
+                    WHERE ID = @id 
+                    AND Password = @password";
+                query.AddParameter("@id", DbType.Int64, signIn.Id);
+                query.AddParameter("@password", DbType.String, signIn.Password);
+                using(DbDataReader reader = query.ReadData(command))
+                {
+                    if(!reader.Read())
+                        return null;
+                    return new Student
+                    {
+                        Id = (ulong)reader.GetInt64("Id"),
+                        FirstName = reader.GetString("Firstname"),
+                        LastName = reader.GetString("Lastname"),
+                        Surname = reader.GetString("Surname"),
+                        ProgramGroupId = reader.GetByte("ProgramGroupId"),
+                        DateStartTest = reader.GetDateTime("DateStartTest"),
+                        DateEndTest = reader.GetDateTime("DateEndTest"),
+                        PassportNumber = (uint)reader.GetInt32("PassportNumber"),
+                        PassportSerie = (ushort)reader.GetInt16("PassportSerie")
+                    };
+                }
             }
         }
 
@@ -70,7 +101,7 @@ namespace Database.Result
         /// <returns>If exists returns direction name otherwise <see langword="null"/></returns>
         public string LoadDirectionName(byte programGroupId)
         {
-            string command = 
+            string command =
             @"SELECT Direction.[Name] 
             FROM Direction 
             JOIN ProgramGroup ON Direction.ID = ProgramGroup.DirectionID 
@@ -109,8 +140,8 @@ namespace Database.Result
                     List<(byte, string, byte)> result = new List<(byte, string, byte)>();
                     while(reader.Read())
                         result.Add(
-                            (Convert.ToByte(reader["ID"]), 
-                            Convert.ToString(reader["Name"]), 
+                            (Convert.ToByte(reader["ID"]),
+                            Convert.ToString(reader["Name"]),
                             Convert.ToByte(reader["Number"])));
 
                     return result.ToArray();
@@ -161,7 +192,7 @@ namespace Database.Result
         /// </summary>
         /// <param name="userId">User's id</param>
         /// <returns>A tuple(surname,firstname,lastname,programGroupId,dateStartTest,dateEndTest,passportNumber,passportSerie) if exists otherwise null.</returns>
-        public 
+        public
             (string surname
             , string firstname
             , string lastname
@@ -220,14 +251,14 @@ namespace Database.Result
         /// <param name="password">User password</param>
         /// <param name="programGroupID">Program group.</param>
         /// <returns></returns>
-        public bool InsertNewUser(string firstname, 
-            string surname, 
+        public bool InsertNewUser(string firstname,
+            string surname,
             string lastname,
-           ushort passportSerie, 
-           uint passportNumber, 
-           DateTime startDate, 
+           ushort passportSerie,
+           uint passportNumber,
+           DateTime startDate,
            DateTime endDate,
-           string password, 
+           string password,
            ulong programGroupID)
         {
             NormingWord(ref firstname);
@@ -327,7 +358,7 @@ namespace Database.Result
         /// </summary>
         /// <param name="testingDate">Date of testing</param>
         /// <returns>An array (userId,testingDateId)</returns>
-        public (ulong userID,ulong testingDateId)[] LoadUsersResultByTestingDate(string testingDate)
+        public (ulong userID, ulong testingDateId)[] LoadUsersResultByTestingDate(string testingDate)
         {
             if(string.IsNullOrEmpty(testingDate))
                 throw new ArgumentException($"Parameter {nameof(testingDate)} can't be null or empty in {nameof(LoadUsersResultByTestingDate)}");
@@ -345,7 +376,7 @@ namespace Database.Result
 
                 return result.ToArray();
             }
-            
+
         }
 
         /// <summary>
@@ -443,7 +474,7 @@ namespace Database.Result
         /// </summary>
         /// <param name="questionId">Asnwer's questionId</param>
         /// <returns>An question's answers tuple collection(id,description)</returns>
-        public (ulong id,string description)[] LoadAnswers(ulong questionId)
+        public (ulong id, string description)[] LoadAnswers(ulong questionId)
         {
             using(var query = new Query(_dbConnection.GetConnection()))
             {

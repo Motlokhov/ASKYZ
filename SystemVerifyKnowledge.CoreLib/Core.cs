@@ -1,6 +1,7 @@
 ﻿using System;
-using SystemVerifyKnowledge.CoreLib.Model;
+using SystemVerifyKnowledge.Common;
 using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib.Model;
 
 namespace SystemVerifyKnowledge.CoreLib
 {
@@ -20,16 +21,16 @@ namespace SystemVerifyKnowledge.CoreLib
             Random = new Random();
         }
 
-        public static bool CheckPassword(IQueryResult queryResult, IUserSignIn userSignIn)
+        public static bool CheckPassword(IQueryResult queryResult, SignIn signIn)
         {
-            ulong? userId = queryResult.GetUserId(userSignIn.Login, userSignIn.Password);
-            if( userId.HasValue )
+            ulong? userId = queryResult.GetUserId(signIn);
+            if(userId.HasValue)
             {
                 User = new User(queryResult, userId.Value);
                 ProgramGroupID = User.GetProgramGroupID();
                 LoadDirectionName(queryResult);
                 LoadProgram(queryResult);
-                Exercises = new GrandExerciseSet(queryResult,ProgramGroupID);
+                Exercises = new GrandExerciseSet(queryResult, ProgramGroupID);
                 return true;
             }
             return false;
@@ -40,7 +41,7 @@ namespace SystemVerifyKnowledge.CoreLib
             DirectionName = queryResult.LoadDirectionName(ProgramGroupID);
         }
 
-        public static void SetDirection(byte id , string name)
+        public static void SetDirection(byte id, string name)
         {
             DirectionID = id;
             DirectionName = name;

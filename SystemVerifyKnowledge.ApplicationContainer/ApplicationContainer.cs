@@ -1,54 +1,53 @@
 ﻿using LightInject;
-using SystemVerifyKnowledge.ApplicationController.Interface;
+using SystemVerifyKnowledge.ApplicationContainer.Interface;
 using SystemVerifyKnowledge.Common.Interface;
 
-namespace SystemVerifyKnowledge.ApplicationController
+namespace SystemVerifyKnowledge.ApplicationContainer
 {
-    public class ApplicationController : IApplicationController
+    public class ApplicationContainer : IApplicationContainer
     {
         private readonly ServiceContainer _container;
 
-        public ApplicationController()
+        public ApplicationContainer()
         {
             _container = new ServiceContainer();
-            _container.RegisterInstance<IApplicationController>(this);
+            _container.RegisterInstance<IApplicationContainer>(this);
         }
 
-        public IApplicationController RegisterInstance<TInstance>(TInstance instance)
+        public IApplicationContainer RegisterInstance<TInstance>(TInstance instance)
         {
             _container.RegisterInstance(instance);
             return this;
         }
 
-        public IApplicationController RegisterService<TService, TImplementation>()
+        public IApplicationContainer RegisterService<TService, TImplementation>()
             where TImplementation : class, TService
         {
             _container.Register<TService, TImplementation>();
             return this;
         }
 
-        public IApplicationController RegisterView<TView, TImplementation>()
+        public IApplicationContainer RegisterView<TView, TImplementation>()
             where TView : IView
             where TImplementation : class, TView
         {
-            _container.Register<TView, TImplementation>();
-            return this;
+            return RegisterService<TView, TImplementation>();
         }
 
-        public void Run<TPresenter>() 
+        public void Run<TPresenter>()
             where TPresenter : class, IPresenter
         {
-            if (!_container.CanGetInstance(typeof(TPresenter), string.Empty))
+            if(!_container.CanGetInstance(typeof(TPresenter), string.Empty))
                 _container.Register<TPresenter>();
 
             _container.GetInstance<TPresenter>()
                       .Run();
         }
 
-        public void Run<TPresenter, TArgumnent>(TArgumnent argumnent) 
+        public void Run<TPresenter, TArgumnent>(TArgumnent argumnent)
             where TPresenter : class, IPresenter<TArgumnent>
         {
-            if (!_container.CanGetInstance(typeof(TPresenter), string.Empty))
+            if(!_container.CanGetInstance(typeof(TPresenter), string.Empty))
                 _container.Register<TPresenter>();
 
             _container.GetInstance<TPresenter>()
@@ -58,6 +57,13 @@ namespace SystemVerifyKnowledge.ApplicationController
         public IQueryResult GetQueryResult()
         {
             return _container.GetInstance<IQueryResult>();
+        }
+
+        public IApplicationContainer RegisterModel<TModel, TImplementation>()
+            where TModel : IModel
+            where TImplementation : class, TModel
+        {
+            return RegisterService<TModel, TImplementation>();
         }
     }
 }

@@ -1,6 +1,7 @@
+using Database.Result;
 using System;
 using System.IO;
-using Database.Result;
+using SystemVerifyKnowledge.Common;
 using Xunit;
 
 namespace SystemVerifyKnowledge.Tests
@@ -18,19 +19,17 @@ namespace SystemVerifyKnowledge.Tests
         }
 
         [Theory]
-        [InlineData(null, "0", typeof(ArgumentException))]
-        [InlineData("0", null, typeof(ArgumentException))]
-        [InlineData("", "0", typeof(ArgumentException))]
-        [InlineData("0", "", typeof(ArgumentException))]
-        public void TestGetUserIdWrongParameters(string id, string password, Type exceptedException)
+        [InlineData(0, null, typeof(ArgumentException))]
+        [InlineData(0, "", typeof(ArgumentException))]
+        public void TestGetUserIdWrongParameters(ulong id, string password, Type exceptedException)
         {
-            Assert.Throws(exceptedException, () => { _queryResult.GetUserId(id, password); });
+            Assert.Throws(exceptedException, () => { _queryResult.GetUserId(new SignIn(id, password)); });
         }
 
         [Fact]
         public void TestGetUserIdNullValue()
         {
-            Assert.Null(_queryResult.GetUserId("0", "0"));
+            Assert.Null(_queryResult.GetUserId(new SignIn(0, "0")));
         }
 
         [Fact]
@@ -154,23 +153,23 @@ namespace SystemVerifyKnowledge.Tests
             const ulong programGroupId = 1;
 
             Assert.True(_queryResult.InsertNewUser(
-                                    firstname, 
-                                    surname, 
-                                    lastname, 
-                                    passportSerie, 
-                                    passportNumber, 
+                                    firstname,
+                                    surname,
+                                    lastname,
+                                    passportSerie,
+                                    passportNumber,
                                     startDateTest,
-                                    endDateTest, 
-                                    password, 
+                                    endDateTest,
+                                    password,
                                     programGroupId));
 
-            (string surname, 
-            string firstname, 
-            string lastname, 
-            byte programGroupId, 
-            DateTime dateStartTest, 
-            DateTime dateEndTest, 
-            uint passportNumber, 
+            (string surname,
+            string firstname,
+            string lastname,
+            byte programGroupId,
+            DateTime dateStartTest,
+            DateTime dateEndTest,
+            uint passportNumber,
             ushort passportSerie)? user = _queryResult.LoadUserById(12345678);
 
             Assert.NotNull(user);

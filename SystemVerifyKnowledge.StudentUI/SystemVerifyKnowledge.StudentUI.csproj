@@ -17,10 +17,11 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\SystemVerifyKnowledge.ApplicationController\SystemVerifyKnowledge.ApplicationController.csproj" />
+		<ProjectReference Include="..\SystemVerifyKnowledge.ApplicationContainer\SystemVerifyKnowledge.ApplicationContainer.csproj" />
 		<ProjectReference Include="..\SystemVerifyKnowledge.Common\SystemVerifyKnowledge.Common.csproj"></ProjectReference>
 		<ProjectReference Include="..\SystemVerifyKnowledge.CoreLib\SystemVerifyKnowledge.CoreLib.csproj"></ProjectReference>
 		<ProjectReference Include="..\SystemVerifyKnowledge.Database.Result\SystemVerifyKnowledge.Database.Result.csproj"></ProjectReference>
+		<ProjectReference Include="..\SystemVerifyKnowledge.Models\SystemVerifyKnowledge.Models.csproj" />
 		<ProjectReference Include="..\SystemVerifyKnowledge.Presenters\SystemVerifyKnowledge.Presenters.csproj" />
 	</ItemGroup>
 	

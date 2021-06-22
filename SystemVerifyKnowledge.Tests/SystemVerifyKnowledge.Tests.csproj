@@ -26,6 +26,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SystemVerifyKnowledge.Database.Result\SystemVerifyKnowledge.Database.Result.csproj" />
+    <ProjectReference Include="..\SystemVerifyKnowledge.Models\SystemVerifyKnowledge.Models.csproj" />
+    <ProjectReference Include="..\SystemVerifyKnowledge.Presenters\SystemVerifyKnowledge.Presenters.csproj" />
   </ItemGroup>
 
   <ItemGroup>

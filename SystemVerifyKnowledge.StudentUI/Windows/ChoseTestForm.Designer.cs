@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using SystemVerifyKnowledge.StudentUI.Controls;
+
 namespace StudentUI
 {
     partial class ChoseTestForm
@@ -41,8 +43,8 @@ namespace StudentUI
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.labelLogin = new System.Windows.Forms.Label();
-            this.textBoxLogin = new System.Windows.Forms.TextBox();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.textBoxLogin = new SimpleTextbox();
+            this.textBoxPassword = new SimpleTextbox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -316,8 +318,8 @@ namespace StudentUI
         #endregion
 
         //Панель входа
-        private System.Windows.Forms.TextBox textBoxLogin;
-        private System.Windows.Forms.TextBox textBoxPassword;
+        private SimpleTextbox textBoxLogin;
+        private SimpleTextbox textBoxPassword;
         private System.Windows.Forms.Panel panelSignIn;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Label labelLogin;

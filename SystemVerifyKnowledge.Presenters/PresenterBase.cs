@@ -1,23 +1,21 @@
-﻿using SystemVerifyKnowledge.ApplicationController.Interface;
+﻿using SystemVerifyKnowledge.ApplicationContainer.Interface;
 using SystemVerifyKnowledge.Common.Interface;
 
 namespace SystemVerifyKnowledge.Common.BaseClass
 {
-    public abstract class PresenterBase<TView> : IPresenter
+    public abstract class PresenterBase<TView, TModel>
         where TView : IView
+        where TModel : IModel
     {
         protected readonly TView View;
-        protected IApplicationController Controller;
+        protected readonly TModel Model;
+        protected readonly IApplicationContainer Container;
 
-        public PresenterBase(IApplicationController controller, TView view)
+        public PresenterBase(IApplicationContainer container, TView view, TModel model)
         {
             View = view;
-            Controller = controller;
-        }
-
-        public virtual void Run()
-        {
-            View.Show();
+            Container = container;
+            Model = model;
         }
     }
 }

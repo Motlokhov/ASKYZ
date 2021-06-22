@@ -1,36 +1,27 @@
 ﻿using System;
 using System.Windows.Forms;
 using SystemVerifyKnowledge.Common.Interface;
-using SystemVerifyKnowledge.CoreLib.Model;
 
 namespace StudentUI
 {
     public partial class ChoseTestForm : AbstractForm, IChoseTestView
     {
-        public event Action<IUserSignIn> SingIn;
+        public event Action SingIn;
         public event Action ShowRegistrationWindow;
         public event Action ShowTrainingTestWindow;
         public event Action ShowRecoveryPasswordWindow;
         public event Action ShowReportsWindow;
 
-        private readonly IQueryResult _queryResult = Program.AppController.GetQueryResult();
+        private readonly IQueryResult _queryResult = Program.AppContainer.GetQueryResult();
 
-        public IUserSignIn UserSignIn  
-        {
-            get
-            {
-                return new UserSignIn
-                {
-                    Login = textBoxLogin.Text,
-                    Password = textBoxPassword.Text
-                };
-            }
-        }
+        ITextIO IChoseTestView.Password { get => textBoxPassword; }
+        ITextIO IChoseTestView.Login { get => textBoxLogin; }
 
         public ChoseTestForm()
         {
             InitializeComponent();
-            buttonSignIn.Click += delegate { SingIn?.Invoke(UserSignIn); };
+            buttonSignIn.Click += delegate
+            { SingIn?.Invoke(); };
             //buttonChoseTrainingTest.Click += delegate { ShowTrainingTestWindow?.Invoke(); };
             //buttonRecoveryPassword.Click += delegate { ShowRecoveryPasswordWindow.Invoke(); };
             //buttonRegistration.Click += delegate { ShowRegistrationWindow.Invoke(); };
@@ -38,6 +29,7 @@ namespace StudentUI
         }
 
         public new void Show() => Application.Run(this);
+        
 
         //Избавиться от реализаций ниже с зависимостью 
         private void ButtonRegistration_Click(object sender, EventArgs e)

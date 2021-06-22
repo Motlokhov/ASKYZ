@@ -7,8 +7,9 @@ namespace SystemVerifyKnowledge.Common.Interface
     {
         (byte id, string name)[] LoadAllDirections();
 
-        ulong? GetUserId(string id, string password);
+        ulong? GetUserId(SignIn signIn);
 
+        Student? GetStudent(SignIn signIn);
         string LoadDirectionName(byte programGroupId);
 
         (byte id, string name, byte number)[] LoadProgramsByDirecionAndType(byte directionID, int testType);

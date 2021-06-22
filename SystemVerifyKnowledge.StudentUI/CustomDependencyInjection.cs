@@ -7,7 +7,7 @@ namespace StudentUI
 {
     public static class CustomDependencyInjection
     {
-        public static Func<DbConnection> DbConnection => 
+        public static Func<DbConnection> DbConnection =>
             new Func<DbConnection>(() => new SqlConnection(File.ReadAllText("connection.txt")));
     }
 }

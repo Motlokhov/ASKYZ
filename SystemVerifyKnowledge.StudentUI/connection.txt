@@ -1,1 +1,1 @@
-Data Source=MIKHAIL\SQL2016;Database=DataBase.mdf;Integrated Security=false;User ID=sa;Password=user;
+Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False

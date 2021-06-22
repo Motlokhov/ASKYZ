@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
+using SystemVerifyKnowledge.Common.Interface;
+using SystemVerifyKnowledge.CoreLib;
 using SystemVerifyKnowledge.CoreLib.Common;
 using SystemVerifyKnowledge.CoreLib.Model;
-using SystemVerifyKnowledge.CoreLib;
 using SystemVerifyKnowledge.Presenters;
-using SystemVerifyKnowledge.Common.Interface;
 
 namespace StudentUI
 {
@@ -17,14 +17,14 @@ namespace StudentUI
         {
             InitializeComponent();
             richTextBoxQuestion.Text = string.Empty;
-            Core.Exercises.KnowledgeVerifyingEnded += KnowledgeVerifyingEnded;
+            //Core.Exercises.KnowledgeVerifyingEnded += KnowledgeVerifyingEnded;
             CheckManipulateButtons();
         }
 
         private void CheckManipulateButtons()
         {
             ExerciseSetType testType = Core.Exercises.Type;
-            if (testType == ExerciseSetType.Training)
+            if(testType == ExerciseSetType.Training)
             {
                 buttonPassQuestion.Visible = false;
                 CheckExerciseButtons();
@@ -38,13 +38,13 @@ namespace StudentUI
         private void CheckExerciseButtons()
         {
             bool hasNextExercise = buttonNextExercise.Visible = Core.Exercises.HasNextExercise;
-            if (hasNextExercise)
+            if(hasNextExercise)
             {
                 buttonNextExercise.Text = Core.Exercises.GetNextExerciseName;
             }
 
             bool hasPreviousExercise = buttonPreviousExercise.Visible = Core.Exercises.HasPreviousExercise;
-            if (hasPreviousExercise)
+            if(hasPreviousExercise)
             {
                 buttonPreviousExercise.Text = Core.Exercises.GetPreviousExerciseName;
             }
@@ -54,7 +54,7 @@ namespace StudentUI
 
         private void KnowledgeVerifyingEnded()
         {
-            if (Core.Exercises.Type == ExerciseSetType.Grand)
+            if(Core.Exercises.Type == ExerciseSetType.Grand)
             {
                 ResultForm resultForm = new();
                 resultForm.Show();
@@ -95,14 +95,14 @@ namespace StudentUI
 
             ExerciseType exerciseType = Core.Exercises.Exercise.Type;
             CheckBox checkBox = sender as CheckBox;
-            if (exerciseType == ExerciseType.themen)
+            if(exerciseType == ExerciseType.themen)
             {
 
                 CheckCheckBoxForThemenTest(checkBox);
             }
             else
             {
-                foreach (CheckBox item in checkBoxes)
+                foreach(CheckBox item in checkBoxes)
                 {
                     item.Checked = false;
                 }
@@ -114,14 +114,14 @@ namespace StudentUI
         {
             int countChecked = 0;
 
-            foreach (CheckBox item in checkBoxes)
+            foreach(CheckBox item in checkBoxes)
             {
-                if (item.Checked)
+                if(item.Checked)
                 {
                     countChecked++;
                 }
             }
-            if (countChecked > 2)
+            if(countChecked > 2)
             {
                 checkbox.Checked = false;
             }
@@ -155,7 +155,7 @@ namespace StudentUI
             Question question = Core.Exercises.Exercise.Question;
             int countAnswers = question.Answers.Count;
             checkBoxes = new CheckBox[countAnswers];
-            for (int i = 0; i < question.Answers.Count; i++)
+            for(int i = 0; i < question.Answers.Count; i++)
             {
                 Answer answer = question.Answers[i];
                 CheckBox checkbox = CreateAnswerCheckBox(answer.Id, i + 1);
@@ -183,7 +183,7 @@ namespace StudentUI
 
         private void LinkLabelImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (pictureForm != null)
+            if(pictureForm != null)
             {
                 pictureForm.Close();
             }
@@ -209,18 +209,18 @@ namespace StudentUI
         private ulong[] CheckNumberMarking()
         {
             int countChecked = 0;
-            for (int i = 0; i < checkBoxes.Length; i++)
+            for(int i = 0; i < checkBoxes.Length; i++)
             {
-                if (checkBoxes[i].Checked)
+                if(checkBoxes[i].Checked)
                 {
                     countChecked++;
                 }
             }
             ulong[] answersID = new ulong[countChecked];
             int index = 0;
-            for (int i = 0; i < checkBoxes.Length; i++)
+            for(int i = 0; i < checkBoxes.Length; i++)
             {
-                if (checkBoxes[i].Checked)
+                if(checkBoxes[i].Checked)
                 {
                     answersID[index] = Convert.ToUInt64(checkBoxes[i].Tag);
                     index++;
@@ -231,7 +231,7 @@ namespace StudentUI
 
         private void UncheckCheckBoxes()
         {
-            foreach (CheckBox checkbox in checkBoxes)
+            foreach(CheckBox checkbox in checkBoxes)
             {
                 checkbox.Checked = false;
             }
@@ -240,15 +240,15 @@ namespace StudentUI
         private void ButtonGiveAnswer_Click(object sender, EventArgs e)
         {
             ulong[] answersID = CheckNumberMarking();
-            if (answersID.Length == 0)
+            if(answersID.Length == 0)
             {
                 MessageBox.Show("Выберите ответ");
                 return;
             }
 
-            if (Core.Exercises.IsNextQuestionAvailable(answersID))
+            if(Core.Exercises.IsNextQuestionAvailable(answersID))
             {
-                if (!Core.Exercises.NextQuestion())
+                if(!Core.Exercises.NextQuestion())
                 {
                     Core.Exercises.TestEnd();
                     return;

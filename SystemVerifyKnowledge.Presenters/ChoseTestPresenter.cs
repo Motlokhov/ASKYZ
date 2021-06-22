@@ -1,33 +1,42 @@
-﻿using SystemVerifyKnowledge.ApplicationController.Interface;
+﻿using SystemVerifyKnowledge.ApplicationContainer.Interface;
+using SystemVerifyKnowledge.Common;
 using SystemVerifyKnowledge.Common.BaseClass;
 using SystemVerifyKnowledge.Common.Interface;
-using SystemVerifyKnowledge.CoreLib;
 
 namespace SystemVerifyKnowledge.Presenters
 {
-    public sealed class ChoseTestPresenter : PresenterBase<IChoseTestView>
+    public sealed class ChoseTestPresenter : PresenterBase<IChoseTestView, IChoseTestModel>, IPresenter
     {
-        private readonly IQueryResult _queryResult;
-
-        public ChoseTestPresenter(IApplicationController controller, IChoseTestView view, IQueryResult queryResult) 
-            : base(controller,view)
+        public ChoseTestPresenter(IApplicationContainer container, IChoseTestView view, IChoseTestModel model)
+            : base(container, view, model)
         {
-            _queryResult = queryResult;
-            view.SingIn += ValidateSingIn;
+            view.SingIn += SingIn;
         }
 
-        public void ValidateSingIn(IUserSignIn userSignIn)
+        public void Run() => View.Show();
+
+        private void SingIn()
         {
-            if (string.IsNullOrEmpty(userSignIn.Login) || string.IsNullOrEmpty(userSignIn.Password))
+            if(string.IsNullOrEmpty(View.Password.Text) || string.IsNullOrEmpty(View.Login.Text))
             {
                 View.ShowInfoMessage("Не все обязательные поля заполненны.");
                 return;
             }
 
-            if (Core.CheckPassword(_queryResult, userSignIn))
-                Controller.Run<TestingPresenter>();
+            if(!ulong.TryParse(View.Login.Text, out ulong login))
+            {
+                View.ShowInfoMessage("Логин должен быть положительным числом");
+                return;
+            }
+
+            if(Model.TryValidateSignIn(new SignIn(login, View.Password.Text), out Student student))
+            {
+                Container.Run<TestingPresenter, Student>(student);
+                View.Login.Text = View.Password.Text = string.Empty;
+            }
             else
                 View.ShowInfoMessage("Пароль/логин не правильны.");
+
         }
     }
 }

@@ -1,15 +1,24 @@
-﻿using SystemVerifyKnowledge.ApplicationController.Interface;
+﻿using SystemVerifyKnowledge.ApplicationContainer.Interface;
+using SystemVerifyKnowledge.Common;
 using SystemVerifyKnowledge.Common.BaseClass;
 using SystemVerifyKnowledge.Common.Interface;
 
 namespace SystemVerifyKnowledge.Presenters
 {
-    class TestingPresenter : PresenterBase<ITestingView>
+    internal sealed class TestingPresenter : PresenterBase<ITestingView, ITestingModel>, IPresenter<Student>
     {
-        public TestingPresenter(IApplicationController controller, ITestingView view)
-            :base(controller,view)
+        private Student Student { get; set; }
+
+        public TestingPresenter(IApplicationContainer container, ITestingView view, ITestingModel model)
+            : base(container, view, model)
         {
 
+        }
+
+        public void Run(Student argument)
+        {
+            Student = argument;
+            View.Show();
         }
     }
 }
