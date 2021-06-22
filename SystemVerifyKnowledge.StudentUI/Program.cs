@@ -25,7 +25,7 @@ namespace StudentUI
             .RegisterService<IConnection, ProductionConnection>()
             .RegisterService<IQueryResult, QueryResult>()
             .RegisterModel<IChoseTestModel, ChoseTestModel>()
-            .RegisterModel<ITestingModel, TestingModel>()
+            .RegisterModel<IGrandExerciseModel, GrandExerciseModel>()
             .RegisterView<IChoseTestView, ChoseTestForm>()
             .RegisterView<ITestingView, TestingForm>()
             .Run<ChoseTestPresenter>();

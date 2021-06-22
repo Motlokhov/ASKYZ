@@ -1,6 +1,5 @@
 ﻿using SystemVerifyKnowledge.Common;
 using SystemVerifyKnowledge.Common.Interface;
-using SystemVerifyKnowledge.CoreLib;
 
 namespace SystemVerifyKnowledge.Models
 {

@@ -31,7 +31,7 @@ namespace SystemVerifyKnowledge.Presenters
 
             if(Model.TryValidateSignIn(new SignIn(login, View.Password.Text), out Student student))
             {
-                Container.Run<TestingPresenter, Student>(student);
+                Container.Run<GrandExercisePresenter, Student>(student);
                 View.Login.Text = View.Password.Text = string.Empty;
             }
             else
